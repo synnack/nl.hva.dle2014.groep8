@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * 
@@ -16,11 +17,13 @@ import java.util.Iterator;
  * @param <SUBCLASS> Requires a subclass to perform queries on
  */
 public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
-	// FIXME Missing Datetime type
 	public enum FieldType {
 		INT,
 		LONG,
-		STRING
+		STRING,
+		DATE,
+		TIME,
+		DATETIME
 	};
 	
 	
@@ -31,7 +34,7 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 	protected HashMap<String, String> field_SqlNameMap;
 	protected HashMap<String, String> sqlName_FieldMap;
 	
-	protected long id;
+	protected Long id;
 
 	/**
 	 * Constructs the Database Model abstract class
@@ -42,12 +45,13 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 		this.conn = connection;
 		this.dirty = true;
 		this.fieldTypeMap = new HashMap<String, FieldType>();
-		this.fieldTypeMap.put("id", FieldType.LONG);
-		
 		this.field_SqlNameMap = new HashMap<String, String>();
-		this.field_SqlNameMap.put("id", "id");
-		
 		this.sqlName_FieldMap = new HashMap<String, String>();
+
+
+		// Add the common id field
+		this.fieldTypeMap.put("id", FieldType.LONG);
+		this.field_SqlNameMap.put("id", "id");
 		this.sqlName_FieldMap.put("id", "id");
 	}
 	
@@ -55,19 +59,13 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 	 * This is a generic method to retrieve 1 record from the database based on id
 	 * It calls into the subclass to load the ResultSet.
 	 * 
-	 * @param filters ArrayList<Filter> Array of field, operator, value tuples
-	 * @return A list of array pointers
+	 * @param id The id to get from the database
 	 */
-	public void getById(long id) throws SQLException {
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " +
-				this.objectName + "s WHERE id=?");
-		ps.setLong(1, id);
-		
-		ResultSet rs = ps.executeQuery();
-		if (!rs.next()) {
-			return;
-		}
-		loadResultSet(rs);
+	public void getById(Long id) 
+			throws SQLException, IllegalAccessException, NoSuchFieldException, InstantiationException {
+		ArrayList<Filter> filter = new ArrayList<Filter>();
+		filter.add(new Filter("id", Filter.Operator.EQUALS, id.toString()));
+		select(filter); // FIXME: This does not replace the current object
 	}
 	
 	/**
@@ -143,6 +141,15 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 						getClass().getField(columnName)
 								.set(field, rs.getString(i));
 						break;
+					case DATE:
+					case DATETIME:
+						getClass().getField(columnName)
+								.set(field, rs.getDate(i));
+						break;
+					case TIME:
+						getClass().getField(columnName)
+								.set(field, rs.getTime(i));
+						break;
 				}
 			}
 		}
@@ -154,13 +161,65 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 	 * Save the object in the database
 	 * 
 	 * @throws SQLException
+	 * @throws NoSuchFieldException 
+	 * @throws IllegalAccessException 
+	 * @throws SecurityException 
+	 * @throws IllegalArgumentException 
 	 */
-	public void save() throws SQLException {
+	public void save() throws SQLException, IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException {
 		if (!this.dirty) {
 			return;
 		}
-		PreparedStatement ps = savePreparedStatement();
-		if (this.id == 0) {
+
+		PreparedStatement ps;
+		if (this.id != 0L) {
+			String query = "";
+			int fieldCount = 0;
+			
+			Iterator<Map.Entry<String,FieldType>> it = fieldTypeMap.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String,FieldType> pair = (Map.Entry<String,FieldType>)it.next();
+				String sqlField = this.field_SqlNameMap.get(pair.getKey());
+				
+				if (query != "") {
+					query += ",";
+				}
+				query += sqlField + "=?";
+				fieldCount++;
+			}
+			ps = conn.prepareStatement("UPDATE " + this.objectName +
+					"s SET " + query + " WHERE id=?");
+			ps.setLong(fieldCount, this.id);
+		
+		} else {
+			String part1 = "";
+			String part2 = "";
+			Iterator<Map.Entry<String,FieldType>> it = fieldTypeMap.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String,FieldType> pair = (Map.Entry<String,FieldType>)it.next();
+				String sqlField = this.field_SqlNameMap.get(pair.getKey());
+				
+				if (part1 != "") {
+					part1 += ",";
+					part2 += ",";
+				}
+				part1 += sqlField;
+				part2 += "?";
+			}
+			ps = conn.prepareStatement("INSERT INTO " + this.objectName +
+					"s (" + part1 + ") VALUES (" + part2 + ")");
+		}
+		
+		Iterator<Map.Entry<String,FieldType>> it = fieldTypeMap.entrySet().iterator();
+		for (int i = 1;it.hasNext(); i++) {
+			Map.Entry<String,FieldType> pair = (Map.Entry<String,FieldType>)it.next();
+			// This ugly beast is ugly!
+			// FIXME: This only handles strings now!
+			ps.setString(i, getClass().getField(pair.getKey()).get(getClass().getField(pair.getKey())).toString());
+		}
+	
+		
+		if (this.id == 0L) {
 			int rows_updated = ps.executeUpdate();
 			if (rows_updated > 0) {
 				ResultSet rs = ps.getGeneratedKeys();
@@ -171,27 +230,5 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 		}
 		
 		this.dirty = false;
-	}
-	
-	/**
-	 * Constructs a prepared statement for this class.
-	 * 
-	 * This is a stub, needs to be defined in the subclass
-	 * 
-	 * @return Prepared statement with insert or update for this object
-	 * @throws SQLException
-	 */
-	public PreparedStatement savePreparedStatement() throws SQLException {
-		return null;
-	}
-	
-	/**
-	 * Parses and loads the contents of a resultset into the object.
-	 * 
-	 * @param rs result set to be parsed
-	 * @throws SQLException
-	 */
-	public void loadResultSet(ResultSet rs) throws SQLException {
-		
 	}
 }

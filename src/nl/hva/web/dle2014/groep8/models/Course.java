@@ -1,10 +1,7 @@
 package nl.hva.web.dle2014.groep8.models;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import nl.hva.web.dle2014.groep8.database.DatabaseModel;
 
@@ -14,50 +11,37 @@ public class Course extends DatabaseModel<Course> {
 	private Group managingGroup;
 
 	// These are used for lazy evaluation
-	private long ownerId;
-	private long managingGroupId;
+	private Long ownerId;
+	private Long managingGroupId;
 	
 	
-	// Constructor
+	/**
+	 * Constructor for Course objects
+	 * 
+	 * @param conn JDBC database connection
+	 */
 	public Course(Connection conn) {
 		super(conn);
+		
+		// Initialize the fields
 		this.owner = null;
 		this.managingGroup = null;
-		this.ownerId = 0;
-		this.managingGroupId = 0;
+		this.ownerId = 0L;
+		this.managingGroupId = 0L;
 		
+		// Set the object properties
 		this.objectName = "course";
-	}
-	
-	@Override
-	public PreparedStatement savePreparedStatement() throws SQLException {
+		this.fieldTypeMap.put("name", FieldType.STRING);
+		this.field_SqlNameMap.put("name", "name");
+		this.sqlName_FieldMap.put("name", "name");
 		
-		// Make sure the other objects are written to the database
-		this.owner.save();
-		this.managingGroup.save();
+		this.fieldTypeMap.put("ownerId", FieldType.LONG);
+		this.field_SqlNameMap.put("ownerId", "owner");
+		this.sqlName_FieldMap.put("owner", "ownerId");
 		
-		PreparedStatement ps;
-		
-		if (this.id == 0) {
-			ps = this.conn.prepareStatement("INSERT INTO " + this.objectName +
-					"s (name, owner, managing_group) VALUES (?,?,?)",
-					Statement.RETURN_GENERATED_KEYS);
-		} else {
-			ps = this.conn.prepareStatement("UPDATE " + this.objectName +
-					"s set name=?, owner=?, managing_group=? WHERE id=?");
-			ps.setLong(4, this.id);
-		}
-		ps.setString(1, this.name);
-		ps.setLong(2, this.owner.getId());
-		ps.setLong(3, this.managingGroup.getId());
-		
-		return ps;
-	}
-	
-	@Override
-	public void loadResultSet(ResultSet rs) throws SQLException {
-		this.name = rs.getString("name");
-
+		this.fieldTypeMap.put("managingGroupId", FieldType.STRING);
+		this.field_SqlNameMap.put("managingGroupId", "managing_group");
+		this.sqlName_FieldMap.put("managing_group", "managingGroupId");
 	}
 	
 	/*
@@ -77,7 +61,7 @@ public class Course extends DatabaseModel<Course> {
 		this.dirty = true;
 	}
 	
-	public User getOwner() throws SQLException {
+	public User getOwner() throws SQLException, IllegalAccessException, NoSuchFieldException, InstantiationException {
 		if (this.owner == null) {
 			if (this.managingGroupId == 0) {
 				throw new SQLException("There is no owner.");
@@ -94,7 +78,7 @@ public class Course extends DatabaseModel<Course> {
 		this.dirty = true;
 	}
 	
-	public Group getManagingGroup() throws SQLException {
+	public Group getManagingGroup() throws SQLException, IllegalAccessException, NoSuchFieldException, InstantiationException {
 		if (this.managingGroup == null) {
 			if (this.managingGroupId == 0) {
 				throw new NullPointerException("There is no managing group.");

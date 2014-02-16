@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,8 +22,9 @@ public class User extends DatabaseModel<User> {
 	private String displayName;
 	private String email;
 
-	/*
+	/**
 	 * This constructor takes a database connection and passes it to the Database constructor
+	 * @param conn The JDBC connection
 	 */
 	public User(Connection conn) {
 		super(conn);
@@ -32,55 +32,15 @@ public class User extends DatabaseModel<User> {
 	}
 	
 	
-	/*
-	 * @see nl.hva.web.dle2014.groep8.database.DatabaseModel#savePreparedStatement()
-	 * 
-	 * This method prepares insert and update queries for this class object. It gets 
-	 * called by the save() method in the abstract superclass. 
-	 */
-	@Override
-	public PreparedStatement savePreparedStatement() throws SQLException {
-		PreparedStatement ps;
-		if (this.id == 0) {
-			ps = this.conn.prepareStatement("INSERT INTO " + this.objectName +
-					"s (username, password_hash, given_name, surname, display_name, email) "+
-					"VALUES (?,?,?,?,?,?)",
-					Statement.RETURN_GENERATED_KEYS);
-		} else {
-			ps = this.conn.prepareStatement("UPDATE " + this.objectName +
-					"s set username=?, password_hash=?, given_name=?, surname=?, " +
-					"display_name=?, email=? WHERE id=?");
-			ps.setLong(7, this.id);
-		}
-		
-		ps.setString(1, this.username);
-		ps.setString(2, this.passwordHash);
-		ps.setString(3, this.givenName);
-		ps.setString(4, this.surName);
-		ps.setString(5, this.displayName);
-		ps.setString(6, this.email);
-		
-		return ps;
-	}
-	/*
-	 * @see nl.hva.web.dle2014.groep8.database.DatabaseModel#loadResultSet(java.sql.ResultSet)
-	 * 
-	 * This method loads the object values from a select query, it gets called by the 
-	 * select() and getById() functions in the abstract superclass. 
-	 */
-	@Override
-	public void loadResultSet(ResultSet rs) throws SQLException {
-		this.username = rs.getString("username");
-		this.passwordHash = rs.getString("password_hash");
-		this.givenName = rs.getString("given_name");
-		this.surName = rs.getString("surname");
-		this.displayName = rs.getString("display_name");
-		this.email = rs.getString("email");
-	}
 	
 	
-	/*
+	/**
 	 * This method checks if the argument supplied matches the known password 
+	 *
+	 * @param password The password to verify
+	 * @return Password correct yes/no
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeySpecException
 	 */
 	public Boolean isPasswordCorrect(String password) 
 			throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -91,8 +51,12 @@ public class User extends DatabaseModel<User> {
         return this.passwordHash != generateHash(password, salt);      
 	}
 	
-	/*
-	 * This method sets a new password 
+	/**
+	 * This method sets a new password for the user. 
+	 *
+	 * @param password Password to set
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeySpecException
 	 */
 	public void setPassword(String password) 
 			throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -102,8 +66,14 @@ public class User extends DatabaseModel<User> {
         this.passwordHash = generateHash(password, salt);
 	}
 	
-	/*
+	/**
 	 * This method is private and generates a PBKDF2 hash of the password
+	 *
+	 * @param password The password to hash
+	 * @param salt Salt to use for hashing
+	 * @return password hash
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeySpecException
 	 */
 	private static String generateHash(String password, byte[] salt) 
 			throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -117,8 +87,11 @@ public class User extends DatabaseModel<User> {
         return iterations + ":" + toHex(salt) + ":" + toHex(hash);
 	}
 	
-	/*
+	/**
 	 * This method generates a 16-byte random salt, to be used for hash generation
+	 * 
+	 * @return a 16-byte random salt
+	 * @throws NoSuchAlgorithmException
 	 */
 	private static byte[] getRandomSalt() throws NoSuchAlgorithmException {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
@@ -127,8 +100,12 @@ public class User extends DatabaseModel<User> {
 		return salt;
 	}
 
-	/*
+	/**
 	 * This method converts a byte array to a hex string
+	 * 
+	 * @param array Byte array to convert to hex
+	 * @return hexadecimal string representation of the supplied array
+	 * @throws NoSuchAlgorithmException
 	 */
 	private static String toHex(byte[] array) throws NoSuchAlgorithmException {
 		BigInteger bi = new BigInteger(1, array);

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.Date;
 
 import nl.hva.web.dle2014.groep8.database.DatabaseModel;
+import nl.hva.web.dle2014.groep8.database.DatabaseModel.FieldType;
 
 public class Lecture extends DatabaseModel<Lecture> {
 	private String name;
@@ -13,9 +14,29 @@ public class Lecture extends DatabaseModel<Lecture> {
 	private User owner;
 	private Date lastModified;
 	
+	private Long courseId;
+	private Long ownerId;
+	
 	public Lecture(Connection conn) {
 		super(conn);
+		this.courseId = 0L;
+		this.ownerId = 0L;
+		this.owner = null;
+		this.course = null;
+
+		// Set the object properties
 		this.objectName = "lecture";
+		this.fieldTypeMap.put("name", FieldType.STRING);
+		this.field_SqlNameMap.put("name", "name");
+		this.sqlName_FieldMap.put("name", "name");
+		
+		this.fieldTypeMap.put("ownerId", FieldType.LONG);
+		this.field_SqlNameMap.put("ownerId", "owner");
+		this.sqlName_FieldMap.put("owner", "ownerId");
+		
+		this.fieldTypeMap.put("courseId", FieldType.STRING);
+		this.field_SqlNameMap.put("courseId", "course");
+		this.sqlName_FieldMap.put("course", "courseId");
 	}
 	
 	/*
@@ -63,6 +84,7 @@ public class Lecture extends DatabaseModel<Lecture> {
 	
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+		this.dirty = true;
 	}
 	
 	public Date getEndDate() {
