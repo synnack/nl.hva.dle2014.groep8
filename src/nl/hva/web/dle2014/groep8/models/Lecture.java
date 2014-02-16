@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.Date;
 
 import nl.hva.web.dle2014.groep8.database.DatabaseModel;
-import nl.hva.web.dle2014.groep8.database.DatabaseModel.FieldType;
 
 public class Lecture extends DatabaseModel<Lecture> {
 	private String name;

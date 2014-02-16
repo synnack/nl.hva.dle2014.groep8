@@ -10,9 +10,7 @@ import nl.hva.web.dle2014.groep8.database.DatabaseModel;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class User extends DatabaseModel<User> {
 	private String username;

@@ -3,7 +3,6 @@ package nl.hva.web.dle2014.groep8.models;
 import java.sql.Connection;
 
 import nl.hva.web.dle2014.groep8.database.DatabaseModel;
-import nl.hva.web.dle2014.groep8.database.DatabaseModel.FieldType;
 
 public class Group extends DatabaseModel<Group> {
 	private String name;
