@@ -233,6 +233,11 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 		this.dirty = false;
 	}
 	
+	/**
+	 * Get the database id of the object.
+	 * 
+	 * @return The id of the object.
+	 */
 	public long getId() {
 		return this.id;
 	}
