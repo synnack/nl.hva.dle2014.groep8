@@ -22,9 +22,6 @@ public class Competence extends DatabaseModel<Competence> {
 	/*
 	 * Get/Setters below here
 	 */
-	public long getId() {
-		return this.id;
-	}
 	
 	public String getName() {
 		return this.name;

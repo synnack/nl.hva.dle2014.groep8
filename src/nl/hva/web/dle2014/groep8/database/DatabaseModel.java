@@ -232,4 +232,9 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 		
 		this.dirty = false;
 	}
+	
+	public long getId() {
+		return this.id;
+	}
+	
 }
