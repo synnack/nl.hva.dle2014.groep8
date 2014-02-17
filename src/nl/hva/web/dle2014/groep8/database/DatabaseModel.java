@@ -115,12 +115,13 @@ public abstract class DatabaseModel<SUBCLASS extends DatabaseModel<SUBCLASS>> {
 		PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + 
 				this.objectName + "s WHERE " + query);
 		
-		// Write out the rest of the query.
+		// Fill in the prepared statements
 		iterator = filters.iterator();
 		for (int i = 1; iterator.hasNext(); i++) {
 			Filter filter = iterator.next();
 			ps.setString(i, filter.value);
 		}
+		
 		ResultSet rs = ps.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		int column_cnt = meta.getColumnCount();

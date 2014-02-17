@@ -11,7 +11,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 
-
+/**
+ * 
+ * @author Wilco Baan Hofman
+ *
+ */
 public class User extends DatabaseModel<User> {
 	private String username;
 	private String passwordHash;
