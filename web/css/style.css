@@ -189,7 +189,7 @@ h3
 
 #clouds{
     padding: 100px 0;
-    position: relative;
+    position: absolute;
     top: 100px;
 }
 
