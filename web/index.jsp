@@ -12,7 +12,7 @@
         </div>
         <h1>Sign in to TnL</h1>
 	
-        <form method="post" action="/login">
+        <form method="post" action="login">
             <div class="inputs">
 	        <input class="field" name="username" type="text" placeholder="Username" autofocus required>
 	        <input class="field" name="password" type="password" placeholder="Password" required>
