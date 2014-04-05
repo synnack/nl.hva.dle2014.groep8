@@ -1,12 +1,15 @@
 package controller;
 
+import entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import session.UserFacade;
 
 /**
  *
@@ -16,8 +19,17 @@ import javax.servlet.http.HttpServletResponse;
             loadOnStartup = 1,
             urlPatterns = {"/login", 
                            "/home",
-                           "/lecture"})
+                           "/manage",
+                           "/mycompetencies",
+                           "/mycourses",
+                           "/knowledgebase",
+                           "/courses/([0-9]+)/documents",
+                           "/courses/([0-9]+)/lectures",
+                           
+            })
 public class ControllerServlet extends HttpServlet {
+    @EJB
+    private UserFacade userFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,19 +42,48 @@ public class ControllerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControllerServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControllerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        HttpSession session = request.getSession();
+                
+        String userPath;
+        
+        /* Handle logging in */
+        if (request.getServletPath().equals("/login")) {
+            User user = userFacade.findByUsername(request.getParameter("username"));
+            if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
+                /* Fail! */
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                return;
+            }
+            session.setAttribute("User", user);
+            response.sendRedirect("home");
+            return;
         }
+        
+        /* Demand a log in for everything else */
+        if (session.getAttribute("User") == null) {
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            return;
+        }
+        
+        /* Dispatch to different views */
+        switch (request.getServletPath()) {        
+            case "/home":
+                userPath = "/home";
+                break;
+            case "/manage":
+                userPath = "/manage";
+                break;
+            default:
+                userPath = "/home";
+                break;
+                
+        }
+        
+        // use RequestDispatcher to forward request internally
+        String url = "/WEB-INF/view" + userPath + ".jsp";
+
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     /**

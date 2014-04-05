@@ -125,16 +125,19 @@ public class User implements Serializable {
      *
      * @param password The password to verify
      * @return Password correct yes/no
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
      */
-    public Boolean isPasswordCorrect(String password) 
-                    throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public Boolean isPasswordCorrect(String password) {
 
-            byte[] salt = this.passwordHash.substring(0, 
-                            this.passwordHash.indexOf(":")).getBytes();
+            byte[] salt = fromHex(this.passwordHash.substring(this.passwordHash.indexOf(":")+1, 
+                            this.passwordHash.indexOf(":", this.passwordHash.indexOf(":")+1)));
 
-            return this.passwordHash.equals(generateHash(password, salt));      
+            try {
+                return this.passwordHash.equals(generateHash(password, salt));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace(System.out);
+                return false;
+            }
+             
     }
     
     /**
@@ -191,9 +194,8 @@ public class User implements Serializable {
      * 
      * @param array Byte array to convert to hex
      * @return hexadecimal string representation of the supplied array
-     * @throws NoSuchAlgorithmException
      */
-    private static String toHex(byte[] array) throws NoSuchAlgorithmException {
+    private static String toHex(byte[] array) {
             BigInteger bi = new BigInteger(1, array);
             String hex = bi.toString(16);
 
@@ -206,6 +208,25 @@ public class User implements Serializable {
             }
     }
     
+    /**
+     * This method converts a hex string to a byte array
+     * 
+     * @param hex Hex string to convert to a byte array
+     * @return byte array as deduced from the hex string
+     * @throws NoSuchAlgorithmException
+     */
+    private static byte[] fromHex(String hex) {
+        int len = hex.length();
+        assert(len % 2 == 0);
+        
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+                                 + Character.digit(hex.charAt(i+1), 16));
+        }
+        return data;
+    }
+        
     public Long getId() {
         return id;
     }
@@ -324,10 +345,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
     @Override
