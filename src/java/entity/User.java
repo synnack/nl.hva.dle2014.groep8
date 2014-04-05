@@ -7,7 +7,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Collection;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -104,16 +110,102 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Long id, String username, String passwordHash, String givenName, String surname, String displayName, String email) {
+    public User(Long id, String username, String password, String givenName, String surname, String displayName, String email) throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.id = id;
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.passwordHash = generateHash(password, getRandomSalt());
         this.givenName = givenName;
         this.surname = surname;
         this.displayName = displayName;
         this.email = email;
     }
+    
+    /**
+     * This method checks if the argument supplied matches the known password 
+     *
+     * @param password The password to verify
+     * @return Password correct yes/no
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public Boolean isPasswordCorrect(String password) 
+                    throws NoSuchAlgorithmException, InvalidKeySpecException {
 
+            byte[] salt = this.passwordHash.substring(0, 
+                            this.passwordHash.indexOf(":")).getBytes();
+
+            return this.passwordHash.equals(generateHash(password, salt));      
+    }
+    
+    /**
+     * This method sets a new password for the user. 
+     *
+     * @param password Password to set
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public void setPassword(String password) 
+                    throws NoSuchAlgorithmException, InvalidKeySpecException {
+
+            byte[] salt = getRandomSalt();
+
+            this.passwordHash = generateHash(password, salt);
+    }
+
+    /**
+     * This method is private and generates a PBKDF2 hash of the password
+     *
+     * @param password The password to hash
+     * @param salt Salt to use for hashing
+     * @return password hash
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    private static String generateHash(String password, byte[] salt) 
+                    throws NoSuchAlgorithmException, InvalidKeySpecException {
+
+            int iterations = 1000;
+            char[] chars = password.toCharArray();
+
+            PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 64 * 8);
+            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            byte[] hash = skf.generateSecret(spec).getEncoded();
+            return iterations + ":" + toHex(salt) + ":" + toHex(hash);
+    }
+
+    /**
+     * This method generates a 16-byte random salt, to be used for hash generation
+     * 
+     * @return a 16-byte random salt
+     * @throws NoSuchAlgorithmException
+     */
+    private static byte[] getRandomSalt() throws NoSuchAlgorithmException {
+            SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+            byte[] salt = new byte[16];
+            sr.nextBytes(salt);
+            return salt;
+    }
+
+    /**
+     * This method converts a byte array to a hex string
+     * 
+     * @param array Byte array to convert to hex
+     * @return hexadecimal string representation of the supplied array
+     * @throws NoSuchAlgorithmException
+     */
+    private static String toHex(byte[] array) throws NoSuchAlgorithmException {
+            BigInteger bi = new BigInteger(1, array);
+            String hex = bi.toString(16);
+
+            int paddingLength = (array.length * 2) - hex.length();
+
+            if (paddingLength > 0) {
+                    return String.format("%0" + paddingLength + "d", 0) + hex;
+            } else {
+                    return hex;
+            }
+    }
+    
     public Long getId() {
         return id;
     }
@@ -130,13 +222,7 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 
     public String getGivenName() {
         return givenName;
