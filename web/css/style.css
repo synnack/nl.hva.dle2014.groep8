@@ -1,0 +1,298 @@
+/* 
+    Created on : 05-Apr-2014, 16:32:55
+    Author     : wilcoc
+*/
+
+
+
+html, body
+{
+    height: 100%;
+}
+
+
+body
+{
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+	background-color: #5b7983;
+    background: url('../images/background.png') no-repeat scroll;
+    background-size: 100% 100%;
+    min-height: 700px;
+    overflow: hidden;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+h2
+{
+    text-align: left;
+    color:rgba(255, 255, 255, .9);
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    left:10px;
+}
+
+#login
+{
+    background-color: #ffffff;
+    height: 280px;
+    width: 280px;
+    margin: -180px 0 0 -180px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 60px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
+}
+
+h1
+{
+    text-align: center;
+    color: #5b7983;
+    font-size: 35px;
+	font-family: "Helvetica Neue",sans-serif;
+	font-weight: 300;
+	line-height: 1.2;
+	-webkit-font-smoothing: antialiased;
+    position: relative;
+    top:-10px;
+}
+
+fieldset
+{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#inputs input
+{
+    padding: 15px 15px 15px 30px;
+    margin: 0 0 0px 0;
+    width: 250px;
+    border: 0px solid #ccc;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 5px;
+}
+
+#username
+{
+    background-position: 5px -2px !important;
+    color: #000000;
+    font-size: 20px;
+	font-family: "Helvetica Neue",sans-serif;
+	font-weight: 300;
+	line-height: 1.2;
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+    width: 100%;
+    top:-5px;
+}
+
+#password
+{
+    background-position: 5px -52px !important;
+    color: #000000;
+    font-size: 20px;
+	font-family: "Helvetica Neue",sans-serif;
+	font-weight: 300;
+	line-height: 1.2;
+	-webkit-font-smoothing: antialiased;
+    position: relative;
+    width: 100%;
+    top:-25px;
+}
+
+.field {
+        height: 35px;
+		display:block;
+        border: 1px solid rgba(91, 121, 150, .3);
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        border-top:0px;
+        border-left:0px;
+        border-right:0px;
+		margin-bottom:30px;
+        outline: none;
+}
+
+#inputs input:focus
+{
+    outline: none;
+}
+
+#actions
+{
+    margin: 25px 0 0 0;
+}
+
+#submit
+{		
+    position: relative;
+    top:-45px;
+    opacity: .6;
+}
+
+#submit:hover,#submit:focus
+{		
+    position: relative;
+    top:-45px;
+    opacity: 1;
+}	
+
+#submit::-moz-focus-inner
+{
+  border: none;
+}
+
+#actions a
+{
+    color: #3151A2;    
+    float: right;
+    line-height: 35px;
+    margin-left: 10px;
+}
+
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:30px;
+}
+
+h3
+{
+    text-align: right;
+    color:rgba(255, 255, 255, .9);
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    left:-15px;
+    top: -34px;
+}
+
+#clouds{
+    padding: 100px 0;
+    position: relative;
+    top: 100px;
+}
+
+.cloud {
+    width: 200px; height: 60px;
+    background: #fff;
+    
+    border-radius: 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    
+    position: relative; 
+}
+
+.cloud:before, .cloud:after {
+    content: '';
+    position: absolute; 
+    background: #fff;
+    width: 100px; height: 80px;
+    position: absolute; top: -15px; left: 10px;
+    
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+}
+
+.cloud:after {
+    width: 120px; height: 120px;
+    top: -55px; left: auto; right: 15px;
+}
+
+
+.x1 {
+    -webkit-animation: moveclouds 30s linear infinite;
+    -moz-animation: moveclouds 30s linear infinite;
+    -o-animation: moveclouds 30s linear infinite;
+}
+
+.x2 {
+    left: 200px;
+    
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.6;
+    
+    -webkit-animation: moveclouds 50s linear infinite;
+    -moz-animation: moveclouds 50s linear infinite;
+    -o-animation: moveclouds 50s linear infinite;
+}
+
+.x3 {
+    left: -250px; top: -200px;
+    
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.8;
+    
+    -webkit-animation: moveclouds 40s linear infinite;
+    -moz-animation: moveclouds 40s linear infinite;
+    -o-animation: moveclouds 40s linear infinite;
+}
+
+.x4 {
+    left: 470px; top: -250px;
+    
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.75;
+    
+    -webkit-animation: moveclouds 36s linear infinite;
+    -moz-animation: moveclouds 36s linear infinite;
+    -o-animation: moveclouds 36s linear infinite;
+}
+
+.x5 {
+    left: -150px; top: -150px;
+    
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.8;
+    
+    -webkit-animation: moveclouds 40s linear infinite;
+    -moz-animation: moveclouds 40s linear infinite;
+    -o-animation: moveclouds 40s linear infinite;
+}
+
+@-webkit-keyframes moveclouds {
+    0% {margin-left: 2000px;}
+    100% {margin-left: -2000px;}
+}
+@-moz-keyframes moveclouds {
+    0% {margin-left: 2000px;}
+    100% {margin-left: -2000px;}
+}
+@-o-keyframes moveclouds {
+    0% {margin-left: 2000px;}
+    100% {margin-left: -2000px;}
+}
