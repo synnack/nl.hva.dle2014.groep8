@@ -5,6 +5,7 @@
 --%>
 
 <h2>Teach 'n' Learn | Home</h2>
+
 <table id="tile_table">
     <tr>
         <td><div class="tile"><a href="mycompetencies"><img alt="" src="images/home/profile.png"><h3>My competencies</h3></a></div></td>

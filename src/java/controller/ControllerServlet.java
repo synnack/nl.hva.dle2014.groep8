@@ -74,6 +74,9 @@ public class ControllerServlet extends HttpServlet {
             case "/manage":
                 userPath = "/manage";
                 break;
+            case "/mycourses":
+                userPath = "/mycourses";
+                break;
             default:
                 userPath = "/home";
                 break;

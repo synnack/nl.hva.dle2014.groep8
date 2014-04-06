@@ -30,6 +30,15 @@ a
     text-decoration: none;
 }
 
+a.title {
+    text-decoration: none;
+    color: white;
+}
+
+a.title:hover {
+    color: yellow;
+}
+
 h2
 {
     text-align: left;
@@ -57,6 +66,48 @@ h2
     box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
 }
 
+.right_window
+{
+    background-color: #ffffff;
+    height: 600px;
+    width: 450px;
+    margin: -330px 0 0 -150px;
+    padding: 10px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.left_window
+{
+    background-color: #ffffff;
+    height: 400px;
+    width: 165px;
+    margin: -241px 0 0 -360px;
+    padding: 10px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+
+.window_content {
+    overflow-y: auto;
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 input[type=image] {
     margin-left: auto;
     margin-right: auto;
@@ -66,11 +117,11 @@ h1
 {
     text-align: center;
     color: #5b7983;
-    font-size: 35px;
-	font-family: "Helvetica Neue",sans-serif;
-	font-weight: 300;
-	line-height: 1.2;
-	-webkit-font-smoothing: antialiased;
+    font-size: 26px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
     position: relative;
     top:-10px;
 }
@@ -317,4 +368,9 @@ div.tile
 {
     height: 130px;
     width: 130px; 
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
