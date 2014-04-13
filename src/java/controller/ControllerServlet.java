@@ -23,6 +23,7 @@ import session.UserFacade;
                            "/mycompetencies",
                            "/mycourses",
                            "/knowledgebase",
+                           "/lecture",
                            "/courses/([0-9]+)/documents",
                            "/courses/([0-9]+)/lectures",
                            
@@ -76,6 +77,9 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/mycourses":
                 userPath = "/mycourses";
+                break;
+            case "/lecture":
+                userPath = "/lecture";
                 break;
             default:
                 userPath = "/home";

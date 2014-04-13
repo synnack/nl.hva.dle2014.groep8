@@ -144,15 +144,15 @@ public class User implements Serializable {
      * This method sets a new password for the user. 
      *
      * @param password Password to set
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
      */
-    public void setPassword(String password) 
-                    throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public void setPassword(String password) {
+            try {
+                byte[] salt = getRandomSalt();
 
-            byte[] salt = getRandomSalt();
-
-            this.passwordHash = generateHash(password, salt);
+                this.passwordHash = generateHash(password, salt);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace(System.err);
+            }
     }
 
     /**

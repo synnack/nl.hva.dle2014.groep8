@@ -36,6 +36,24 @@ public class UserFacade extends AbstractFacade<User> {
         }
     }
     
+    public Boolean addUser(String username, 
+                           String password,
+                           String givenName,
+                           String surname,
+                           String displayName,
+                           String email) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setGivenName(givenName);
+        user.setSurname(surname);
+        user.setDisplayName(displayName);
+        user.setEmail(email);
+
+        em.persist(user);
+       return true;
+    }
+    
     public UserFacade() {
         super(User.class);
     }
