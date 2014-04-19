@@ -66,15 +66,19 @@ public class ControllerServlet extends HttpServlet {
         /* Handle register */
         if (request.getServletPath().equals("/register")) {
             if (request.getMethod().equals("POST")) {
-                User user = userFacade.addUser(
+                boolean success = userFacade.addUser(
                         request.getParameter("username"), 
                         request.getParameter("password"),
                         request.getParameter("given_name"), 
                         request.getParameter("surname"),
-                        request.getParameter("display_name"),
                         request.getParameter("email"));
-                session.setAttribute("User", user);
-                response.sendRedirect("home");
+                if (success) {
+                    User user = userFacade.findByUsername(request.getParameter("username"));
+                    session.setAttribute("User", user);
+                    response.sendRedirect("home");
+                } else {
+                    response.sendRedirect("register");
+                }
                 return;
             }
             request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);

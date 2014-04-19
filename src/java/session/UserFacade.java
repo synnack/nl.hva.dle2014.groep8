@@ -42,11 +42,10 @@ public class UserFacade extends AbstractFacade<User> {
         }
     }
     
-    public User addUser(String username, 
+    public boolean addUser(String username, 
                            String password,
                            String givenName,
                            String surname,
-                           String displayName,
                            String email) {
         User user = new User();
         user.setUsername(username);
@@ -63,8 +62,9 @@ public class UserFacade extends AbstractFacade<User> {
                 System.out.println("Message: " + c.getMessage());
                 System.out.println("Message: " + c.getLeafBean());
             }
+            return false;
         }
-        return null;
+        return true;
     }
     
     //public Boolean addCompetency(User user, Competency competency, Int skillLevel) {
