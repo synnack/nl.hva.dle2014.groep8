@@ -37,6 +37,59 @@ public class ControllerServlet extends HttpServlet {
     private UserFacade userFacade;
 
     /**
+     * Handles the Login view.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void handleLogin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = userFacade.findByUsername(request.getParameter("username"));
+        if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
+            /* Fail! */
+            request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
+            return;
+        }
+        session.setAttribute("User", user);
+        response.sendRedirect("home");
+ 
+    }
+    /**
+     * Handles the register new user view
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void handleRegister(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        if (request.getMethod().equals("POST")) {
+                boolean success = userFacade.addUser(
+                        request.getParameter("username"), 
+                        request.getParameter("password"),
+                        request.getParameter("given_name"), 
+                        request.getParameter("surname"),
+                        request.getParameter("email"));
+                if (success) {
+                    User user = userFacade.findByUsername(request.getParameter("username"));
+                    session.setAttribute("User", user);
+                    response.sendRedirect("home");
+                } else {
+                    response.sendRedirect("register");
+                }
+                return;
+            }
+            request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
+    }
+    
+    
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -54,36 +107,13 @@ public class ControllerServlet extends HttpServlet {
         
         /* Handle logging in */
         if (request.getServletPath().equals("/login")) {
-            User user = userFacade.findByUsername(request.getParameter("username"));
-            if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
-                /* Fail! */
-                request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
-                return;
-            }
-            session.setAttribute("User", user);
-            response.sendRedirect("home");
+            handleLogin(request, response);
             return;
         }
         
         /* Handle register */
         if (request.getServletPath().equals("/register")) {
-            if (request.getMethod().equals("POST")) {
-                boolean success = userFacade.addUser(
-                        request.getParameter("username"), 
-                        request.getParameter("password"),
-                        request.getParameter("given_name"), 
-                        request.getParameter("surname"),
-                        request.getParameter("email"));
-                if (success) {
-                    User user = userFacade.findByUsername(request.getParameter("username"));
-                    session.setAttribute("User", user);
-                    response.sendRedirect("home");
-                } else {
-                    response.sendRedirect("register");
-                }
-                return;
-            }
-            request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
+            handleRegister(request, response);
             return;
         }
         
@@ -109,42 +139,42 @@ public class ControllerServlet extends HttpServlet {
         /* Dispatch to different views */
         switch (request.getServletPath()) {
             case "/home":
-                userPath = "/home";
+                userPath = "/home.jsp";
                 break;
             case "/user/courses":
-                userPath = "/user/courses";
+                userPath = "/user/courses.jsp";
                 break;
             case "/manage":
-                userPath = "/manage";
+                userPath = "/manage.jsp";
                 break;
             case "/course/list":
-                userPath = "/course/manage";
+                userPath = "/course/manage.jsp";
                 break;
             case "/competency/list":
-                userPath = "/course/manage";
+                userPath = "/course/manage.jsp";
                 break;
             case "/user/list":
-                userPath = "/user/manage";
+                userPath = "/user/manage.jsp";
                 break;
             case "/group/list":
-                userPath = "/group/manage";
+                userPath = "/group/manage.jsp";
                 break;
             case "/register":
-                userPath = "/register";
+                userPath = "/register.jsp";
                 break;
                 
             // FIXME: Course needs to have an Id inserted
             case "/course/lecture":
-                userPath = "/course/lecture";
+                userPath = "/course/lecture.jsp";
                 break;
             default:
-                userPath = "/home";
+                userPath = "/home.jsp";
                 break;
                 
         }
         
         // use RequestDispatcher to forward request internally
-        String url = "/WEB-INF/view/auth" + userPath + ".jsp";
+        String url = "/WEB-INF/view/auth" + userPath;
 
         request.getRequestDispatcher(url).forward(request, response);
     }
