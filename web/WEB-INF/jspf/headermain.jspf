@@ -8,7 +8,7 @@
 <title>Teach 'n' Learn</title>
 <link rel="stylesheet" type="text/css" href="${context}/css/style.css">
 </head>
-<body>
+<body class="blurbackground">
     <div class="topright"><h2>Welkom ${sessionScope.User.getUsername()} | <a href="${context}/logout" class="title">Log uit</a></h2>
     </div>
     <div id="clouds">

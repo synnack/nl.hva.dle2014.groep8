@@ -19,7 +19,7 @@ body
     font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
     margin: 0;
 	background-color: #5b7983;
-    background: url('../images/background.png') no-repeat scroll;
+    background: url('../images/background.jpg') no-repeat scroll;
     background-size: 100% 100%;
     min-height: 700px;
     overflow: hidden;
@@ -30,7 +30,7 @@ body
     font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
     margin: 0;
 	background-color: #5b7983;
-    background: url('../images/backgroundblur.png') no-repeat scroll;
+    background: url('../images/backgroundblur.jpg') no-repeat scroll;
     background-size: 100% 100%;
     min-height: 700px;
     overflow: hidden;
@@ -79,7 +79,7 @@ h2
 
 .loginwindow
 {
-    height: 280px;
+    height: 300px;
     width: 280px;
     margin: -180px 0 0 -180px;
     padding: 30px;
