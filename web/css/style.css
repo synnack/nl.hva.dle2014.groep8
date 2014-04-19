@@ -146,6 +146,13 @@ fieldset
     margin: 0;
 }
 
+.topright
+{
+    position:absolute;
+    top:5px;
+    right:30px;
+}
+
 #inputs input[type=text]
 {
     padding: 15px 15px 15px 30px;
