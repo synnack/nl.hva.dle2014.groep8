@@ -111,17 +111,31 @@ public class ControllerServlet extends HttpServlet {
             case "/home":
                 userPath = "/home";
                 break;
+            case "/user/courses":
+                userPath = "/user/courses";
+                break;
             case "/manage":
                 userPath = "/manage";
                 break;
-            case "/mycourses":
-                userPath = "/user/courses";
+            case "/course/list":
+                userPath = "/course/manage";
                 break;
-            case "/lecture":
-                userPath = "/lecture";
+            case "/competency/list":
+                userPath = "/course/manage";
+                break;
+            case "/user/list":
+                userPath = "/user/manage";
+                break;
+            case "/group/list":
+                userPath = "/group/manage";
                 break;
             case "/register":
                 userPath = "/register";
+                break;
+                
+            // FIXME: Course needs to have an Id inserted
+            case "/course/lecture":
+                userPath = "/course/lecture";
                 break;
             default:
                 userPath = "/home";
