@@ -32,7 +32,7 @@ a
 
 a.title {
     text-decoration: none;
-    color: white;
+    color:rgba(255, 255, 255, .9);
 }
 
 a.title:hover {
