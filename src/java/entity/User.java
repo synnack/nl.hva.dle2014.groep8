@@ -47,7 +47,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByPasswordHash", query = "SELECT u FROM User u WHERE u.passwordHash = :passwordHash"),
     @NamedQuery(name = "User.findByGivenName", query = "SELECT u FROM User u WHERE u.givenName = :givenName"),
     @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname"),
-    @NamedQuery(name = "User.findByDisplayName", query = "SELECT u FROM User u WHERE u.displayName = :displayName"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -76,11 +75,6 @@ public class User implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "surname")
     private String surname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "display_name")
-    private String displayName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -110,13 +104,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Long id, String username, String password, String givenName, String surname, String displayName, String email) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public User(Long id, String username, String password, String givenName, String surname, String email) throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.id = id;
         this.username = username;
         this.passwordHash = generateHash(password, getRandomSalt());
         this.givenName = givenName;
         this.surname = surname;
-        this.displayName = displayName;
         this.email = email;
     }
     
@@ -261,14 +254,6 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -350,7 +335,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.User[ id=" + id + ", givenName=" + givenName + ", surname=" + surname + ", username=" + username + ", passwordHash=" + passwordHash + ", displayName="+ displayName +", email="+email+" ]";
+        return "entity.User[ id=" + id + ", givenName=" + givenName + ", surname=" + surname + ", username=" + username + ", passwordHash=" + passwordHash + ", email="+email+" ]";
     }
     
 }

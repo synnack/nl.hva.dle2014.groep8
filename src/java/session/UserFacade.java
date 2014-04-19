@@ -53,7 +53,6 @@ public class UserFacade extends AbstractFacade<User> {
         user.setPassword(password);
         user.setGivenName(givenName);
         user.setSurname(surname);
-        user.setDisplayName(displayName);
         user.setEmail(email);
 
         try {
