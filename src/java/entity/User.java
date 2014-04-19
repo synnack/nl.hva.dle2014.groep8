@@ -58,12 +58,12 @@ public class User implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 60)
+    @Size(min = 1, max = 90)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 168)
     @Column(name = "password_hash")
     private String passwordHash;
     @Basic(optional = false)
@@ -78,7 +78,7 @@ public class User implements Serializable {
     private String surname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 128)
     @Column(name = "display_name")
     private String displayName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -350,7 +350,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.User[ id=" + id + " ]";
+        return "entity.User[ id=" + id + ", givenName=" + givenName + ", surname=" + surname + ", username=" + username + ", passwordHash=" + passwordHash + ", displayName="+ displayName +", email="+email+" ]";
     }
     
 }

@@ -15,7 +15,7 @@
             <div class="inputs">
                 <input class="field" name="given_name" type="text" placeholder="Given name" autofocus required>
                 <input class="field" name="surname" type="text" placeholder="Surname" required>
-                <input class="field" name="displayname" type="text" placeholder="Display name" required>
+                <input class="field" name="display_name" type="text" placeholder="Display name" required>
                 <input class="field" name="email" type="text" placeholder="E-mail" required>
                 <input class="field" name="username" type="text" placeholder="Username" required>
 	        <input class="field" name="password" type="password" placeholder="Password" required>

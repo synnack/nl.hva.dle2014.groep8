@@ -8,11 +8,14 @@ package session;
 
 //import entity.Competency;
 import entity.User;
+import java.util.Set;
 //import entity.UserCompetency;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -22,6 +25,7 @@ import javax.persistence.PersistenceContext;
 public class UserFacade extends AbstractFacade<User> {
     @PersistenceContext(unitName = "Digital_Learning_EnvironmentPU")
     private EntityManager em;
+    
 
     @Override
     protected EntityManager getEntityManager() {
@@ -52,7 +56,15 @@ public class UserFacade extends AbstractFacade<User> {
         user.setDisplayName(displayName);
         user.setEmail(email);
 
-        em.persist(user);
+        try {
+            em.persist(user);
+        } catch (ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            for (ConstraintViolation c: violations) {
+                System.out.println("Message: " + c.getMessage());
+                System.out.println("Message: " + c.getLeafBean());
+            }
+        }
         return null;
     }
     
