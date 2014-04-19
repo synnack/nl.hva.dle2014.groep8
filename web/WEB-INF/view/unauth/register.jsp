@@ -10,7 +10,8 @@
             <img src="images/login/cloud-icon-tl-120x75.png" alt="Teach 'n' Learn">
         </div>
         <h1>Registreer bij T'n'L</h1>
-	
+	<div class="error">${messages.error}<br/>
+        </<div>
         <form method="post" action="${context}/register">
             <div class="inputs">
                 <input class="field" name="given_name" type="text" placeholder="Voornaam" autofocus required>
