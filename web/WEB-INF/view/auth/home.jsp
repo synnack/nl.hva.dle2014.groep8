@@ -1,11 +1,13 @@
+<%@page import="entity.User"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true" %>
+
 <%-- 
     Document   : home
     Created on : 06-Apr-2014, 00:36:45
     Author     : wilco
 --%>
-
 <h2>Teach 'n' Learn | Home</h2>
-
 <table id="tile_table">
     <tr>
         <td><div class="tile"><a href="mycompetencies"><img alt="" src="images/home/profile.png"><h3>My competencies</h3></a></div></td>
