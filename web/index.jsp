@@ -10,7 +10,7 @@
         <div id="logo">
             <img src="images/login/cloud-icon-tl-120x75.png" alt="Teach 'n' Learn">
         </div>
-        <h1>Sign in to TnL</h1>
+        <h1>Sign in to T'n'L</h1>
 	
         <form method="post" action="login">
             <div class="inputs">
