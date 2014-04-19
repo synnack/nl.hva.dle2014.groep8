@@ -11,7 +11,7 @@
         </div>
         <h1>Registreer bij T'n'L</h1>
 	
-        <form method="post" action="register">
+        <form method="post" action="${context}/register">
             <div class="inputs">
                 <input class="field" name="given_name" type="text" placeholder="Voornaam" autofocus required>
                 <input class="field" name="surname" type="text" placeholder="Achternaam" required>

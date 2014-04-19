@@ -9,8 +9,8 @@
             <img src="images/login/cloud-icon-tl-120x75.png" alt="Teach 'n' Learn">
         </div>
         <h1>Log in op T'n'L</h1>
-	
-        <form method="post" action="login">
+        <span>${messages.error}</span><br/>
+        <form method="post" action="${context}/login">
             <div class="inputs">
 	        <input class="field" name="username" type="text" placeholder="Username" autofocus required>
 	        <input class="field" name="password" type="password" placeholder="Password" required>
