@@ -56,7 +56,7 @@ public class ControllerServlet extends HttpServlet {
             User user = userFacade.findByUsername(request.getParameter("username"));
             if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
                 /* Fail! */
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
                 return;
             }
             session.setAttribute("User", user);
@@ -93,7 +93,7 @@ public class ControllerServlet extends HttpServlet {
         
         /* Demand a log in for everything else */
         if (session.getAttribute("User") == null) {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
         }
         
