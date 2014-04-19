@@ -82,12 +82,12 @@ public class ControllerServlet extends HttpServlet {
                 }
                 return;
             }
-            request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
             return;
         }
         
         if (request.getServletPath().equals("/forgotpassword")) {
-            request.getRequestDispatcher("/WEB-INF/view/forgotpassword.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/unauth/forgotpassword.jsp").forward(request, response);
             return;
         }
         
