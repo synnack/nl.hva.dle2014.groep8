@@ -23,10 +23,15 @@ import session.UserFacade;
                            "/login", 
                            "/home",
                            "/manage",
-                           "/mycompetencies",
-                           "/mycourses",
-                           "/knowledgebase",
-                           "/lecture",
+                           "/user/profile",
+                           "/user/competencies",
+                           "/user/courses",
+                           "/user/list",
+                           "/group/list",
+                           "/course/list",
+                           "/competency/list",
+                           "/course/lecture/view",
+                           "/course/lecture/manage",
                            "/register",
                            "/forgotpassword",
                            "/logout",
@@ -48,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
      */
     protected void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Map<String, String> messages = new HashMap<String, String>();
+        Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
 
 
@@ -152,6 +157,9 @@ public class ControllerServlet extends HttpServlet {
         switch (request.getServletPath()) {
             case "/home":
                 viewTemplate = "/home.jsp";
+                break;
+            case "/user/profile":
+                viewTemplate = "/user/profile.jsp";
                 break;
             case "/user/courses":
                 viewTemplate = "/user/courses.jsp";
