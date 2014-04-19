@@ -4,7 +4,7 @@
     Author     : wilco
 --%>
 
-<h2><a class="title" href="home">Teach 'n' Learn</a> | Manage</h2>
+<h2><a class="title" href="home">Teach 'n' Learn</a> | Beheren</h2>
 
 <table id="tile_table">
     <tr>

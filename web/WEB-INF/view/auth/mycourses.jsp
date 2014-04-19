@@ -3,7 +3,7 @@
     Created on : 06-Apr-2014, 02:44:24
     Author     : wilco
 --%>
-<h2><a href="home" class="title">Teach 'n' Learn</a> | My courses</h2>
+<h2><a href="home" class="title">Teach 'n' Learn</a> | Lessen</h2>
 
 <div class="left_window">
     <div class="window_content">

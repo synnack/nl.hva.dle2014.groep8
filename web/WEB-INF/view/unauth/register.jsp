@@ -3,7 +3,7 @@
     Created on : 19-Apr-2014, 12:58:43
     Author     : wilco
 --%>
-<h2><a href="home" class="title">Teach 'n' Learn</a> | Register</h2>
+<h2><a href="home" class="title">Teach 'n' Learn</a> | Registreren</h2>
 
     <div class="centerwindow registerwindow">
         <div id="logo">
