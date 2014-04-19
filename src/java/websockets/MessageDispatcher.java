@@ -11,21 +11,22 @@ import entity.Course;
 import java.util.HashMap;
 import java.util.Set;
 
+
 /**
  *
  * @author wilco
  */
 public class MessageDispatcher {
-    private static WebSocketEndpoint[] endpoints = new WebsocketEndpoint[]();
+    //private static WebSocketEndpoint[] endpoints = new WebsocketEndpoint[]();
     private final static HashMap<String, Set> subscriptions = new HashMap<>();
     
     public static void add(WebSocketEndpoint ep) {
-        endpoints.add(ep);
+        //endpoints.add(ep);
         ep.send("Ohai");
     }
     
     public static void remove(WebSocketEndpoint ep) {
-        endpoints.remove(ep);
+        //endpoints.remove(ep);
     }
     
     public static void subscribe(Course course, WebSocketEndpoint ep) {
