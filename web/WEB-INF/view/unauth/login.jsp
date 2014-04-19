@@ -10,7 +10,7 @@
         </div>
         <h1>Log in op T'n'L</h1>
 	
-        <form method="post" action="login">
+        <form method="post" action="${context}/login">
             <div class="inputs">
 	        <input class="field" name="username" type="text" placeholder="Username" autofocus required>
 	        <input class="field" name="password" type="password" placeholder="Password" required>

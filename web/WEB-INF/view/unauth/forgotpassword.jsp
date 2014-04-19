@@ -11,7 +11,7 @@
         </div>
         <h1>Wachtwoord vergeten</h1>
 	
-        <form method="post" action="register">
+        <form method="post" action="${context}/register">
             <div class="inputs">
                 <input class="field" name="email" type="text" placeholder="E-mail" required>
 	       

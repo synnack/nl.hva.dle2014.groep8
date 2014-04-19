@@ -107,7 +107,7 @@ public class ControllerServlet extends HttpServlet {
         }
         
         /* Dispatch to different views */
-        switch (request.getServletPath()) {        
+        switch (request.getServletPath()) {
             case "/home":
                 userPath = "/home";
                 break;

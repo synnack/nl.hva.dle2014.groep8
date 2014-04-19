@@ -1,14 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Teach 'n' Learn</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="${context}/css/style.css">
 </head>
 
 <body>
-    <div class="topright"><h2><a href="forgotpassword" class="title">Wachtwoord vergeten</a>&#09;|&#09;<a href="register" class="title">Registreren</a></h2>
+    <div class="topright"><h2><a href="${context}/forgotpassword" class="title">Forgot password</a>&#09;|&#09;<a href="${context}/register" class="title">Register</a></h2>
     </div>
     <div id="clouds">
         <div class="cloud x1"></div>
