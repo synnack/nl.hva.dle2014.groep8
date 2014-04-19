@@ -98,7 +98,7 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("home");
                 } else {
                     messages.put("error", "Fout bij toevoegen.");
-                    response.sendRedirect("register");
+                    request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
                 }
                 return;
             }
