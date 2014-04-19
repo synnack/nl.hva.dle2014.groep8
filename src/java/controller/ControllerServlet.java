@@ -81,6 +81,8 @@ public class ControllerServlet extends HttpServlet {
     protected void handleRegister(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
 
         // Handle a register form submission.
         if (request.getMethod().equals("POST")) {
@@ -95,6 +97,7 @@ public class ControllerServlet extends HttpServlet {
                     session.setAttribute("User", user);
                     response.sendRedirect("home");
                 } else {
+                    messages.put("error", "Fout bij toevoegen.");
                     response.sendRedirect("register");
                 }
                 return;
@@ -118,7 +121,8 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-                
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}                
         
         // Handle logging in
         if (request.getServletPath().equals("/login")) {
@@ -140,6 +144,9 @@ public class ControllerServlet extends HttpServlet {
         
         // Demand a log in for everything else
         if (session.getAttribute("User") == null) {
+            if (!request.getServletPath().equals("")) {
+                messages.put("error", "Sessie verlopen");
+            }
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
         }
