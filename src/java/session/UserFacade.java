@@ -6,7 +6,9 @@
 
 package session;
 
+//import entity.Competency;
 import entity.User;
+//import entity.UserCompetency;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -36,7 +38,7 @@ public class UserFacade extends AbstractFacade<User> {
         }
     }
     
-    public Boolean addUser(String username, 
+    public User addUser(String username, 
                            String password,
                            String givenName,
                            String surname,
@@ -51,8 +53,13 @@ public class UserFacade extends AbstractFacade<User> {
         user.setEmail(email);
 
         em.persist(user);
-       return true;
+        return null;
     }
+    
+    //public Boolean addCompetency(User user, Competency competency, Int skillLevel) {
+        //UserCompetency competency = new UserCompetency(UserCompetencyPK, skillLevel, null);
+        
+    //}
     
     public UserFacade() {
         super(User.class);

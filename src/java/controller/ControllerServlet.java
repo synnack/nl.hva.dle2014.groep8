@@ -24,6 +24,8 @@ import session.UserFacade;
                            "/mycourses",
                            "/knowledgebase",
                            "/lecture",
+                           "/register",
+                           "/forgotpassword",
                            "/courses/([0-9]+)/documents",
                            "/courses/([0-9]+)/lectures",
                            
@@ -61,6 +63,29 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
         
+        /* Handle register */
+        if (request.getServletPath().equals("/register")) {
+            if (request.getMethod().equals("POST")) {
+                User user = userFacade.addUser(
+                        request.getParameter("username"), 
+                        request.getParameter("password"),
+                        request.getParameter("given_name"), 
+                        request.getParameter("surname"),
+                        request.getParameter("display_name"),
+                        request.getParameter("email"));
+                session.setAttribute("User", user);
+                response.sendRedirect("home");
+                return;
+            }
+            request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+            return;
+        }
+        
+        if (request.getServletPath().equals("/forgotpassword")) {
+            request.getRequestDispatcher("/WEB-INF/view/forgotpassword.jsp").forward(request, response);
+            return;
+        }
+        
         /* Demand a log in for everything else */
         if (session.getAttribute("User") == null) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -80,6 +105,9 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/lecture":
                 userPath = "/lecture";
+                break;
+            case "/register":
+                userPath = "/register";
                 break;
             default:
                 userPath = "/home";

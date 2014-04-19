@@ -3,10 +3,10 @@
     Created on : 03-Apr-2014, 21:23:40
     Author     : wilco
 --%>
-    <h2>Teach 'n' Learn | Digital environment</h2>
-    <a href=""><h3>Forgot password&#09;|&#09;Register</h3></a>
-
-    <div class="centerwindow">
+<h2>Teach 'n' Learn | Digital environment</h2>
+<div class="topright"><h3><a href="forgotpassword">Forgot password</a>&#09;|&#09;<a href="register">Register</a></h3>
+</div>
+    <div class="centerwindow loginwindow">
         <div id="logo">
             <img src="images/login/cloud-icon-tl-120x75.png" alt="Teach 'n' Learn">
         </div>
