@@ -25,6 +25,17 @@ body
     overflow: hidden;
 }
 
+.blurbackground
+{
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+	background-color: #5b7983;
+    background: url('../images/backgroundblur.png') no-repeat scroll;
+    background-size: 100% 100%;
+    min-height: 700px;
+    overflow: hidden;
+}
+
 a
 {
     text-decoration: none;

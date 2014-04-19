@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body>
+<body class="blurbackground">
     <div class="topright"><h2>Welkom ${sessionScope.User.getUsername()} | <a href="logout" class="title">Log uit</a></h2>
     </div>
     <div id="clouds">
