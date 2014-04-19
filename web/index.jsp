@@ -4,8 +4,6 @@
     Author     : wilco
 --%>
 <h2>Teach 'n' Learn | Digital environment</h2>
-<div class="topright"><h2><a href="forgotpassword" class="title">Forgot password</a>&#09;|&#09;<a href="register" class="title">Register</a></h2>
-</div>
     <div class="centerwindow loginwindow">
         <div id="logo">
             <img src="images/login/cloud-icon-tl-120x75.png" alt="Teach 'n' Learn">

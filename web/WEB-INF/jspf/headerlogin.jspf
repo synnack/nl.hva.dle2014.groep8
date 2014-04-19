@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <div class="topright"><h2><a href="forgotpassword" class="title">Forgot password</a>&#09;|&#09;<a href="register" class="title">Register</a></h2>
+    </div>
     <div id="clouds">
         <div class="cloud x1"></div>
         <div class="cloud x2"></div>

@@ -7,11 +7,17 @@
     </session-config>
     <jsp-config>
         <jsp-property-group>
-            <display-name>Header and footer settings</display-name>
+            <display-name>Header and footer login view</display-name>
             <url-pattern>/index.jsp</url-pattern>
+            <page-encoding>utf-8</page-encoding>
+            <include-prelude>/WEB-INF/jspf/headerlogin.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <display-name>Header and footer main views</display-name>
             <url-pattern>/WEB-INF/view/*</url-pattern>
             <page-encoding>utf-8</page-encoding>
-            <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+            <include-prelude>/WEB-INF/jspf/headermain.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
