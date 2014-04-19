@@ -4,14 +4,15 @@
     Author     : wilco
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Manage competencies</h2>
+
+<div class="left_window">
+    <div class="window_content">
+
+    </div>
+</div>
+<div class="right_window">
+    <div class="window_content">
+
+    </div>
+</div>
