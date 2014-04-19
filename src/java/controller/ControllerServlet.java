@@ -17,7 +17,8 @@ import session.UserFacade;
  */
 @WebServlet(name = "ControllerServlet",
             loadOnStartup = 1,
-            urlPatterns = {"/login", 
+            urlPatterns = {"",
+                           "/login", 
                            "/home",
                            "/manage",
                            "/mycompetencies",
