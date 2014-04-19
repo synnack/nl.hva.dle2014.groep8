@@ -162,7 +162,7 @@ fieldset
 .topright
 {
     position:absolute;
-    top:5px;
+    top:-1px;
     right:30px;
     z-index: 1;
 }
