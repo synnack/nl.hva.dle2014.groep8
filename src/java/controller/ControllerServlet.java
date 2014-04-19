@@ -23,6 +23,7 @@ import session.UserFacade;
                            "/login", 
                            "/home",
                            "/manage",
+                           "/user/profile",
                            "/user/competencies",
                            "/user/courses",
                            "/user/list",
@@ -156,6 +157,9 @@ public class ControllerServlet extends HttpServlet {
         switch (request.getServletPath()) {
             case "/home":
                 viewTemplate = "/home.jsp";
+                break;
+            case "/user/profile":
+                viewTemplate = "/user/profile.jsp";
                 break;
             case "/user/courses":
                 viewTemplate = "/user/courses.jsp";
