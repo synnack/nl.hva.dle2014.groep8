@@ -26,6 +26,7 @@ import session.UserFacade;
                            "/lecture",
                            "/register",
                            "/forgotpassword",
+                           "/logout",
                            "/courses/([0-9]+)/documents",
                            "/courses/([0-9]+)/lectures",
                            
@@ -93,6 +94,13 @@ public class ControllerServlet extends HttpServlet {
         /* Demand a log in for everything else */
         if (session.getAttribute("User") == null) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
+            return;
+        }
+        
+        /* Handle logout button */
+        if (request.getServletPath().equals("/logout")) {
+            session.invalidate();
+            response.sendRedirect("");
             return;
         }
         
