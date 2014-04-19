@@ -87,6 +87,7 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
         
+        /* Forgot your password use case */
         if (request.getServletPath().equals("/forgotpassword")) {
             request.getRequestDispatcher("/WEB-INF/view/unauth/forgotpassword.jsp").forward(request, response);
             return;
@@ -114,7 +115,7 @@ public class ControllerServlet extends HttpServlet {
                 userPath = "/manage";
                 break;
             case "/mycourses":
-                userPath = "/mycourses";
+                userPath = "/user/courses";
                 break;
             case "/lecture":
                 userPath = "/lecture";
