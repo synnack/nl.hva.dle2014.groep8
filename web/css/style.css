@@ -79,8 +79,8 @@ h2
 
 .loginwindow
 {
-    height: 300px;
-    width: 280px;
+    height: 320px;
+    width: 300px;
     margin: -180px 0 0 -180px;
     padding: 30px;
     position: absolute;
@@ -91,15 +91,12 @@ h2
 
 .error
 {
-    text-align: center;
-    top:-20px;
     color:red;
     font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
-    line-height: 1.2;
+    line-height: 3;
     -webkit-font-smoothing: antialiased;
-    position: relative;
 }
     
 .registerwindow
