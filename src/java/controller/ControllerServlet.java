@@ -61,7 +61,7 @@ public class ControllerServlet extends HttpServlet {
         User user = userFacade.findByUsername(request.getParameter("username"));
         if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
             /* Fail! */
-            messages.put("error", "Gebruikersnaam en/of wachtwoord onjuist.");
+            messages.put("error", "Gebruikersnaam/wachtwoord onjuist");
             
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
