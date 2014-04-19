@@ -120,7 +120,7 @@ public class ControllerServlet extends HttpServlet {
         }
         
         // use RequestDispatcher to forward request internally
-        String url = "/WEB-INF/view" + userPath + ".jsp";
+        String url = "/WEB-INF/view/auth" + userPath + ".jsp";
 
         request.getRequestDispatcher(url).forward(request, response);
     }
