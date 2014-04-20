@@ -47,7 +47,7 @@ a.title {
 }
 
 a.title:hover {
-    color: yellow;
+    color: #b41119;
 }
 
 h2
@@ -111,46 +111,26 @@ h2
     z-index: 0;
 }
 
+/* --------------------- Main content subview --------------------- */
+
 .right_window
 {
     background-color: #ffffff;
-    height: 600px;
-    width: 450px;
-    margin: -330px 0 0 -150px;
-    padding: 10px;
-    box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
+    width: 70vw; 
+    max-height: 90vh;
+    max-width: 70vh;
+    margin: auto;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 15px;
-    z-index: 1;
-}
-
-.left_window
-{
-    background-color: #ffffff;
-    height: 400px;
-    width: 165px;
-    margin: -241px 0 0 -360px;
+    top:0;bottom:0;
+    left:0;right:0;
     padding: 10px;
-    box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 15px;
+    -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
+    -moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
+    box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
     z-index: 1;
-}
-
-
-.window_content {
-    overflow-y: auto;
-    height: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 input[type=image] {
@@ -158,6 +138,48 @@ input[type=image] {
     margin-right: auto;
     display: block;
 }
+
+.submenu
+{
+    top: 100px;
+    position: absolute;
+    z-index: 1;
+}
+
+.submenuitem
+{
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 1;
+    text-shadow: 5px 1px 8px black;
+}
+
+input#submenubutton 
+{
+    cursor:pointer;
+    padding: 5px 40px;
+    color: #5b7983;
+    font-size: 40px;
+    font-weight: 100;
+    font-family: "Helvetica Neue",sans-serif;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
+    -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+    -moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+    box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+    background-color: white;
+}
+
+input#submenubutton:hover, input#submenubutton:focus {
+    position:relative;
+    left:-10px;    
+    -webkit-box-shadow: rgba(0, 0, 0, .75) 0 0px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, .75) 0 0px 0px;
+    box-shadow: rgba(0, 0, 0, .75) 0 0px 0px;
+}
+
 
 h1
 {
@@ -423,3 +445,4 @@ hr {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+

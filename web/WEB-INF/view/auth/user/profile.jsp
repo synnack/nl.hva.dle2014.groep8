@@ -6,13 +6,9 @@
 
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Profiel</h2>
 
-<div class="left_window">
-    <div class="window_content">
-
-    </div>
-</div>
 <div class="right_window">
     <div class="window_content">
 
     </div>
 </div>
+

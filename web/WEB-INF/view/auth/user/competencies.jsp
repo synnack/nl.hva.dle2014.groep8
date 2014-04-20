@@ -6,18 +6,37 @@
 
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Mijn competenties</h2>
 
-<div class="left_window">
-    <div class="window_content">
-        <h1>Courses</h1>
-        TODO: Show courses here
+<div class="submenu">
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="Javascript">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="HTML5">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="CSS3">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="Objective C">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="C##">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="C++">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="Python">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="Networking">
+    </div>
+    <div class="submenuitem">
+        <input id="submenubutton" type="button" value="Linux">
     </div>
 </div>
 <div class="right_window">
     <div class="window_content">
-    <h1>Lectures</h1>
-    TODO: Show lectures belonging to the course
-    <hr/>
-    <h1>Documents</h1>
-    TODO: Show documents belonging to the course.
+    <h1>Competencies</h1>
     </div>
 </div>
