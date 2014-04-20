@@ -11,7 +11,13 @@
     </div>
     <div id="window">
         <div id="window_header">
-            <h4>Profiel</h4>
+                <h4>Profiel</h4>
+            <div id="left">   
+                <a href="${context}/home" class="title"><h6>Annuleren</h6></a>
+            </div>
+            <div id="right">  
+                <a href="${context}/home" class="title"><h5>Opslaan</h5></a>
+            </div>
         </div>
     </div>
 </div>
