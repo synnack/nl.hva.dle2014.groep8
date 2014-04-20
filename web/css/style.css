@@ -47,7 +47,7 @@ a.title {
 }
 
 a.title:hover {
-    color: #b41119;
+    color:red;
 }
 
 h2
@@ -121,19 +121,19 @@ input[type=image] {
 
 #main_container
 {
-    width:75%;
+    width:80%;
     max-width: 1000px;
     min-width: 700px;
     height: 90%;
-    margin-left: 15%;
-    margin-right: auto;
+    margin-left: 17%;
+    margin-right: 23%;
 }
 
 /* --------------------- View --------------------- */
 
-#main_window
+#window
 {
-    width:60%;
+    width:75%;
     height:100%;
     float:right;
     text-align:center;
@@ -147,20 +147,45 @@ input[type=image] {
     position: relative;
 }
 
+#window_header
+{
+    height:50px;
+    top: -30px;
+    position: relative;
+    background-color: #f0f0eb;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px solid grey;
+}
+
+h4
+{
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 2.5;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
 /* --------------------- Submenu --------------------- */
 
 #submenu
 {
-    width:40%;
-    left:20px;
-    top: 50px;
+    width:15%;
+    left:115px;
+    top: 75px;
     float:left;
-    text-align:center;
+    text-align: right;
     position: relative;
 }
 
 .submenuitem
 {
+    float: right;
     text-align: right;
     -webkit-font-smoothing: antialiased;
     text-shadow: 5px 1px 8px black;

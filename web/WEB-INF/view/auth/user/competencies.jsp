@@ -38,7 +38,9 @@
         </div>
     </div>
     </div>
-    <div id="main_window">
-        <h1>Profiel</h1>
+    <div id="window">
+        <div id="window_header">
+            <h4>Mijn competenties</h4>
+        </div>
     </div>
 </div>

@@ -6,9 +6,14 @@
 
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Profiel</h2>
 
-<div class="main_window">
-    <div class="window_content">
-    <h1>Profiel</h1>
+<div id="main_container">
+    <div id="submenu">
+    </div>
+    <div id="window">
+        <div id="window_header">
+            <h4>Profiel</h4>
+        </div>
     </div>
 </div>
+
 
