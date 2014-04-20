@@ -164,54 +164,57 @@ public class ControllerServlet extends HttpServlet {
 
         switch (request.getServletPath()) {
             case "/home":
-                viewTemplate = "/home.jsp";
-                break;
-            case "/user/profile":
-                viewTemplate = "/user/profile.jsp";
-                break;
-            case "/user/courses":
-                viewTemplate = "/user/courses.jsp";
-                break;
-            case "/user/agenda":
-                viewTemplate = "/user/agenda.jsp";
+                viewTemplate = "home.jsp";
                 break;
             case "/manage":
-                viewTemplate = "/manage.jsp";
+                viewTemplate = "manage.jsp";
+                break;
+            case "/user/profile":
+                viewTemplate = "user/profile.jsp";
+                break;
+            case "/user/courses":
+                viewTemplate = "user/courses.jsp";
+                break;
+            case "/user/agenda":
+                viewTemplate = "user/agenda.jsp";
+                break;
+            case "/user/competencies":
+                viewTemplate = "user/competencies.jsp";
                 break;
             case "/course/list":
-                viewTemplate = "/course/manage.jsp";
+                viewTemplate = "course/manage.jsp";
                 break;
             case "/competency/list":
-                viewTemplate = "/course/manage.jsp";
+                viewTemplate = "course/manage.jsp";
                 break;
             case "/user/list":
-                viewTemplate = "/user/manage.jsp";
+                viewTemplate = "user/manage.jsp";
                 break;
             case "/group/list":
-                viewTemplate = "/group/manage.jsp";
+                viewTemplate = "group/manage.jsp";
                 break;
             case "/register":
-                viewTemplate = "/register.jsp";
+                viewTemplate = "register.jsp";
                 break;
                 
             // FIXME: Course needs to have an Id inserted
             case "/course/lecture":
-                viewTemplate = "/course/lecture/manage.jsp";
+                viewTemplate = "course/lecture/manage.jsp";
                 break;
             case "/course/lecture/view":
-                viewTemplate = "/course/lecture/view.jsp";
+                viewTemplate = "course/lecture/view.jsp";
                 break;
             case "/course/document":
-                viewTemplate = "/course/document/manage.jsp";
+                viewTemplate = "course/document/manage.jsp";
                 break;
             default:
-                viewTemplate = "/home.jsp";
+                viewTemplate = "home.jsp";
                 break;
                 
         }
         
         // use RequestDispatcher to forward request internally
-        request.getRequestDispatcher("/WEB-INF/view/auth" + viewTemplate).forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/view/auth/" + viewTemplate).forward(request, response);
     }
 
     /**
