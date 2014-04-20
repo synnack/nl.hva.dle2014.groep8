@@ -14,6 +14,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
@@ -56,12 +58,15 @@ public class UserFacade extends AbstractFacade<User> {
 
         try {
             em.persist(user);
+            em.flush();
         } catch (ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             for (ConstraintViolation c: violations) {
                 System.out.println("Message: " + c.getMessage());
                 System.out.println("Message: " + c.getLeafBean());
             }
+            return false;
+        } catch (PersistenceException e) {
             return false;
         }
         return true;

@@ -4,7 +4,7 @@
     Author     : wilco
 --%>
 
-<h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Manage users</h2>
+<h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Groepen beheren</h2>
 
 <div class="left_window">
     <div class="window_content">

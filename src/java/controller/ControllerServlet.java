@@ -23,6 +23,7 @@ import session.UserFacade;
                            "/login", 
                            "/home",
                            "/manage",
+                           "/user/agenda",
                            "/user/profile",
                            "/user/competencies",
                            "/user/courses",
@@ -170,6 +171,9 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/user/courses":
                 viewTemplate = "/user/courses.jsp";
+                break;
+            case "/user/agenda":
+                viewTemplate = "/user/agenda.jsp";
                 break;
             case "/manage":
                 viewTemplate = "/manage.jsp";
