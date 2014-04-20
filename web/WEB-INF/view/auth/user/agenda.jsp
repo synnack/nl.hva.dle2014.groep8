@@ -6,13 +6,8 @@
 
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Agenda</h2>
 
-<div class="left_window">
+<div class="main_window">
     <div class="window_content">
-
-    </div>
-</div>
-<div class="right_window">
-    <div class="window_content">
-
+    <h1>Agenda</h1>
     </div>
 </div>

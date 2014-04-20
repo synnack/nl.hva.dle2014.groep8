@@ -111,48 +111,58 @@ h2
     z-index: 0;
 }
 
-/* --------------------- Main content subview --------------------- */
-
-.right_window
-{
-    background-color: #ffffff;
-    width: 70vw; 
-    max-height: 90vh;
-    max-width: 70vh;
-    margin: auto;
-    position: absolute;
-    top:0;bottom:0;
-    left:0;right:0;
-    padding: 10px;
-    -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
-    -moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
-    box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
-    z-index: 1;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-
 input[type=image] {
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.submenu
+/* --------------------- Main container --------------------- */
+
+#main_container
 {
-    left: 330px;
-    top: 100px;
-    position: absolute;
-    z-index: 1;
+    width:75%;
+    max-width: 1000px;
+    min-width: 700px;
+    height: 90%;
+    margin-left: 15%;
+    margin-right: auto;
+}
+
+/* --------------------- View --------------------- */
+
+#main_window
+{
+    width:60%;
+    height:100%;
+    float:right;
+    text-align:center;
+    background-color: #ffffff;
+    -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
+    -moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
+    box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* --------------------- Submenu --------------------- */
+
+#submenu
+{
+    width:40%;
+    left:20px;
+    top: 50px;
+    float:left;
+    text-align:center;
+    position: relative;
 }
 
 .submenuitem
 {
     text-align: right;
     -webkit-font-smoothing: antialiased;
-    position: relative;
-    z-index: 1;
     text-shadow: 5px 1px 8px black;
 }
 
@@ -161,7 +171,7 @@ input#submenubutton
     cursor:pointer;
     padding: 5px 40px;
     color: #5b7983;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 100;
     font-family: "Helvetica Neue",sans-serif;
     -webkit-border-radius: 10px 0 0 10px;
@@ -180,7 +190,6 @@ input#submenubutton:hover, input#submenubutton:focus {
     -moz-box-shadow: rgba(0, 0, 0, .75) 0 0px 0px;
     box-shadow: rgba(0, 0, 0, .75) 0 0px 0px;
 }
-
 
 h1
 {

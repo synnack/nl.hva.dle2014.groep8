@@ -11,6 +11,6 @@
 
     </div>
 </div>
-<div class="right_window">
+<div class="main_window">
 \
 </div>
