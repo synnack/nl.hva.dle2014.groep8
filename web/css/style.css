@@ -50,6 +50,16 @@ a.title:hover {
     color:red;
 }
 
+a.save
+{
+    color:#0f9bf5;
+}
+
+a.cancel
+{
+   color:#0f9bf5;
+}
+
 h2
 {
     text-align: left;
@@ -147,28 +157,76 @@ input[type=image] {
     position: relative;
 }
 
+
+/* --------------------- Window header --------------------- */
+
 #window_header
 {
-    height:50px;
-    top: -30px;
+    top: -25px;
+    height: 50px;
+    background-color: #fdfaef;
+    font-size: 20px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    border-bottom: 1px solid;
+    border-bottom-color: #ccc;
     position: relative;
-    background-color: #f0f0eb;
-    -webkit-border-radius: 10px 10px 0 0;
     -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
     border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid grey;
+}
+
+#left
+{
+    top: -77px;
+    float: left;
+    height: 50px;
+    width: 17%;
+    position: relative;
+}
+
+#right
+{
+    top: -77px;
+    float: right;
+    height: 50px;
+    width: 17%;
+    position: relative;
+}
+
+h6
+{
+    top: -33px;
+    position: relative;
+    color: #0f9bf5;
+    font-size: 20px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
 }
 
 h4
 {
-    text-align: center;
+    height: 50px;
+    top: 30%;
     color: black;
     font-size: 20px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
-    line-height: 2.5;
     -webkit-font-smoothing: antialiased;
     position: relative;
+}
+
+h5
+{
+    top: -20px;
+    position: relative;
+    color: #0f9bf5;
+    font-size: 20px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* --------------------- Submenu --------------------- */

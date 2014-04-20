@@ -11,7 +11,7 @@
 
     </div>
 </div>
-<div class="main_window">
+<div class="navigation_bar">
     <div class="window_content">
 
     </div>
