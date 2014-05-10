@@ -19,35 +19,34 @@ import session.UserFacade;
  * @author wilco
  */
 @WebServlet(name = "ControllerServlet",
-            loadOnStartup = 1,
-            urlPatterns = {"",
-                           "/login", 
-                           "/home",
-                           "/manage",
-                           "/user/agenda",
-                           "/user/profile",
-                           "/user/competencies",
-                           "/user/courses",
-                           "/user/list",
-                           "/group/list",
-                           "/course/list",
-                           "/competency/list",
-                           "/course/lecture/view",
-                           "/course/lecture/manage",
-                           "/register",
-                           "/forgotpassword",
-                           "/logout",
-                           "/courses/([0-9]+)/documents",
-                           "/courses/([0-9]+)/lectures",
-                           
-            })
+        loadOnStartup = 1,
+        urlPatterns = {"",
+            "/login",
+            "/home",
+            "/manage",
+            "/user/agenda",
+            "/user/profile",
+            "/user/competencies",
+            "/user/courses",
+            "/user/list",
+            "/group/list",
+            "/course/list",
+            "/competency/list",
+            "/course/lecture/view",
+            "/course/lecture/manage",
+            "/register",
+            "/forgotpassword",
+            "/logout",
+            "/courses/([0-9]+)/documents",
+            "/courses/([0-9]+)/lectures",})
 public class ControllerServlet extends HttpServlet {
+
     @EJB
     private UserFacade userFacade;
 
     /**
      * Handles the login submission.
-     * 
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -58,23 +57,23 @@ public class ControllerServlet extends HttpServlet {
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
 
-
         HttpSession session = request.getSession();
         User user = userFacade.findByUsername(request.getParameter("username"));
         if (user == null || !user.isPasswordCorrect(request.getParameter("password"))) {
             /* Fail! */
             messages.put("error", "Gebruikersnaam/wachtwoord onjuist");
-            
+
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
         }
         session.setAttribute("User", user);
         response.sendRedirect("home");
- 
+
     }
+
     /**
      * Handles the register new user view
-     * 
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -88,45 +87,47 @@ public class ControllerServlet extends HttpServlet {
 
         // Handle a register form submission.
         if (request.getMethod().equals("POST")) {
-                boolean success = userFacade.addUser(
-                        request.getParameter("username"), 
-                        request.getParameter("password"),
-                        request.getParameter("given_name"), 
-                        request.getParameter("surname"),
-                        request.getParameter("email"));
-                if (success) {
-                    User user = userFacade.findByUsername(request.getParameter("username"));
-                    session.setAttribute("User", user);
-                    response.sendRedirect("home");
-                } else {
-                    messages.put("error", "Fout bij toevoegen.");
-                    request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
-                }
-                return;
+            boolean success = userFacade.addUser(
+                    request.getParameter("username"),
+                    request.getParameter("password"),
+                    request.getParameter("given_name"),
+                    request.getParameter("surname"),
+                    request.getParameter("email"));
+            if (success) {
+                User user = userFacade.findByUsername(request.getParameter("username"));
+                session.setAttribute("User", user);
+                response.sendRedirect("home");
+            } else {
+                messages.put("error", "Fout bij toevoegen.");
+                request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
             }
-        
-            // Show the register form
-            request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Show the register form
+        request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
     }
-    
+
     protected void handleProfile(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user;
-            user = (User) session.getAttribute("User");
+        user = (User) session.getAttribute("User");
         if (request.getMethod().equals("POST")) {
             user.setGivenName(request.getParameter("given_name"));
             user.setSurname(request.getParameter("surname"));
             user.setEmail(request.getParameter("email"));
-        
-            //Handle changes properly
+
+//            boolean success = userFacade.modifyUser(
+//                    request.getParameter("given_name"),
+//                    request.getParameter("surname"),
+//                    request.getParameter("email"));
         }
-        request.setAttribute("given_name",user.getGivenName());
-        request.setAttribute("surname",user.getSurname());
-        request.setAttribute("email",user.getEmail());
+        request.setAttribute("given_name", user.getGivenName());
+        request.setAttribute("surname", user.getSurname());
+        request.setAttribute("email", user.getEmail());
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -142,25 +143,25 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}                
-        
+
         // Handle logging in
         if (request.getServletPath().equals("/login")) {
             handleLogin(request, response);
             return;
         }
-        
+
         // Handle register and register view.
         if (request.getServletPath().equals("/register")) {
             handleRegister(request, response);
             return;
         }
-        
+
         // Forgot your password use case
         if (request.getServletPath().equals("/forgotpassword")) {
             request.getRequestDispatcher("/WEB-INF/view/unauth/forgotpassword.jsp").forward(request, response);
             return;
         }
-        
+
         // Demand a log in for everything else
         if (session.getAttribute("User") == null) {
             if (!request.getServletPath().equals("")) {
@@ -169,12 +170,12 @@ public class ControllerServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
         }
-        
+
         // Handle the profile page
         if (request.getServletPath().equals("/user/profile")) {
             handleProfile(request, response);
         }
-        
+
         // Handle logout button
         if (request.getServletPath().equals("/logout")) {
             session.invalidate();
@@ -219,7 +220,7 @@ public class ControllerServlet extends HttpServlet {
             case "/register":
                 viewTemplate = "register.jsp";
                 break;
-                
+
             // FIXME: Course needs to have an Id inserted
             case "/course/lecture":
                 viewTemplate = "course/lecture/manage.jsp";
@@ -233,9 +234,9 @@ public class ControllerServlet extends HttpServlet {
             default:
                 viewTemplate = "home.jsp";
                 break;
-                
+
         }
-        
+
         // use RequestDispatcher to forward request internally
         request.getRequestDispatcher("/WEB-INF/view/auth/" + viewTemplate).forward(request, response);
     }

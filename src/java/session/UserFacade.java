@@ -72,6 +72,31 @@ public class UserFacade extends AbstractFacade<User> {
         return true;
     }
     
+    public boolean modifyUser(String username,
+                           String givenName,
+                           String surname,
+                           String email) {
+        User user = new User();
+        user.setGivenName(givenName);
+        user.setSurname(surname);
+        user.setEmail(email);
+
+        try {
+            em.persist(user);
+            em.flush();
+        } catch (ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            for (ConstraintViolation c: violations) {
+                System.out.println("Message: " + c.getMessage());
+                System.out.println("Message: " + c.getLeafBean());
+            }
+            return false;
+        } catch (PersistenceException e) {
+            return false;
+        }
+        return true;
+    }
+    
     //public Boolean addCompetency(User user, Competency competency, Int skillLevel) {
         //UserCompetency competency = new UserCompetency(UserCompetencyPK, skillLevel, null);
         

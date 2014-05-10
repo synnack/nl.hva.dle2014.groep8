@@ -7,10 +7,8 @@
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Agenda</h2>
 
 <div id="main_container">
-    <div id="submenu">
-    </div>
-    <div id="window">
-        <div id="window_header">
+    <div id="view_container">
+        <div id="view_header">
                 <h4>Agenda</h4>
             <div id="left">   
                 <a href="${context}/home" class="title"><h6>Home</h6></a>

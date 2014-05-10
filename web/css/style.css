@@ -64,7 +64,7 @@ h2
 {
     text-align: left;
     color:rgba(255, 255, 255, .9);
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     line-height: 1.2;
@@ -131,21 +131,19 @@ input[type=image] {
 
 #main_container
 {
-    width:80%;
-    max-width: 1000px;
-    min-width: 700px;
-    height: 90%;
-    margin-left: 17%;
-    margin-right: 23%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 /* --------------------- View --------------------- */
 
-#window
+#view_container
 {
-    width:75%;
-    height:100%;
-    float:right;
+    width: 800px;
+    height: 650px;
+    margin-left: auto;
+    margin-right: auto;
     text-align:center;
     background-color: #ffffff;
     -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
@@ -154,16 +152,14 @@ input[type=image] {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    position: relative;
 }
 
 
 /* --------------------- Window header --------------------- */
 
-#window_header
+#view_header
 {
-    top: -25px;
-    height: 50px;
+    height: 40px;
     background-color: #fdfaef;
     font-size: 20px;
     font-family: "Helvetica Neue",sans-serif;
@@ -171,7 +167,6 @@ input[type=image] {
     -webkit-font-smoothing: antialiased;
     border-bottom: 1px solid;
     border-bottom-color: #ccc;
-    position: relative;
     -moz-border-radius: 10px 10px 0 0;
     -webkit-border-radius: 10px 10px 0 0;
     border-radius: 10px 10px 0 0;
@@ -179,20 +174,17 @@ input[type=image] {
 
 #left
 {
-    top: -75px;
     float: left;
-    height: 50px;
-    width: 17%;
+    top: -59px;
+    padding: 0px 20px;
     position: relative;
-    left: -10px;
 }
 
 #right
 {
-    top: -77px;
     float: right;
-    height: 50px;
-    width: 17%;
+    top: -75px;
+    padding: 0px 20px;
     position: relative;
 }
 
@@ -202,7 +194,7 @@ h4
     height: 50px;
     top: 30%;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
@@ -214,7 +206,7 @@ h5
     top: -20px;
     position: relative;
     color: #0f9bf5;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -225,7 +217,7 @@ h6
     top: -33px;
     position: relative;
     color: #0f9bf5;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
@@ -234,7 +226,7 @@ h6
 h7
 {
     color: #5b7983;
-    font-size: 26px;
+    font-size: 21px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     line-height: 1.2;
@@ -441,7 +433,7 @@ h3
 {
     text-align: center;
     color:rgba(255, 255, 255, .9);
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     line-height: 1.2;
@@ -601,8 +593,8 @@ hr {
     color: #0F9BF5;
     display: inline-block;
     font-family: "Helvetica Neue",sans-serif;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 300;
     padding: 15px 0 5px;
     text-align: center;
     cursor:pointer;

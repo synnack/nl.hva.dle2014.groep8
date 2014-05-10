@@ -7,19 +7,17 @@
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Profiel</h2>
 
 <div id="main_container">
-    <div id="submenu">
-    </div>
-    <div id="window">
-        <form method="post" action="${context}/user/profile">
-            <div id="window_header">
-                <h4>Profiel</h4>
-                <div id="left">   
-                    <a href="${context}/home" class="title"><h6>Home</h6></a>
-                </div>
-                <div id="right">
-                    <input class="form_submit" type="submit" name="submit" value="Opslaan" />
-                </div>
+    <div id="view_container">
+        <div id="view_header">
+            <h4>Profiel</h4>
+            <div id="left">   
+                <a href="${context}/home" class="title"><h6>Home</h6></a>
             </div>
+            <div id="right">
+                <input class="form_submit" type="submit" name="submit" value="Opslaan" />
+            </div>
+        </div>
+        <form method="post" action="${context}/user/profile">
             <div id="title_profile">
                 <h7>Persoonlijke Gegevens</h7>
             </div>
