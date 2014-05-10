@@ -4,6 +4,7 @@ import entity.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -108,6 +109,23 @@ public class ControllerServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
     }
     
+    protected void handleProfile(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        HttpSession session = request.getSession();
+        User user;
+            user = (User) session.getAttribute("User");
+        if (request.getMethod().equals("POST")) {
+            user.setGivenName(request.getParameter("given_name"));
+            user.setSurname(request.getParameter("surname"));
+            user.setEmail(request.getParameter("email"));
+            
+            //Handle changes properly
+        }
+        request.setAttribute("given_name",user.getGivenName());
+        request.setAttribute("surname",user.getSurname());
+        request.setAttribute("email",user.getEmail());
+    }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -150,6 +168,11 @@ public class ControllerServlet extends HttpServlet {
             }
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
+        }
+        
+        // Handle the profile page
+        if (request.getServletPath().equals("/user/profile")) {
+            handleProfile(request, response);
         }
         
         // Handle logout button
