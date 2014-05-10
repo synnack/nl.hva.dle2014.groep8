@@ -40,7 +40,13 @@
     </div>
     <div id="window">
         <div id="window_header">
-            <h4>Mijn competenties</h4>
+                <h4>Mijn Competenties</h4>
+            <div id="left">   
+                <a href="${context}/home" class="title"><h6>Home</h6></a>
+            </div>
+            <div id="right">  
+                <a href="${context}/home" class="title"></a>
+            </div>
         </div>
     </div>
 </div>
