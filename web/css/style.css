@@ -131,19 +131,19 @@ input[type=image] {
 
 #main_container
 {
-    height: 100%;
-    width: 100%;
-    position: absolute;
 }
 
 /* --------------------- View --------------------- */
 
 #view_container
 {
-    width: 800px;
+    top: 50%;
+    margin-top: -325px;
+    left: 50%;
+    margin-left: -450px;
     height: 650px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 900px;
+    position: absolute;
     text-align:center;
     background-color: #ffffff;
     -webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 20px;
@@ -160,6 +160,8 @@ input[type=image] {
 #view_header
 {
     height: 40px;
+    position: relative;
+    top: -20px;
     background-color: #fdfaef;
     font-size: 20px;
     font-family: "Helvetica Neue",sans-serif;
