@@ -119,7 +119,7 @@ public class ControllerServlet extends HttpServlet {
             user.setGivenName(request.getParameter("given_name"));
             user.setSurname(request.getParameter("surname"));
             user.setEmail(request.getParameter("email"));
-            
+        
             //Handle changes properly
         }
         request.setAttribute("given_name",user.getGivenName());

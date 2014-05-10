@@ -10,7 +10,7 @@
     <div id="submenu">
     </div>
     <div id="window">
-        <form method="post" action="${context}/profile">
+        <form method="post" action="${context}/user/profile">
             <div id="window_header">
                 <h4>Profiel</h4>
                 <div id="left">   
