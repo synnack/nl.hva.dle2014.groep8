@@ -22,7 +22,7 @@
         </jsp-property-group>
     </jsp-config>
     <resource-ref>
-        <res-ref-name>jdbc/digital_learning_environment</res-ref-name>
+        <res-ref-name>jdbc/dle_remote</res-ref-name>
         <res-type>javax.sql.ConnectionPoolDataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
