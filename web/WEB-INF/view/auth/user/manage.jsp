@@ -10,10 +10,10 @@
     <div id="view_container">
         <div id="view_header">
                 <h4>Beheren</h4>
-            <div id="left">   
+            <div id="left">
                 <a href="${context}/home" class="title"><h6>Home</h6></a>
             </div>
-            <div id="right">  
+            <div id="right">
                 <a href="${context}/home" class="title"></a>
             </div>
         </div>

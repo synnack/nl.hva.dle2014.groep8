@@ -111,21 +111,52 @@ public class ControllerServlet extends HttpServlet {
     protected void handleProfile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user;
-        user = (User) session.getAttribute("User");
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+
+        // Special case for here. This data comes from the login session.
+        // For other views use objectFacade.find(id)
+        User user = (User) session.getAttribute("User");
+
         if (request.getMethod().equals("POST")) {
             user.setGivenName(request.getParameter("given_name"));
             user.setSurname(request.getParameter("surname"));
             user.setEmail(request.getParameter("email"));
 
-//            boolean success = userFacade.modifyUser(
-//                    request.getParameter("given_name"),
-//                    request.getParameter("surname"),
-//                    request.getParameter("email"));
+            // Password change handling, very specific to this handler.
+            String password = null;
+            if (!request.getParameter("password").equals(request.getParameter("confirm_password"))) {
+                messages.put("error", "Wachtwoorden zijn niet gelijk!");
+            } else {
+                if (request.getParameter("password").equals("")) {
+                    user.setPassword(request.getParameter("password"));
+                } else {
+                    password = request.getParameter("password");
+                }
+            }
+
+
+            // Call the database backend to write the user entry.
+            boolean success = userFacade.modifyUser(
+                    user.getId(),
+                    user.getGivenName(),
+                    user.getSurname(),
+                    user.getEmail(),
+                    password);
+
+            if (!success) {
+                messages.put("error", "Databasefout!");
+            }
+
         }
+
+        // Pre-fill the form fields
         request.setAttribute("given_name", user.getGivenName());
         request.setAttribute("surname", user.getSurname());
         request.setAttribute("email", user.getEmail());
+        
+        // Show the profile view
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
 
     /**
@@ -174,6 +205,7 @@ public class ControllerServlet extends HttpServlet {
         // Handle the profile page
         if (request.getServletPath().equals("/user/profile")) {
             handleProfile(request, response);
+            return;
         }
 
         // Handle logout button

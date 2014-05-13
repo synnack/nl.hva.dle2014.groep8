@@ -67,6 +67,39 @@ public class UserFacade extends AbstractFacade<User> {
             }
             return false;
         } catch (PersistenceException e) {
+            System.err.println("Message: " + e.getMessage());
+
+            return false;
+        }
+        return true;
+    }
+
+    public boolean modifyUser(Long id,
+            String givenName,
+            String surname,
+            String email,
+            String password) {
+
+        User user = find(id);
+        user.setGivenName(givenName);
+        user.setSurname(surname);
+        user.setEmail(email);
+        if (password != null) {
+            user.setPassword(password);
+        }
+
+        try {
+            em.persist(user);
+            em.flush();
+        } catch (ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            for (ConstraintViolation c: violations) {
+                System.err.println("Message: " + c.getMessage());
+                System.err.println("Message: " + c.getLeafBean());
+            }
+            return false;
+        } catch (PersistenceException e) {
+            System.err.println("Message: " + e.getMessage());
             return false;
         }
         return true;
