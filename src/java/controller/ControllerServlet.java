@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.UserCompetencyFacade;
 import session.UserFacade;
 
 /**
@@ -44,6 +45,8 @@ public class ControllerServlet extends HttpServlet {
 
     @EJB
     private UserFacade userFacade;
+    private UserCompetencyFacade 
+    userCompetencyFacade;
 
     /**
      * Handles the login submission.
@@ -160,18 +163,14 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
     
-    protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
+     protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
-
-        // Special case for here. This data comes from the login session.
-        // For other views use objectFacade.find(id)
-        UserCompetency userCompetency = (UserCompetency) session.getAttribute("UserCompetency");     
-        
-        // Pre-fill the form fields
-        request.setAttribute("given_name", userCompetency.getSkillLevel());
+     
+        // Pre-fill the competency list
+        request.setAttribute("competencies", userCompetencyFacade.findAll());
         
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
