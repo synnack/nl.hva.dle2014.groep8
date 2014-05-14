@@ -1,6 +1,7 @@
 package controller;
 
 import entity.User;
+import entity.UserCompetency;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -158,6 +159,23 @@ public class ControllerServlet extends HttpServlet {
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
+    
+    protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+
+        // Special case for here. This data comes from the login session.
+        // For other views use objectFacade.find(id)
+        UserCompetency userCompetency = (UserCompetency) session.getAttribute("UserCompetency");     
+        
+        // Pre-fill the form fields
+        request.setAttribute("given_name", userCompetency.getSkillLevel());
+        
+        // Show the profile view
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -205,6 +223,12 @@ public class ControllerServlet extends HttpServlet {
         // Handle the profile page
         if (request.getServletPath().equals("/user/profile")) {
             handleProfile(request, response);
+            return;
+        }
+        
+        // Handle the user competencies page
+        if (request.getServletPath().equals("/user/competencies")) {
+            handleUserCompetencies(request, response);
             return;
         }
 

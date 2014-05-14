@@ -465,7 +465,7 @@ h3
 
 }
 
-#clouds{
+/*#clouds{
     padding: 100px 0;
     position: absolute;
     top: 100px;
@@ -561,8 +561,8 @@ h3
     -webkit-animation: moveclouds 40s linear infinite;
     -moz-animation: moveclouds 40s linear infinite;
     -o-animation: moveclouds 40s linear infinite;
-}
-
+}*/
+/*
 @-webkit-keyframes moveclouds {
     0% {margin-left: 2000px;}
     100% {margin-left: -2000px;}
@@ -574,7 +574,7 @@ h3
 @-o-keyframes moveclouds {
     0% {margin-left: 2000px;}
     100% {margin-left: -2000px;}
-}
+}*/
 
 /* Home button stuff */
 #tile_table {
