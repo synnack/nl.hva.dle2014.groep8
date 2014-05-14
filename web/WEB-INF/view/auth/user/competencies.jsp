@@ -95,6 +95,7 @@
         <div id="content_container">
             <form method="post" action="${context}/user/competencies">
                 <c:forEach var="competency" items="${competencies}">
+                </c:forEach>
             </form>
         </div>
     </div>
