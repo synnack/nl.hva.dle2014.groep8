@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author wilco
  */
 @Entity
-@Table(name = "group")
+@Table(name = "`group`")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DLEGroup.findAll", query = "SELECT d FROM DLEGroup d"),

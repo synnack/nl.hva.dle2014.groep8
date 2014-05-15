@@ -86,16 +86,23 @@ public class User implements Serializable {
         @JoinColumn(name = "group_id", referencedColumnName = "id")})
     @ManyToMany
     private Collection<DLEGroup> dLEGroupCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
+    
+    @JoinTable(name = "user_follows_course", joinColumns = {
+        @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "course_id", referencedColumnName = "id")})
+    @ManyToMany
     private Collection<Course> courseCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
-    private Collection<Document> documentCollection;
+    private Collection<Course> courseCreatedCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
-    private Collection<Lecture> lectureCollection;
+    private Collection<Document> documentCreatedCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
+    private Collection<Lecture> lectureCreatedCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<UserCompetency> userCompetencyCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager")
-    private Collection<DLEGroup> dLEGroupCollection1;
+    private Collection<DLEGroup> groupManagedCollection;
 
     public User() {
     }
@@ -280,22 +287,32 @@ public class User implements Serializable {
         this.courseCollection = courseCollection;
     }
 
+    
     @XmlTransient
-    public Collection<Document> getDocumentCollection() {
-        return documentCollection;
+    public Collection<Course> getCourseCreatedCollection() {
+        return courseCreatedCollection;
     }
 
-    public void setDocumentCollection(Collection<Document> documentCollection) {
-        this.documentCollection = documentCollection;
+    public void setCourseCreatedCollection(Collection<Course> courseCreatedCollection) {
+        this.courseCreatedCollection = courseCreatedCollection;
     }
 
     @XmlTransient
-    public Collection<Lecture> getLectureCollection() {
-        return lectureCollection;
+    public Collection<Document> getDocumentCreatedCollection() {
+        return documentCreatedCollection;
     }
 
-    public void setLectureCollection(Collection<Lecture> lectureCollection) {
-        this.lectureCollection = lectureCollection;
+    public void setDocumentCreatedCollection(Collection<Document> documentCreatedCollection) {
+        this.documentCreatedCollection = documentCreatedCollection;
+    }
+
+    @XmlTransient
+    public Collection<Lecture> getLectureCreatedCollection() {
+        return lectureCreatedCollection;
+    }
+
+    public void setLectureCreatedCollection(Collection<Lecture> lectureCreatedCollection) {
+        this.lectureCreatedCollection = lectureCreatedCollection;
     }
 
     @XmlTransient
@@ -308,12 +325,12 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DLEGroup> getDLEGroupCollection1() {
-        return dLEGroupCollection1;
+    public Collection<DLEGroup> getGroupManagedCollection() {
+        return groupManagedCollection;
     }
 
-    public void setDLEGroupCollection1(Collection<DLEGroup> dLEGroupCollection1) {
-        this.dLEGroupCollection1 = dLEGroupCollection1;
+    public void setGroupManagedCollection(Collection<DLEGroup> groupManagedCollection) {
+        this.groupManagedCollection = groupManagedCollection;
     }
 
     @Override

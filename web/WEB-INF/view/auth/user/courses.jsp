@@ -15,9 +15,8 @@
             <div id="right">
                 <a href="${context}/home" class="title"></a>
             </div>
-            
             <c:forEach var="course" items="${courses}">
-                  ${course.name}<br />  
+                  ${course.name}<br />
             </c:forEach>
         </div>
     </div>

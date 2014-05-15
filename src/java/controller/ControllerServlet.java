@@ -1,8 +1,11 @@
 package controller;
 
+import entity.Course;
+import entity.Lecture;
 import entity.User;
 import entity.UserCompetency;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -185,11 +188,33 @@ public class ControllerServlet extends HttpServlet {
         
         // Pre-fill the courses list
         request.setAttribute("courses", user.getCourseCollection());
-        
+        Collection<Course> courses = user.getCourseCollection();
+        for (Course course: courses) {
+            System.out.println(course + "Debiel");
+        }
+        System.out.println(courses);
+        System.out.println("Done.");
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
     
+    
+    protected void handleAgenda(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+        
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
+        Collection<Course> courses = user.getCourseCreatedCollection();
+        for (Course course: courses) {
+            Collection<Lecture> lectures = course.getLectureCollection();
+            for (Lecture lecture: lectures) {
+                
+            }
+        }
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -233,46 +258,33 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
 
-        // Handle the profile page
-        if (request.getServletPath().equals("/user/profile")) {
-            handleProfile(request, response);
-            return;
-        }
-        
-        // Handle the user competencies page
-        if (request.getServletPath().equals("/user/competencies")) {
-            handleUserCompetencies(request, response);
-            return;
-        }
-
-        // Handle the user courses page
-        if (request.getServletPath().equals("/user/courses")) {
-            handleUserCourses(request, response);
-            return;
-        }
-
-        // Handle logout button
-        if (request.getServletPath().equals("/logout")) {
-            session.invalidate();
-            response.sendRedirect("");
-            return;
-        }
-
         // Dispatch to different views
         String viewTemplate;
 
         switch (request.getServletPath()) {
+            case "/logout":
+                session.invalidate();
+                response.sendRedirect("");
+                return;
+            case "/user/competencies":
+                handleUserCompetencies(request, response);
+                return;
+            case "/user/courses":
+                handleUserCourses(request, response);
+                return;
+            case "/user/profile":
+                handleProfile(request, response);
+                return;
+            case "/user/agenda":
+                handleAgenda(request, response);
+                return;
+                
+            /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
                 break;
             case "/manage":
                 viewTemplate = "manage.jsp";
-                break;
-            case "/user/profile":
-                viewTemplate = "user/profile.jsp";
-                break;
-            case "/user/agenda":
-                viewTemplate = "user/agenda.jsp";
                 break;
             case "/course/list":
                 viewTemplate = "course/manage.jsp";
