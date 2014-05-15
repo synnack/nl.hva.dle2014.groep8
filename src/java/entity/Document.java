@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -58,6 +59,12 @@ public class Document implements Serializable {
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Course courseId;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Column(name = "content")
+    private byte[] content;
+
 
     public Document() {
     }
@@ -66,9 +73,11 @@ public class Document implements Serializable {
         this.id = id;
     }
 
-    public Document(Integer id, String name) {
+    public Document(Integer id, String name, byte [] content) {
         this.id = id;
         this.name = name;
+        this.content = content;
+
     }
 
     public Integer getId() {
@@ -110,6 +119,15 @@ public class Document implements Serializable {
     public void setCourseId(Course courseId) {
         this.courseId = courseId;
     }
+    
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
 
     @Override
     public int hashCode() {

@@ -61,11 +61,6 @@ public class Course implements Serializable {
     @Column(name = "last_modified")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModified;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Column(name = "content")
-    private byte[] content;
     @JoinTable(name = "course_teaches_competency", joinColumns = {
         @JoinColumn(name = "course_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "competency_id", referencedColumnName = "id")})
@@ -89,11 +84,10 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public Course(Long id, String name, Date lastModified, byte[] content) {
+    public Course(Long id, String name, Date lastModified) {
         this.id = id;
         this.name = name;
         this.lastModified = lastModified;
-        this.content = content;
     }
 
     public Long getId() {
@@ -118,14 +112,6 @@ public class Course implements Serializable {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 
     @XmlTransient

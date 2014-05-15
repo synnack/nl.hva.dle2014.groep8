@@ -175,6 +175,21 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
     }
 
+    protected void handleUserCourses(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+        
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
+        // Pre-fill the courses list
+        request.setAttribute("courses", user.getCourseCollection());
+        
+        // Show the profile view
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -230,6 +245,12 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
 
+        // Handle the user courses page
+        if (request.getServletPath().equals("/user/courses")) {
+            handleUserCourses(request, response);
+            return;
+        }
+
         // Handle logout button
         if (request.getServletPath().equals("/logout")) {
             session.invalidate();
@@ -250,14 +271,8 @@ public class ControllerServlet extends HttpServlet {
             case "/user/profile":
                 viewTemplate = "user/profile.jsp";
                 break;
-            case "/user/courses":
-                viewTemplate = "user/courses.jsp";
-                break;
             case "/user/agenda":
                 viewTemplate = "user/agenda.jsp";
-                break;
-            case "/user/competencies":
-                viewTemplate = "user/competencies.jsp";
                 break;
             case "/course/list":
                 viewTemplate = "course/manage.jsp";
