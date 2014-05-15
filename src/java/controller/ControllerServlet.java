@@ -162,7 +162,7 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
     
-    protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
+     protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();

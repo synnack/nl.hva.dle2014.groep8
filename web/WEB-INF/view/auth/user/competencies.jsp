@@ -94,9 +94,8 @@
         </div>
         <div id="content_container">
             <form method="post" action="${context}/user/competencies">
-                <input class="field_profile" name="given_name" type="text" placeholder="Voornaam" value='<%=request.getAttribute("given_name")%>' autofocus required>
-                <input class="field_profile" name="surname" type="text" placeholder="Achternaam" value='<%=request.getAttribute("surname")%>' required>
-                <input class="field_profile" name="email" type="text" placeholder="E-mail" value='<%=request.getAttribute("email")%>' required>
+                <c:forEach var="competency" items="${competencies}">
+                </c:forEach>
             </form>
         </div>
     </div>
