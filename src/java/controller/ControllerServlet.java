@@ -169,7 +169,7 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("messages", messages); // Now it's available by ${messages}
      
         // Pre-fill the competency list
-        request.setAttribute("competencies", userCompetencyFacade.findAll());
+        request.setAttribute("competencies", userCompetencyFacade.findByUserId(((User)session.getAttribute("User")).getId()));
         
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);

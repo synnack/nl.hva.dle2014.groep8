@@ -36,7 +36,7 @@ public class UserFacade extends AbstractFacade<User> {
 
     public User findByUsername(String username) {
         try {
-            return em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class)
+            return em.createNamedQuery("User.findByUsername", User.class)
                      .setParameter("username", username)
                      .getSingleResult();
         } catch (NoResultException e) {
