@@ -5,8 +5,10 @@ import entity.Lecture;
 import entity.User;
 import entity.UserCompetency;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import javax.ejb.EJB;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.CourseFacade;
 import session.UserCompetencyFacade;
 import session.UserFacade;
 
@@ -49,7 +52,8 @@ public class ControllerServlet extends HttpServlet {
     @EJB
     private UserFacade userFacade;
     @EJB
-    private UserCompetencyFacade userCompetencyFacade;
+    private CourseFacade courseFacade;
+    
     /**
      * Handles the login submission.
      *
@@ -171,8 +175,10 @@ public class ControllerServlet extends HttpServlet {
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
      
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+
         // Pre-fill the competency list
-        request.setAttribute("competencies", userCompetencyFacade.findByUserId(((User)session.getAttribute("User")).getId()));
+        request.setAttribute("competencies", user.getUserCompetencyCollection());
         
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
@@ -186,14 +192,12 @@ public class ControllerServlet extends HttpServlet {
         
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
         
+        // FIXME: Remove this later. This is the example for how to use findAll()
+        //request.setAttribute("all_courses", courseFacade.findAll());
+        
         // Pre-fill the courses list
         request.setAttribute("courses", user.getCourseCollection());
-        Collection<Course> courses = user.getCourseCollection();
-        for (Course course: courses) {
-            System.out.println(course + "Debiel");
-        }
-        System.out.println(courses);
-        System.out.println("Done.");
+
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
@@ -206,15 +210,18 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("messages", messages); // Now it's available by ${messages}
         
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        ArrayList<Lecture> allLecturesForUser = new ArrayList<Lecture>();
         
-        Collection<Course> courses = user.getCourseCreatedCollection();
+        
+        Collection<Course> courses = user.getCourseCollection();
         for (Course course: courses) {
             Collection<Lecture> lectures = course.getLectureCollection();
             for (Lecture lecture: lectures) {
-                
+                allLecturesForUser.add(lecture);
             }
         }
-    }
+        
+   }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

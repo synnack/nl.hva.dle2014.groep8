@@ -16,6 +16,32 @@
             <div id="right">
                 <a href="${context}/home" class="title"></a>
             </div>
+            
+                <div id="submenu">
+        <div class="submenu">
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        <div class="submenuitem">
+            <input id="submenubutton" type="button" value="Beheeropties">
+        </div>
+        </div>
+    </div>
         </div>
     </div>
 </div>

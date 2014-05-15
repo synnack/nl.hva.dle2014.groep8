@@ -18,6 +18,10 @@
             <c:forEach var="course" items="${courses}">
                   ${course.name}<br />
             </c:forEach>
+                  All<br />
+            <c:forEach var="course" items="${all_courses}">
+                  ${course.name}<br />
+            </c:forEach>
         </div>
     </div>
 </div>
