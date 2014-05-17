@@ -34,12 +34,10 @@ import session.UserFacade;
             "/user/competencies",
             "/user/competencies/modify/*",
             "/user/courses",
-            "/user/list",
-            "/group/list",
-            "/course/list",
-            "/competency/list",
-            "/course/lecture/view",
-            "/course/lecture/manage",
+            "/user/manage",
+            "/group/manage",
+            "/course/manage",
+            "/competency/manage",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -308,16 +306,16 @@ public class ControllerServlet extends HttpServlet {
             case "/manage":
                 viewTemplate = "manage.jsp";
                 break;
-            case "/course/list":
+            case "/course/manage":
                 viewTemplate = "course/manage.jsp";
                 break;
-            case "/competency/list":
+            case "/competency/manage":
                 viewTemplate = "course/manage.jsp";
                 break;
-            case "/user/list":
+            case "/user/manage":
                 viewTemplate = "user/manage.jsp";
                 break;
-            case "/group/list":
+            case "/group/manage":
                 viewTemplate = "group/manage.jsp";
                 break;
             case "/register":
