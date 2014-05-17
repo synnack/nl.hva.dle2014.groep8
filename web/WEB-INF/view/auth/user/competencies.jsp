@@ -20,21 +20,15 @@
         </div>
         <div id="menu_container">
             <c:forEach var="usercompetency" items="${competencies}">
+                <a target="iframe" href="${context}/user/competencies/modify/${usercompetency.userCompetencyPK.userId}-${usercompetency.userCompetencyPK.competencyId}">
                 <div id="menu_item">
                     <h8>${usercompetency.competency.name}</h8>
                 </div>
+                </a>
             </c:forEach>
         </div>
         <div id="content_container">
-<!--            <form method="post" action="${context}/user/competencies">
-                <table>
-            <c:forEach var="usercompetency" items="${competencies}">
-                <tr>
-                    <td>${usercompetency.competency.name}</td><td>${usercompetency.skillLevel}</td>
-                </tr>
-            </c:forEach>
-            </table>-->
-            </form>
+            <iframe name="iframe" style="height: 100%; width: 100%; border: none"></iframe>
         </div>
     </div>
 </div>

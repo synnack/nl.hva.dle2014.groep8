@@ -2,6 +2,8 @@ package controller;
 
 import entity.Lecture;
 import entity.User;
+import entity.UserCompetency;
+import entity.UserCompetencyPK;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.CourseFacade;
+import session.UserCompetencyFacade;
 import session.UserFacade;
 
 /**
@@ -29,6 +32,7 @@ import session.UserFacade;
             "/user/agenda",
             "/user/profile",
             "/user/competencies",
+            "/user/competencies/modify/*",
             "/user/courses",
             "/user/list",
             "/group/list",
@@ -47,6 +51,9 @@ public class ControllerServlet extends HttpServlet {
     private UserFacade userFacade;
     @EJB
     private CourseFacade courseFacade;
+    
+    @EJB
+    private UserCompetencyFacade userCompetencyFacade;
     
     /**
      * Handles the login submission.
@@ -177,6 +184,19 @@ public class ControllerServlet extends HttpServlet {
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
     }
+    
+    protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long userId = Long.parseLong(split[1]);
+        Long competencyId = Long.parseLong(split[2]);
+        UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
+        UserCompetency userCompetency = userCompetencyFacade.find(pk);
+
+        request.setAttribute("usercompetency", userCompetency);
+
+        request.getRequestDispatcher("/WEB-INF/view/subviews/user/competencies/modify.jsp").forward(request, response);
+    }
 
     protected void handleUserCourses(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -254,6 +274,10 @@ public class ControllerServlet extends HttpServlet {
             return;
         }
 
+        // *********
+        // Below here requires login!
+        // *********
+        
         // Dispatch to different views
         String viewTemplate;
 
@@ -265,6 +289,9 @@ public class ControllerServlet extends HttpServlet {
             case "/user/competencies":
                 handleUserCompetencies(request, response);
                 return;
+            case "/user/competencies/modify":
+                handleUserCompetenciesModify(request, response);
+                return;
             case "/user/courses":
                 handleUserCourses(request, response);
                 return;
@@ -274,7 +301,6 @@ public class ControllerServlet extends HttpServlet {
             case "/user/agenda":
                 handleAgenda(request, response);
                 return;
-                
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
