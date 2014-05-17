@@ -11,7 +11,7 @@
         <div id="view_header">
             <h4>Gebruikers beheren</h4>
             <div id="left">   
-                <a href="${context}/home" class="title"><h6>Home</h6></a>
+                <a href="${context}/manage" class="title"><h6>Beheren</h6></a>
             </div>
             <div id="right">  
                 <a href="${context}/home" class="title"></a>
