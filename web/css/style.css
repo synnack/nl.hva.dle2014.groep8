@@ -181,7 +181,7 @@ input[type=image] {
     float: left;
     position: relative;
     width: 100px;
-    height: 40px;
+    height: 20px;
 }
 
 #right
@@ -269,13 +269,13 @@ h5
 
 h6
 {
-    top: -33px;
     position: relative;
     color: #0f9bf5;
     font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
+    margin: 0;
 }
 
 h7
