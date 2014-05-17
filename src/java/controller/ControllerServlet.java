@@ -1,16 +1,11 @@
 package controller;
 
-import entity.Course;
 import entity.Lecture;
 import entity.User;
-import entity.UserCompetency;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.CourseFacade;
-import session.UserCompetencyFacade;
 import session.UserFacade;
 
 /**
@@ -209,17 +203,12 @@ public class ControllerServlet extends HttpServlet {
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
         
-        User user = userFacade.find(((User)session.getAttribute("User")).getId());
-        ArrayList<Lecture> allLecturesForUser = new ArrayList<Lecture>();
+        Collection<Lecture> lectures = userFacade.findUpcomingLectures(((User)session.getAttribute("User")).getId());
         
+        request.setAttribute("lectures", lectures);
         
-        Collection<Course> courses = user.getCourseCollection();
-        for (Course course: courses) {
-            Collection<Lecture> lectures = course.getLectureCollection();
-            for (Lecture lecture: lectures) {
-                allLecturesForUser.add(lecture);
-            }
-        }
+        // Show the user agenda view
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/agenda.jsp").forward(request, response);
         
    }
     /**
