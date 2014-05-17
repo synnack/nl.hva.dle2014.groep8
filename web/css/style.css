@@ -288,7 +288,7 @@ h6
 
 h6:hover
 {
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    font-size: 17px;
 }
 
 h7
@@ -717,7 +717,7 @@ hr {
 
 .form_submit:hover
 {
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    font-size: 17px;
 }
 
 .competency_submit 
