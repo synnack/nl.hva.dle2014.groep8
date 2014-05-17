@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "document")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Document.findAll", query = "SELECT d FROM Document d"),
+    @NamedQuery(name = "Document.findAll", query = "SELECT d FROM Document d ORDER BY d.name"),
     @NamedQuery(name = "Document.findById", query = "SELECT d FROM Document d WHERE d.id = :id"),
     @NamedQuery(name = "Document.findByName", query = "SELECT d FROM Document d WHERE d.name = :name"),
     @NamedQuery(name = "Document.findByLastModified", query = "SELECT d FROM Document d WHERE d.lastModified = :lastModified")})

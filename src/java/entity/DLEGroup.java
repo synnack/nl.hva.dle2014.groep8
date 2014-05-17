@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "`group`")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DLEGroup.findAll", query = "SELECT d FROM DLEGroup d"),
+    @NamedQuery(name = "DLEGroup.findAll", query = "SELECT d FROM DLEGroup d ORDER BY d.name"),
     @NamedQuery(name = "DLEGroup.findById", query = "SELECT d FROM DLEGroup d WHERE d.id = :id"),
     @NamedQuery(name = "DLEGroup.findByName", query = "SELECT d FROM DLEGroup d WHERE d.name = :name")})
 public class DLEGroup implements Serializable {

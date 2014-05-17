@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Competency;
+import entity.Course;
 import entity.DLEGroup;
 import entity.Lecture;
 import entity.User;
@@ -45,6 +46,7 @@ import session.UserFacade;
             "/competency/manage",
             "/competency/modify/*",
             "/course/manage",
+            "/course/modify/*",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -188,6 +190,7 @@ public class ControllerServlet extends HttpServlet {
 
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
+        request.setAttribute("all_competencies", competencyFacade.findAll());
         
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
@@ -271,8 +274,18 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("competency", competency);
         
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
-    }    
+    }
     
+    protected void handleCourseModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long competencyId = Long.parseLong(split[1]);
+        Course course = courseFacade.find(competencyId);
+
+        request.setAttribute("course", course);
+        
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);        
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -364,7 +377,15 @@ public class ControllerServlet extends HttpServlet {
             case "/competency/modify":
                 handleCompetencyModify(request, response);
                 return;
-
+            case "/course/manage":
+                request.setAttribute("courses", courseFacade.findAll());
+                viewTemplate = "course/manage.jsp";
+                break;
+            case "/course/modify":
+                handleCourseModify(request, response);
+                return;
+                
+                
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
@@ -372,9 +393,7 @@ public class ControllerServlet extends HttpServlet {
             case "/manage":
                 viewTemplate = "manage.jsp";
                 break;
-            case "/course/manage":
-                viewTemplate = "course/manage.jsp";
-                break;
+
             case "/register":
                 viewTemplate = "register.jsp";
                 break;
