@@ -38,9 +38,12 @@
         </div>
     </div>
     <div id="light" class="white_content">
-        
+        <h1>Competentie Toevoegen</h1>
+        <h9>Kies een competentie uit de lijst hieronder. Als u een competentie heeft gekozen klikt u op toevoegen.</h9>
         <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
-            document.getElementById('fade').style.display = 'none'">Sluiten
+            document.getElementById('fade').style.display = 'none'">
+            <h10>Sluiten</h10>
+            <h11>Opslaan</h11>
         </a>
     </div>
 

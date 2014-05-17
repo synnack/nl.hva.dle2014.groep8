@@ -184,7 +184,7 @@ input[type=image] {
 
 #left
 {
-    top: -48px;
+    top: -53px;
     float: left;
     position: relative;
     width: 100px;
@@ -193,7 +193,7 @@ input[type=image] {
 
 #right
 {
-    top: -63px;
+    top: -70px;
     position: relative;
     float: right;
     width: 100px;
@@ -254,14 +254,14 @@ input[type=image] {
 
 h4
 {
-    height: 20px;
-    top: -8px;
-    color: black;
-    font-size: 15px;
-    font-family: "Helvetica Neue",sans-serif;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
     position: relative;
+    top: -12px;
+    color: black;
+    font-size: 17px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
 }
 
 h5
@@ -312,6 +312,18 @@ h8
 
 h9
 {
+    color:#030303;
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    text-align: center;
+    width: 400px;
+}
+
+h10
+{
     color:#007aff;
     font-size: 18px;
     font-family: "Helvetica Neue",sans-serif;
@@ -320,6 +332,21 @@ h9
     -webkit-font-smoothing: antialiased;
     position: absolute;
     left: 30px;
+    text-align: left;
+    bottom: 10px;
+}
+
+h11
+{
+    color:#007aff;
+    font-size: 18px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 2.2;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
 }
 
 /* --------------------- Menu --------------------- */
@@ -688,22 +715,25 @@ hr {
 	background-color: black;
 	z-index:1001;
 	-moz-opacity: 0.8;
-	opacity:.80;
+	opacity:.60;
 	filter: alpha(opacity=80);
 }
 
-.white_content {
-	display: none;
-	position: absolute;
-	top: 25%;
-	left: 25%;
-	width: 50%;
-	height: 50%;
-	padding: 16px;
-	background-color: white;
-	z-index:1002;
-	overflow: auto;
-        -moz-border-radius: 10px 10px 10px 10px;
-        -webkit-border-radius: 10px 10px 10px 10px;
-        border-radius: 10px 10px 10px 10px;
+.white_content 
+{
+    display: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -200px;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    height: 400px;
+    padding: 25px;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
 }
