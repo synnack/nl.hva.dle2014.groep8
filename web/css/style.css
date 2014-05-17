@@ -222,6 +222,7 @@ input[type=image] {
     overflow-y: scroll;
     border-right: 1px solid;
     border-right-color: #ccc;
+    background-color: #e4f2fc;
 }
 
 #content_container
@@ -288,18 +289,41 @@ h7
     position: relative;
     text-align: left;
 }
+
+h8
+{
+    color:#007aff;
+    font-size: 18px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 2.2;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    text-align: left;
+}
 /* --------------------- Menu --------------------- */
 
 #menu_item
 {
     width: 100%;
     height: 40px;
-    background-color: #cae8fb;
+    background-color: #e4f2fc;
     z-index: 1;
     text-align: center;
     border-bottom: 1px solid;
     border-bottom-color: #ccc;
 }
+
+#menu_item:active
+{	
+    width: 100%;
+    height: 40px;
+    background-color: #b1dbf9;
+    z-index: 1;
+    text-align: center;
+    border-bottom: 1px solid;
+    border-bottom-color: #ccc;
+}	
 
 h1
 {

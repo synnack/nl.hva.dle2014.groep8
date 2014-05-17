@@ -19,88 +19,21 @@
 
         </div>
         <div id="menu_container">
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>            
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
-            <div id="menu_item">
-                x
-            </div>
+            <c:forEach var="usercompetency" items="${competencies}">
+                <div id="menu_item">
+                    <h8>${usercompetency.competency.name}</h8>
+                </div>
+            </c:forEach>
         </div>
         <div id="content_container">
-            <form method="post" action="${context}/user/competencies">
+<!--            <form method="post" action="${context}/user/competencies">
                 <table>
-                <c:forEach var="usercompetency" items="${competencies}">
-                    <tr>
-                        <td>${usercompetency.competency.name}</td><td>${usercompetency.skillLevel}</td>
-                    </tr>
-                </c:forEach>
-                </table>
+            <c:forEach var="usercompetency" items="${competencies}">
+                <tr>
+                    <td>${usercompetency.competency.name}</td><td>${usercompetency.skillLevel}</td>
+                </tr>
+            </c:forEach>
+            </table>-->
             </form>
         </div>
     </div>
