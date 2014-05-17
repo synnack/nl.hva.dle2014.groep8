@@ -22,7 +22,7 @@
                 <td>${lecture.name}</td><td>${lecture.startDate}</td><td>${lecture.endDate}</td>
                 </tr>
             </c:forEach>
-                </table>
+            </table>
         </div>
     </div>
 </div>
