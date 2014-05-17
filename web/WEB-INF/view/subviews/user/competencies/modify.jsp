@@ -5,6 +5,5 @@
 --%>
 
 
-<h1>Hello World!</h1>
+<h1>${usercompetency.competency.name}</h1>
 ${usercompetency.skillLevel}
-${usercompetency.competency.name}

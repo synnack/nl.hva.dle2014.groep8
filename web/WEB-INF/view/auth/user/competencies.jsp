@@ -28,7 +28,7 @@
             </c:forEach>
         </div>
         <div id="content_container">
-            <iframe name="iframe" style="height: 100%; width: 100%; border: none"></iframe>
+            <iframe id="iframe"</iframe>
         </div>
     </div>
 </div>
