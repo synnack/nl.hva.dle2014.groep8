@@ -35,6 +35,7 @@ import session.UserFacade;
             "/user/competencies/modify/*",
             "/user/courses",
             "/user/manage",
+            "/user/modify/*",
             "/group/manage",
             "/course/manage",
             "/competency/manage",
@@ -228,7 +229,19 @@ public class ControllerServlet extends HttpServlet {
         // Show the user agenda view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/agenda.jsp").forward(request, response);
         
-   }
+    }
+    
+    protected void handleUserModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long userId = Long.parseLong(split[1]);
+        User user = userFacade.find(userId);
+
+        request.setAttribute("user", user);
+        
+        request.getRequestDispatcher("/WEB-INF/view/subviews/user/modify.jsp").forward(request, response);
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -299,6 +312,14 @@ public class ControllerServlet extends HttpServlet {
             case "/user/agenda":
                 handleAgenda(request, response);
                 return;
+            case "/user/manage":
+                request.setAttribute("users", userFacade.findAll());
+                viewTemplate = "user/manage.jsp";
+                break;
+            case "/user/modify":
+                handleUserModify(request, response);
+                return;
+                
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
@@ -311,9 +332,6 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/competency/manage":
                 viewTemplate = "course/manage.jsp";
-                break;
-            case "/user/manage":
-                viewTemplate = "user/manage.jsp";
                 break;
             case "/group/manage":
                 viewTemplate = "group/manage.jsp";
