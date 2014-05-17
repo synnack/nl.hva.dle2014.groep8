@@ -341,6 +341,11 @@ h10
     bottom: 10px;
 }
 
+h10:hover
+{
+    color: #002FFF;
+}
+
 h11
 {
     color:#007aff;
@@ -748,6 +753,11 @@ color: #002FFF;
     bottom: 3px;
 }
 
+.competency_submit:hover
+{
+    color: #002FFF;
+}
+
 .black_overlay{
 	display: none;
 	position: absolute;
@@ -809,6 +819,10 @@ color: #002FFF;
    border-radius: 0;
    height: 34px;
    -webkit-appearance: none;
+   }
+   
+ .dropdown select:hover {
+    color:  #002FFF;  
    }
    
  .dropdown {
