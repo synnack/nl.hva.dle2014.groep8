@@ -1,0 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Teach 'n' Learn</title>
+<link rel="stylesheet" type="text/css" href="${context}/css/style.css">
+</head>
+<body class="subview">
