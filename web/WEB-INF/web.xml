@@ -22,7 +22,7 @@
         </jsp-property-group>
         <jsp-property-group>
             <display-name>Header and footer subviews -&gt; /WEB-INF/view/subview/*</display-name>
-            <url-pattern>/WEB-INF/view/subview/*</url-pattern>
+            <url-pattern>/WEB-INF/view/subviews/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/headersubview.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
