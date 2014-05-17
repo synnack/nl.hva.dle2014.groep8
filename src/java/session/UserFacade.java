@@ -6,16 +6,15 @@
 
 package session;
 
-//import entity.Competency;
+import entity.Lecture;
 import entity.User;
+import java.util.Collection;
 import java.util.Set;
-//import entity.UserCompetency;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
@@ -103,6 +102,16 @@ public class UserFacade extends AbstractFacade<User> {
             return false;
         }
         return true;
+    }
+    
+    public Collection<Lecture> findUpcomingLectures(Long id) {
+        try {
+            return em.createNamedQuery("User.findUpcomingLectures", Lecture.class)
+                     .setParameter("id", id)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }        
     }
     
     public boolean modifyUser(String username,
