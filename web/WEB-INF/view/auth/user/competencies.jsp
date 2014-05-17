@@ -43,7 +43,7 @@
             <h9>Kies een competentie uit de lijst hieronder. Als u een competentie heeft gekozen klikt u op toevoegen.</h9>
         </div>
         <form method="post" action="${context}/user/competencies">
-        <div id="dropdown">
+        <div id="dropdown" class="dropdown">
             <select>
                 <option>Kies een competentie...</option>
                 <c:forEach var="competency" items="${all_competencies}">
