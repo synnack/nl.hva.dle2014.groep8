@@ -9,7 +9,7 @@
 <table id="tile_table">
     <tr>
         <td><div class="tile"><a href="${context}/user/profile"><img alt="" src="${context}/images/home/profile.png"><h3>Profiel</h3></a></div></td>
-        <td><div class="tile"><a href="${context}/user/competencies"><img alt="" src="${context}/images/home/competencies.png"><h3>Competencies</h3></a></div></td>
+        <td><div class="tile"><a href="${context}/user/competencies"><img alt="" src="${context}/images/home/competencies.png"><h3>Competenties</h3></a></div></td>
         <td><div class="tile"><a href="${context}/user/courses"><img class="tile" alt="" src="${context}/images/home/courses.png"><h3>Cursussen</h3></a></div></td>
         <td><div class="tile"><a href="${context}/user/agenda"><img class="tile" alt="" src="${context}/images/home/schedules.png"><h3>Agenda</h3></a></div></td>
         <td><div class="tile"><a href="${context}/manage"><img class="tile" alt="" src="${context}/images/home/manage.png"><h3>Beheren</h3></a></div></td>
