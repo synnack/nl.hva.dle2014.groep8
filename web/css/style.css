@@ -286,6 +286,11 @@ h6
     margin: 0;
 }
 
+h6:hover
+{
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
 h7
 {
     color: #5b7983;
@@ -708,6 +713,11 @@ hr {
     padding: 15px 0 5px;
     text-align: center;
     cursor:pointer;
+}
+
+.form_submit:hover
+{
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
 
 .competency_submit 
