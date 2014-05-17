@@ -21,11 +21,14 @@
         <div id="menu_container">
             <c:forEach var="usercompetency" items="${competencies}">
                 <a target="iframe" href="${context}/user/competencies/modify/${usercompetency.userCompetencyPK.userId}-${usercompetency.userCompetencyPK.competencyId}">
-                <div id="menu_item">
-                    <h8>${usercompetency.competency.name}</h8>
-                </div>
+                    <div id="menu_item">
+                        <h8>${usercompetency.competency.name}</h8>
+                    </div>
                 </a>
             </c:forEach>
+            <div id="menu_footer">
+                <h8>Toevoegen</h8>
+            </div>
         </div>
         <div id="content_container">
             <iframe id="iframe"></iframe>
