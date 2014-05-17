@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Competency;
 import entity.DLEGroup;
 import entity.Lecture;
 import entity.User;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.CompetencyFacade;
 import session.CourseFacade;
 import session.DLEGroupFacade;
 import session.UserCompetencyFacade;
@@ -40,8 +42,9 @@ import session.UserFacade;
             "/user/modify/*",
             "/group/manage",
             "/group/modify/*",
-            "/course/manage",
             "/competency/manage",
+            "/competency/modify/*",
+            "/course/manage",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -57,6 +60,8 @@ public class ControllerServlet extends HttpServlet {
     private UserCompetencyFacade userCompetencyFacade;
     @EJB
     private DLEGroupFacade groupFacade;
+    @EJB
+    private CompetencyFacade competencyFacade;
     
     /**
      * Handles the login submission.
@@ -256,7 +261,17 @@ public class ControllerServlet extends HttpServlet {
         
         request.getRequestDispatcher("/WEB-INF/view/subviews/group/modify.jsp").forward(request, response);
     }
-    
+
+    protected void handleCompetencyModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long competencyId = Long.parseLong(split[1]);
+        Competency competency = competencyFacade.find(competencyId);
+
+        request.setAttribute("competency", competency);
+        
+        request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
+    }    
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -342,6 +357,14 @@ public class ControllerServlet extends HttpServlet {
             case "/group/modify":
                 handleGroupModify(request, response);
                 return;
+            case "/competency/manage":
+                request.setAttribute("competencies", competencyFacade.findAll());
+                viewTemplate = "competency/manage.jsp";
+                break;
+            case "/competency/modify":
+                handleCompetencyModify(request, response);
+                return;
+
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
@@ -352,10 +375,6 @@ public class ControllerServlet extends HttpServlet {
             case "/course/manage":
                 viewTemplate = "course/manage.jsp";
                 break;
-            case "/competency/manage":
-                viewTemplate = "course/manage.jsp";
-                break;
-
             case "/register":
                 viewTemplate = "register.jsp";
                 break;
