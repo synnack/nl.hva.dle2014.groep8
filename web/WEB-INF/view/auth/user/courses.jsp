@@ -23,7 +23,7 @@
                 <h6>${course.name}</h6><br />
                 </div>
             </c:forEach>
-                  Test<br />
+                  All<br />
             <c:forEach var="course" items="${all_courses}">
                   ${course.name}<br />
             </c:forEach>
