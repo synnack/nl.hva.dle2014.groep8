@@ -834,3 +834,15 @@ color: #002FFF;
     left: 50%;
     margin-left: -120px;
    }
+   
+#remove_competency
+{
+    bottom: 10px;
+    right: 20px;
+    background-color: grey;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    background: url('../images/competencies/remove_competency_trash.png') no-repeat right;
+    background-size: contain;
+}
