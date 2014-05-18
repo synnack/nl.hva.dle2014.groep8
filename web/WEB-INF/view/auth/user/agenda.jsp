@@ -16,13 +16,37 @@
             <div id="right">
                 <a href="${context}/home" class="title"></a>
             </div>
-            <table>
-            <c:forEach var="lecture" items="${lectures}">
-                <tr>
-                <td>${lecture.name}</td><td>${lecture.startDate}</td><td>${lecture.endDate}</td>
-                </tr>
-            </c:forEach>
-            </table>
+            <div id="left_description_container">
+                <div id="agenda_header">
+                        <h16>Omschrijving</h16>
+                    </div>
+                <c:forEach var="lecture" items="${lectures}">
+                    <div id="agenda_item">
+                        <h15>${lecture.name}</h15>
+                    </div>
+                </c:forEach>
+            </div>
+            <div id="middle_description_container">
+                <div id="agenda_header">
+                        <h16>Van</h16>
+                    </div>
+                <c:forEach var="lecture" items="${lectures}">
+                    <div id="agenda_item">
+                    <h15>${lecture.startDate}</h15>
+                    </div>
+                </c:forEach>
+            </div>
+            <div id="right_description_container">
+                <div id="agenda_header">
+                        <h16>Tot</h16>
+                    </div>
+                <c:forEach var="lecture" items="${lectures}">
+                    <div id="agenda_item">
+                    <h15>${lecture.endDate}</h15>
+                    </div>
+                </c:forEach>
+            </div>
+
         </div>
     </div>
 </div>
