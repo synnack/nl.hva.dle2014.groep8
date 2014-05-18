@@ -80,6 +80,12 @@ h2
     left:10px;
 }
 
+
+  /* Below belongs to the .centerwindow and .loginwindow */
+@-webkit-keyframes fadeInLogin { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeInLogin { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeInLogin { from { opacity:0; } to { opacity:1; } }
+
 .centerwindow
 {
     background-color: #ffffff;
@@ -92,6 +98,19 @@ h2
     -webkit-border-radius: 3px;
     border-radius: 60px;
     box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);;
+	
+	opacity:0;
+    -webkit-animation:fadeInLogin ease-in-out 1;
+    -moz-animation:fadeInLogin ease-in-out 1;
+    animation:fadeInLogin ease-in-out 1;
+ 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.5s;
+    -moz-animation-duration:0.5s;
+    animation-duration:0.5s;
 }
 
 .loginwindow
@@ -104,6 +123,19 @@ h2
     top: 50%;
     left: 50%;
     z-index: 0;
+	
+    opacity:0;
+    -webkit-animation:fadeInLogin ease-in-out 1;
+    -moz-animation:fadeInLogin ease-in-out 1;
+    animation:fadeInLogin ease-in-out 1;
+ 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.5s;
+    -moz-animation-duration:0.5s;
+    animation-duration:0.5s;
 }
 
 .error
@@ -711,12 +743,31 @@ h3
 }*/
 
 /* Home button stuff */
+
+  /* Below belongs to the .black_overlay*/
+@-webkit-keyframes fadeInMenu { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeInMenu { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeInMenu { from { opacity:0; } to { opacity:1; } }
+
 #tile_table {
     width:75%;
     height:400px;
     margin: auto;
     top: 100px;
     position: relative;
+    
+    opacity:0;
+    -webkit-animation:fadeInMenu ease-in-out 1;
+    -moz-animation:fadeInLoginMenu ease-in-out 1;
+    animation:fadeInLoginMenu ease-in-out 1;
+ 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.5s;
+    -moz-animation-duration:0.5s;
+    animation-duration:0.5s;
 }
 
 div.tile
