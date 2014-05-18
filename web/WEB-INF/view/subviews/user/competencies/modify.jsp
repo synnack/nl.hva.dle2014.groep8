@@ -6,12 +6,20 @@
 
 
 <h1>${usercompetency.competency.name}</h1>
-${usercompetency.skillLevel}
+<h13>Hieronder ziet u het huidige niveau van de geselecteerde competentie. Het niveau is een getal tussen 1 en 10, waarvan 1 het laagst en 10 het hoogst.</h13>    
+<h14>${usercompetency.skillLevel}</h14>
+<div id="competency_description">
+    <h13>In het veld hieronder kunt u het niveau aanpassen. U kunt kiezen uit één getal van 1 tot en met 10. Druk vervolgens op opslaan.</h13>
+    <div id="inputs_competency">
+        <input class="field_competency" name="skill_level" type="text" placeholder="Niveau" value='' autofocus required>
+        <input class="form_submit" type="submit" name="submit" value="Opslaan" />
+    </div>
+</div>
+
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block'"><div id="remove_competency">       
     </div>
 </a>
-
 <div id="light" class="remove_competency">
     <h1>Verwijder "${usercompetency.competency.name}"</h1>
     <div id="description">
