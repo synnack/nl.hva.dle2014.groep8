@@ -11,3 +11,10 @@ ${usercompetency.skillLevel}
         document.getElementById('fade').style.display = 'block'"><div id="remove_competency">       
     </div>
 </a>
+
+<div id="light" class="remove_competency">
+    <h1>Verwijder "${usercompetency.competency.name}"</h1>
+    <div id="description">
+        <h12>Weet u zeker dat u de competentie "${usercompetency.competency.name}" wilt verwijderen?</h12>
+    </div>
+</div>

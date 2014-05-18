@@ -359,6 +359,20 @@ h11
     bottom: 10px;
 }
 
+h12
+{
+    color:#030303;
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    text-align: center;
+    width: 200px;
+}
+
 /* --------------------- Menu --------------------- */
 
 #menu_item
@@ -845,4 +859,23 @@ color: #002FFF;
     position: absolute;
     background: url('../images/competencies/remove_competency_trash.png') no-repeat right;
     background-size: contain;
+}
+
+.remove_competency 
+{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 84%;
+    margin-left: -225px;
+    width: 275px;
+    height: 180px;
+    padding: 25px;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.15),0px 0px 1px 1px rgba(0,0,0,0.1);
 }
