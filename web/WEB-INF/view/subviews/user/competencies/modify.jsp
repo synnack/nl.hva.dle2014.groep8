@@ -17,4 +17,11 @@ ${usercompetency.skillLevel}
     <div id="description">
         <h12>Weet u zeker dat u de competentie "${usercompetency.competency.name}" wilt verwijderen?</h12>
     </div>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
+            document.getElementById('fade').style.display = 'none'">
+        <h10>Annuleren</h10>
+    </a>
+    <input class="competency_submit" type="submit" name="submit" value="Verwijderen" />
+    <div id="remove_competency_arrow">
+    </div>
 </div>
