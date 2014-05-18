@@ -417,6 +417,24 @@ h12
     border-top-color: rgba(3, 38, 255, 0.24);
 }
 
+#menu_footer:hover
+{	
+    width: 100%;
+    height: 41px;
+    background-color: #D2E9FA;
+    z-index: 1;
+    text-align: center;
+}	
+
+#menu_footer:active
+{	
+    width: 100%;
+    height: 41px;
+    background-color: #b1dbf9;
+    z-index: 1;
+    text-align: center;
+}	
+
 h1
 {
     
