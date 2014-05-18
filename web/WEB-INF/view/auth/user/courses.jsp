@@ -8,15 +8,20 @@
 <div id="main_container">
     <div id="view_container">
         <div id="view_header">
-                <h4>Cursussen</h4>
+                <h4>Mijn cursussen</h4>
             <div id="left">
                 <a href="${context}/home" class="title"><h6>Home</h6></a>
             </div>
             <div id="right">
                 <a href="${context}/home" class="title"></a>
+                
             </div>
+            </div>
+            <div id="menu_container">
             <c:forEach var="course" items="${courses}">
-                  ${course.name}<br />
+                <div id="menu_item">
+                <h6>${course.name}</h6><br />
+                </div>
             </c:forEach>
                   All<br />
             <c:forEach var="course" items="${all_courses}">
