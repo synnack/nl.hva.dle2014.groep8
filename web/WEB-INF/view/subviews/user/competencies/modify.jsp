@@ -11,7 +11,7 @@
 <div id="competency_description">
     <h13>In het veld hieronder kunt u het niveau aanpassen. U kunt kiezen uit één getal van 1 tot en met 10. Druk vervolgens op opslaan.</h13>
     <div id="inputs_competency">
-        <input class="field_competency" name="skill_level" type="text" placeholder="Niveau" value='' autofocus required>
+        <input class="field_competency" name="skill_level" type="text" placeholder="Nieuw niveau" value='' autofocus required>
         <input class="competency_submit" type="submit" name="submit" value="Opslaan" />
     </div>
 </div>
