@@ -968,6 +968,12 @@ color: #002FFF;
     background-size: contain;
 }
 
+  /* Below belongs to the .centerwindow and .loginwindow */
+@-webkit-keyframes fadeInRemoveCompetency { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeInRemoveCompetency { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeInRemoveCompetency { from { opacity:0; } to { opacity:1; } }
+
+
 .remove_competency 
 {
     display: none;
@@ -984,6 +990,20 @@ color: #002FFF;
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.15),0px 0px 1px 1px rgba(0,0,0,0.1);
+    
+        
+    opacity:0;
+    -webkit-animation:fadeInRemoveCompetency ease-in-out 1;
+    -moz-animation:fadeInRemoveCompetency ease-in-out 1;
+    animation:fadeInRemoveCompetency ease-in-out 1;
+ 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+ 
+    -webkit-animation-duration:0.2s;
+    -moz-animation-duration:0.2s;
+    animation-duration:0.2s;
 }
 
 #remove_competency_arrow
