@@ -20,7 +20,7 @@
         </div>
         <div id="menu_container">
             <c:forEach var="course" items="${courses}">
-                <a target="iframe" href="${context}/user/courses/${course.name}-${course.name}">
+                <a target="iframe" href="${context}/user/courses/modify">
                     <div id="menu_item">
                         <h8>${course.name}</h8>
                     </div>
