@@ -776,6 +776,11 @@ color: #002FFF;
     color: #002FFF;
 }
 
+  /* Below belongs to the .black_overlay*/
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:0.60; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:0.60; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:0.60; } }
+
 .black_overlay{
 	display: none;
 	position: absolute;
@@ -786,8 +791,20 @@ color: #002FFF;
 	background-color: black;
 	z-index:1001;
 	-moz-opacity: 0.8;
-	opacity:.60;
 	filter: alpha(opacity=80);
+        
+        opacity:0;
+        -webkit-animation:fadeIn ease-in-out 1;
+        -moz-animation:fadeIn ease-in-out 1;
+        animation:fadeIn ease-in-out 1;
+ 
+        -webkit-animation-fill-mode:forwards;
+        -moz-animation-fill-mode:forwards;
+        animation-fill-mode:forwards;
+ 
+        -webkit-animation-duration:0.2s;
+        -moz-animation-duration:0.2s;
+        animation-duration:0.2s;
 }
 
 .white_content 
