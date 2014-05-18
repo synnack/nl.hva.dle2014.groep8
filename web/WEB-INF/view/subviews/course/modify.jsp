@@ -4,5 +4,4 @@
     Author     : wilco
 --%>
 
-<h1>Hello World!</h1>
-${course.name}
+<h1>${course.name}</h1>
