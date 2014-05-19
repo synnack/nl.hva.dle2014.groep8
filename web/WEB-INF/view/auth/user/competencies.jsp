@@ -41,7 +41,7 @@
     <div id="light" class="white_content">
         <h1>Competentie Toevoegen</h1>
         <div id="description">
-            <h9>Kies een competentie uit de lijst hieronder. Als u een competentie heeft gekozen kiest u vervolgens het niveau dat u beheerst en klikt u op toevoegen.</h9>
+            <h15>Kies een competentie uit de lijst hieronder. Als u een competentie heeft gekozen kiest u vervolgens het niveau dat u beheerst en klikt u op toevoegen.</h15>
         </div>
         <form method="post" action="${context}/user/competencies">
             <div id="dropdown" class="dropdown">

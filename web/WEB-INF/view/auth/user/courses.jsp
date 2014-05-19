@@ -27,15 +27,35 @@
                 </a>
             </c:forEach>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
-                                document.getElementById('fade').style.display = 'block'">
+                    document.getElementById('fade').style.display = 'block'">
                 <div id="menu_footer">
-                    <h8>Toevoegen</h8>
+                    <h8>Inschrijven</h8>
                 </div>
             </a>
         </div>
         <div id="content_container">
             <iframe id="iframe"></iframe>
         </div>
-
+        <div id="light" class="white_content">
+            <h1>Inschrijven Cursus</h1>
+            <div id="description">
+                <h15>Kies een cursus uit de lijst om in te schrijven om de bijbehorende informatie en documenten te kunnen bekijken.</h15>
+            </div>
+            <form method="post" action="${context}/user/courses">
+                <div id="dropdown" class="dropdown">
+                    <select name="course">
+                        <option>Kies een cursus...</option>
+                        <c:forEach var="course" items="${all_courses}">
+                            <option value="${course.id}">${course.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
+                document.getElementById('fade').style.display = 'none'">
+                    <h10>Sluiten</h10>
+                </a>
+                <input class="competency_submit" type="submit" name="subscribe" value="Inschrijven" />
+            </form>
+        </div>
     </div>
 </div>

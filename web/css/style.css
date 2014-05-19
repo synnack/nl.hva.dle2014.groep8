@@ -474,6 +474,18 @@ h14
     animation-duration:0.5s;
 }
 
+h15
+{
+    color:#030303;
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    text-align: center;
+    width: 400px;
+}
+
 /* --------------------- Menu --------------------- */
 
 #menu_item
@@ -950,9 +962,9 @@ hr {
     display: none;
     position: absolute;
     top: 50%;
-    margin-top: -150px;
+    margin-top: -160px;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -225px;
     width: 400px;
     height: 300px;
     padding: 25px;
@@ -975,7 +987,7 @@ hr {
 {
     position: relative;
     text-align: center;
-    top: 30px;
+    top: 35px;
 }
 
 .dropdown select {
@@ -1004,7 +1016,7 @@ hr {
     background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
     border-bottom: 1px solid #ccc;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -125px;
 }
 
 #dropdown2
@@ -1040,7 +1052,7 @@ hr {
     background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
     border-bottom: 1px solid #ccc;
     left: 50%;
-    margin-left: -140px;
+    margin-left: -125px;
 }
 
 #dropdown_edit_competency
@@ -1262,3 +1274,77 @@ h16
     position: relative;
 }
 
+#chat_start_container
+{
+    height: 150px;
+    width: 602px;
+    position: relative;
+    left: 52px;
+    top: 20px;
+}
+
+#file_browser_container
+{
+    width: 100%;
+    height: 315px;
+    position: relative;
+    top: 20px;
+}
+
+#file_browser
+{
+    width: 600px;
+    height: 250px;
+    position: relative;
+    left: 52px;
+    border: solid 1px;
+    border-color: #ccc;
+}
+
+#document_header
+{
+    width: 600px;
+    height: 25px;
+    background-color: rgba(3, 112, 252, 0.15);
+    border-bottom: 2px solid;
+    border-bottom-color: rgba(3, 112, 252, 0.80);
+}
+
+#document_item:nth-child(even)
+{
+    width: 600px;
+    height: 25px;
+    background-color: rgba(3, 198, 255, 0.10);
+}
+
+#document_item:nth-child(odd)
+{
+    width: 600px;
+    height: 25px;
+    background-color: rgba(3, 198, 255, 0.05);
+}
+
+h17
+{
+    color:#007aff;
+    font-size: 17px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-left: 10px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+h18
+{
+    color:#030303;
+    font-size: 16px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    line-height: 1.4;
+    width: 300px;
+    margin-left: 10px;
+}

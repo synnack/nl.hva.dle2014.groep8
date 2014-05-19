@@ -245,6 +245,17 @@ public class ControllerServlet extends HttpServlet {
         
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
         
+//        FIXME: Make this add course work
+        // Handle the subscribe button
+//        if (request.getMethod().equals("POST") && request.getParameter("subscribe") != null) {
+//            userCompetencyFacade.addUserCompetency(
+//                    user.getId(), 
+//                    Long.parseLong(request.getParameter("course")), 
+//                    Short.parseShort(request.getParameter("skill_level")));
+//        }
+        
+        user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
         
         // Pre-fill the courses lists
         request.setAttribute("courses", user.getCourseCollection());
