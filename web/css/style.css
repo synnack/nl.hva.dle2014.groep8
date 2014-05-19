@@ -950,9 +950,9 @@ hr {
     display: none;
     position: absolute;
     top: 50%;
-    margin-top: -150px;
+    margin-top: -160px;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -225px;
     width: 400px;
     height: 300px;
     padding: 25px;
@@ -975,7 +975,7 @@ hr {
 {
     position: relative;
     text-align: center;
-    top: 30px;
+    top: 35px;
 }
 
 .dropdown select {
@@ -1004,7 +1004,7 @@ hr {
     background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
     border-bottom: 1px solid #ccc;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -125px;
 }
 
 #dropdown2
@@ -1040,7 +1040,7 @@ hr {
     background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
     border-bottom: 1px solid #ccc;
     left: 50%;
-    margin-left: -140px;
+    margin-left: -125px;
 }
 
 #dropdown_edit_competency
