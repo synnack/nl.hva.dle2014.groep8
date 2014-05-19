@@ -54,7 +54,7 @@
                 
             </div>
             
-            <div class="dropdown">
+            <div id="dropdown2" class="dropdown2">
             <select name="skill_level">
                 <option>Hoe goed beheers je dit?</option>
                 <option>1</option>
