@@ -15,10 +15,21 @@
 <div id="chat_start_container">
     <br>
     <br>
-        <h15>hier komt de knop om de chat in een nieuw window te openen en deel te nemen</h15>
+    <h15>hier komt de knop om de chat in een nieuw window te openen en deel te nemen</h15>
 </div>
 <div id="file_browser_container">
     <div id="file_browser">
-        <h15>hier komen de files</h15>
+        <div id="document_header">
+            <h17>Documentnaam</h17>
+        </div>
+        <div id="document_item">
+            <h18>javascript_bla_bla.docx</h18>
+        </div>
+        <div id="document_item">
+            <h18>objective_c_bla.docx</h18>
+        </div>
+        <div id="document_item">
+            <h18>kale_poes.jpg</h18>
+        </div>
     </div>
 </div>
