@@ -1034,7 +1034,43 @@ hr {
     background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
     border-bottom: 1px solid #ccc;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -140px;
+}
+
+#dropdown_edit_competency
+{
+    position: relative;
+    text-align: center;
+    top: -8px;
+}
+
+.dropdown_edit_competency select {
+    outline: none;
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}   
+
+.dropdown_edit_competency select:hover {
+    color:  #002FFF;  
+}
+
+.dropdown_edit_competency {
+    width: 150px;
+    height: 34px;
+    overflow: hidden;
+    background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
+    border-bottom: 1px solid #ccc;
+    left: 50%;
+    margin-left: -140px;
 }
 
 #remove_competency
