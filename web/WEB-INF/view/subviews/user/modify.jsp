@@ -4,7 +4,7 @@
     Author     : wilco
 --%>
 
-<h1>${user.username} ${user.surname}</h1>
+<h1>${user.givenName} ${user.surname}</h1>
 
 <div id="description">
     <h13>Wijzig de gebruiker door onderstaande gegevens aan te passen.<h13>  
