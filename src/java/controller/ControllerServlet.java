@@ -64,7 +64,7 @@ public class ControllerServlet extends HttpServlet {
     private DLEGroupFacade groupFacade;
     @EJB
     private CompetencyFacade competencyFacade;
-    
+
     /**
      * Handles the login submission.
      *
@@ -156,7 +156,6 @@ public class ControllerServlet extends HttpServlet {
                 }
             }
 
-
             // Call the database backend to write the user entry.
             boolean success = userFacade.modifyUser(
                     user.getId(),
@@ -175,7 +174,7 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("given_name", user.getGivenName());
         request.setAttribute("surname", user.getSurname());
         request.setAttribute("email", user.getEmail());
-        
+
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
@@ -185,17 +184,29 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
-     
-        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+
+        User user = userFacade.find(((User) session.getAttribute("User")).getId());
 
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
         request.setAttribute("all_competencies", competencyFacade.findAll());
-        
+
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
+
+        if (request.getMethod().equals("POST")) {
+            String UserCompetency = request.getParameter("newUserCompetency");
+            UserCompetency newUserCompetency = new UserCompetency();
+
+            // newUserCompetency has to be filled with data, this needs to be checked how
+            newUserCompetency.setUser(user);
+            newUserCompetency.setCompetency(null);
+            //   newUserCompetency.setSkillLevel(skillLevel);
+
+            userCompetencyFacade.create(newUserCompetency);
+        }
     }
-    
+
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
@@ -214,35 +225,33 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
-        
-        User user = userFacade.find(((User)session.getAttribute("User")).getId());
-        
+
+        User user = userFacade.find(((User) session.getAttribute("User")).getId());
+
         // FIXME: Remove this later. This is the example for how to use findAll()
         //request.setAttribute("all_courses", courseFacade.findAll());
-        
         // Pre-fill the courses list
         request.setAttribute("courses", user.getCourseCollection());
 
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
-    
-    
+
     protected void handleAgenda(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
-        
-        Collection<Lecture> lectures = userFacade.findUpcomingLectures(((User)session.getAttribute("User")).getId());
-        
+
+        Collection<Lecture> lectures = userFacade.findUpcomingLectures(((User) session.getAttribute("User")).getId());
+
         request.setAttribute("lectures", lectures);
-        
+
         // Show the user agenda view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/agenda.jsp").forward(request, response);
-        
+
     }
-    
+
     protected void handleUserModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
@@ -250,10 +259,10 @@ public class ControllerServlet extends HttpServlet {
         User user = userFacade.find(userId);
 
         request.setAttribute("user", user);
-        
+
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/modify.jsp").forward(request, response);
     }
-    
+
     protected void handleGroupModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
@@ -261,7 +270,7 @@ public class ControllerServlet extends HttpServlet {
         DLEGroup group = groupFacade.find(groupId);
 
         request.setAttribute("group", group);
-        
+
         request.getRequestDispatcher("/WEB-INF/view/subviews/group/modify.jsp").forward(request, response);
     }
 
@@ -272,10 +281,10 @@ public class ControllerServlet extends HttpServlet {
         Competency competency = competencyFacade.find(competencyId);
 
         request.setAttribute("competency", competency);
-        
+
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
     }
-    
+
     protected void handleCourseModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
@@ -283,9 +292,10 @@ public class ControllerServlet extends HttpServlet {
         Course course = courseFacade.find(competencyId);
 
         request.setAttribute("course", course);
-        
-        request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);        
+
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -332,7 +342,6 @@ public class ControllerServlet extends HttpServlet {
         // *********
         // Below here requires login!
         // *********
-        
         // Dispatch to different views
         String viewTemplate;
 
@@ -384,8 +393,7 @@ public class ControllerServlet extends HttpServlet {
             case "/course/modify":
                 handleCourseModify(request, response);
                 return;
-                
-                
+
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
