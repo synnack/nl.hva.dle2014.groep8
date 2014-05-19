@@ -1003,10 +1003,12 @@ hr {
     border-radius: 0;
     height: 34px;
     -webkit-appearance: none;
+    opacity: 0.7;
 }
 
 .dropdown select:hover {
     color:  #002FFF;  
+    opacity: 1;
 }
 
 .dropdown {
@@ -1017,6 +1019,11 @@ hr {
     border-bottom: 1px solid #ccc;
     left: 50%;
     margin-left: -125px;
+    opacity: 0.7;
+}
+
+.dropdown:hover {
+    opacity: 1;
 }
 
 #dropdown2
@@ -1025,6 +1032,7 @@ hr {
     text-align: center;
     top: 40px;
 }
+
 
 .dropdown2 select {
     outline: none;
@@ -1039,10 +1047,12 @@ hr {
     border-radius: 0;
     height: 34px;
     -webkit-appearance: none;
+    opacity: 0.7;
 }
 
 .dropdown2 select:hover {
     color:  #002FFF;  
+    opacity: 1;
 }
 
 .dropdown2 {
@@ -1053,6 +1063,11 @@ hr {
     border-bottom: 1px solid #ccc;
     left: 50%;
     margin-left: -125px;
+    opacity: 0.7;
+}
+
+.dropdown2:hover {
+    opacity: 1;
 }
 
 #dropdown_edit_competency
@@ -1060,6 +1075,23 @@ hr {
     position: relative;
     text-align: center;
     top: -8px;
+}
+
+
+
+.dropdown_edit_competency {
+    width: 150px;
+    height: 34px;
+    overflow: hidden;
+    background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
+    border-bottom: 1px solid #ccc;
+    left: 50%;
+    margin-left: -140px;
+    opacity: 0.7;
+}
+
+.dropdown_edit_competency:hover {
+    opacity: 1;
 }
 
 .dropdown_edit_competency select {
@@ -1075,20 +1107,12 @@ hr {
     border-radius: 0;
     height: 34px;
     -webkit-appearance: none;
+    opacity: 0.7;
 }   
 
 .dropdown_edit_competency select:hover {
     color:  #002FFF;  
-}
-
-.dropdown_edit_competency {
-    width: 150px;
-    height: 34px;
-    overflow: hidden;
-    background: url('../images/competencies/add_competency_arrow.png') no-repeat right;
-    border-bottom: 1px solid #ccc;
-    left: 50%;
-    margin-left: -140px;
+    opacity: 1;
 }
 
 #remove_competency {
