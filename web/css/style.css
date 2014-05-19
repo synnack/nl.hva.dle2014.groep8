@@ -1274,3 +1274,27 @@ h16
     position: relative;
 }
 
+#chat_start_container
+{
+    height: 150px;
+    position: relative;
+    top: 20px
+}
+
+#file_browser_container
+{
+    width: 100%;
+    height: 350px;
+    position: relative;
+    top: 20px;
+}
+
+#file_browser
+{
+    width: 600px;
+    height: 250px;
+    position: relative;
+    left: 52px;
+    border: solid 1px;
+    border-color: #ccc;
+}
