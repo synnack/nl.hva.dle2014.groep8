@@ -11,6 +11,7 @@
 <div id="competency_description">
     <h13>In het veld hieronder kunt u het niveau aanpassen. U kunt kiezen uit één getal van 1 tot en met 10. Druk vervolgens op opslaan.</h13>
     <div id="inputs_competency">
+      <form method="post" action="${context}/user/competencies/modify/${usercompetency.userCompetencyPK.userId}-${usercompetency.userCompetencyPK.competencyId}">
         <div id="dropdown_edit_competency" class="dropdown_edit_competency">
             <select name="skill_level">
                 <option>Niveau</option>
@@ -25,7 +26,8 @@
                 <option>9</option>
                 <option>10</option>
             </select>
-            </div><input class="competency_submit" type="submit" name="submit" value="Opslaan" />
+            </div><input class="competency_submit" type="submit" name="modify" value="Opslaan" />
+      </form>
     </div>
 </div>
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';

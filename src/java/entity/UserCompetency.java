@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UserCompetency.findByUserId", query = "SELECT u FROM UserCompetency u WHERE u.userCompetencyPK.userId = :userId"),
     @NamedQuery(name = "UserCompetency.findByCompetencyId", query = "SELECT u FROM UserCompetency u WHERE u.userCompetencyPK.competencyId = :competencyId"),
     @NamedQuery(name = "UserCompetency.findBySkillLevel", query = "SELECT u FROM UserCompetency u WHERE u.skillLevel = :skillLevel"),
+    @NamedQuery(name = "UserCompetency.findByUserIdCompetencyId", query = "SELECT u FROM UserCompetency u WHERE u.userCompetencyPK.userId = :userId AND u.userCompetencyPK.competencyId = :competencyId"),
     @NamedQuery(name = "UserCompetency.findByLastModified", query = "SELECT u FROM UserCompetency u WHERE u.lastModified = :lastModified")})
 public class UserCompetency implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -206,17 +206,6 @@ public class ControllerServlet extends HttpServlet {
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
 
-        if (request.getMethod().equals("POST")) {
-            String UserCompetency = request.getParameter("newUserCompetency");
-            UserCompetency newUserCompetency = new UserCompetency();
-
-            // newUserCompetency has to be filled with data, this needs to be checked how
-            newUserCompetency.setUser(user);
-            newUserCompetency.setCompetency(null);
-            //   newUserCompetency.setSkillLevel(skillLevel);
-
-            userCompetencyFacade.create(newUserCompetency);
-        }
     }
 
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
@@ -226,10 +215,25 @@ public class ControllerServlet extends HttpServlet {
         Long userId = Long.parseLong(split[1]);
         Long competencyId = Long.parseLong(split[2]);
         UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
+        HttpSession session = request.getSession();
         UserCompetency userCompetency = userCompetencyFacade.find(pk);
-
+        Map<String, String> messages = new HashMap<>();
+        
         request.setAttribute("usercompetency", userCompetency);
-
+        if (request.getMethod().equals("POST") && request.getParameter("modify") != null) {
+            try {
+                short skill_level = Short.parseShort(request.getParameter("skill_level"));
+                boolean success = userCompetencyFacade.editUserCompetency(userId,
+                                                                          competencyId,
+                                                                          skill_level);
+                if (!success){
+                    messages.put("error", "Databasefout!");
+                }
+            } catch (java.lang.NumberFormatException e) { }
+            pk = new UserCompetencyPK(userId, competencyId);
+            userCompetency = userCompetencyFacade.find(pk);
+            request.setAttribute("usercompetency", userCompetency);   
+        }
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/competencies/modify.jsp").forward(request, response);
     }
 
