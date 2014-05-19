@@ -3,6 +3,7 @@
   <persistence-unit name="Digital_Learning_EnvironmentPU" transaction-type="JTA">
     <jta-data-source>dle_remote</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties/>
   </persistence-unit>
 </persistence>

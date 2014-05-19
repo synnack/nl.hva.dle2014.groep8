@@ -22,7 +22,7 @@
             <c:forEach var="user" items="${users}">
                 <a target="iframe" href="${context}/user/modify/${user.id}">
                 <div id="menu_item">
-                    <h8>${user.givenName} ${user.surname}</h8>
+                    ${user.givenName} ${user.surname}
                 </div>
                 </a>
             </c:forEach>

@@ -45,18 +45,35 @@
         </div>
         <form method="post" action="${context}/user/competencies">
             <div id="dropdown" class="dropdown">
-                <select>
+                <select name="competency">
                     <option>Kies een competentie...</option>
                     <c:forEach var="competency" items="${all_competencies}">
-                        <option value="${competency.name}">${competency.name}</option>
+                        <option value="${competency.id}">${competency.name}</option>
                     </c:forEach>
                 </select>
+                
+            </div>
+            
+            <div class="dropdown">
+            <select name="skill_level">
+                <option>Hoe goed beheers je dit?</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="newUserCompetency" value="Toevoegen" />
+            <input class="competency_submit" type="submit" name="add" value="Toevoegen" />
         </form>
     </div>
 

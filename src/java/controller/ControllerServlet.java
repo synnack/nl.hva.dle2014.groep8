@@ -9,6 +9,7 @@ import entity.UserCompetency;
 import entity.UserCompetencyPK;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -187,6 +188,16 @@ public class ControllerServlet extends HttpServlet {
 
         User user = userFacade.find(((User) session.getAttribute("User")).getId());
 
+        // Handle the submit button
+        if (request.getMethod().equals("POST") && request.getParameter("add") != null) {
+            userCompetencyFacade.addUserCompetency(
+                    user.getId(), 
+                    Long.parseLong(request.getParameter("competency")), 
+                    Short.parseShort(request.getParameter("skill_level")));
+        }
+        
+        user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
         request.setAttribute("all_competencies", competencyFacade.findAll());
@@ -209,6 +220,7 @@ public class ControllerServlet extends HttpServlet {
 
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String[] split = request.getPathInfo().split("[/-]");
         Long userId = Long.parseLong(split[1]);
         Long competencyId = Long.parseLong(split[2]);
@@ -225,14 +237,14 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
-
-        User user = userFacade.find(((User) session.getAttribute("User")).getId());
-
-        // FIXME: Remove this later. This is the example for how to use findAll()
-        //request.setAttribute("all_courses", courseFacade.findAll());
-        // Pre-fill the courses list
+        
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
+        
+        // Pre-fill the courses lists
         request.setAttribute("courses", user.getCourseCollection());
-
+        request.setAttribute("all_courses", courseFacade.findAll());
+        
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
