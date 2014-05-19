@@ -474,6 +474,18 @@ h14
     animation-duration:0.5s;
 }
 
+h15
+{
+    color:#030303;
+    font-size: 15px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    text-align: center;
+    width: 400px;
+}
+
 /* --------------------- Menu --------------------- */
 
 #menu_item
