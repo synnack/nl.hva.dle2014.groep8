@@ -7,6 +7,8 @@
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Gebruikers beheren</h2>
 
 <div id="main_container">
+        <div id="fade" class="black_overlay"></div>
+
     <div id="view_container">
         <div id="view_header">
             <h4>Gebruikers beheren</h4>
@@ -22,7 +24,7 @@
             <c:forEach var="user" items="${users}">
                 <a target="iframe" href="${context}/user/modify/${user.id}">
                 <div id="menu_item">
-                    ${user.givenName} ${user.surname}
+                    <h8>${user.givenName} ${user.surname}<h8/>
                 </div>
                 </a>
             </c:forEach>
