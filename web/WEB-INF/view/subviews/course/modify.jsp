@@ -7,7 +7,7 @@
 <h1>${course.name}</h1>
 
 <div id="description">
-    <h13>Hieronder ziet u de informatie die benodigd is bij deze cursus. 
+    <h13>Hieronder ziet u de informatie die benodigd is bij de cursus ${course.name}. 
         De documenten zijn te vinden in de filebrowser hieronder. 
         Er kunnen documenten gedownload en geupload worden door middel van de knoppen "Upload" en "Download".
     </h13>  
