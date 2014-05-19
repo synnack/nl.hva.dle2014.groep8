@@ -334,7 +334,7 @@ public class ControllerServlet extends HttpServlet {
 			course.setLastModified(new Date());
 			courseFacade.create(course);
 		}
-		
+		request.setAttribute("groups", groupFacade.findAll());
 	    request.setAttribute("course", course);
 		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
