@@ -40,7 +40,7 @@
 <div id="light" class="remove_competency">
     <h1>Verwijder ${course.name}</h1>
     <div id="description">
-        <h12>Weet u zeker dat u uzelf uit will scrhijven van ${course.name}?</h12>
+        <h12>Weet u zeker dat u uzelf uit wilt scrhijven van ${course.name}?</h12>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
             document.getElementById('fade').style.display = 'none'">
