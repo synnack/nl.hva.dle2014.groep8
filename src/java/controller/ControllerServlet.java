@@ -48,6 +48,7 @@ import session.UserFacade;
             "/competency/modify/*",
             "/course/manage",
             "/course/modify/*",
+			"/course/create",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -303,11 +304,41 @@ public class ControllerServlet extends HttpServlet {
         Long competencyId = Long.parseLong(split[1]);
         Course course = courseFacade.find(competencyId);
 
-        request.setAttribute("course", course);
-
-        request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
+		if(request.getMethod().equals("POST")) {
+			long group_id = Long.parseLong(request.getParameter("group_id"));
+			DLEGroup group = groupFacade.find(group_id);
+			course.setManagingGroup(group);
+			String name = request.getParameter("name");
+			course.setName(name);
+			courseFacade.edit(course);
+		}
+		
+	    request.setAttribute("course", course);
+		request.setAttribute("groups", groupFacade.findAll());
+		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
+	 protected void handleCourseCreate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Course course = new Course();
+
+		if(request.getMethod().equals("POST")) {
+			HttpSession session = request.getSession();
+			User user = userFacade.find(((User)session.getAttribute("User")).getId());
+			long group_id = Long.parseLong(request.getParameter("group_id"));
+			DLEGroup group = groupFacade.find(group_id);
+			course.setManagingGroup(group);
+			String name = request.getParameter("name");
+			course.setName(name);
+			course.setCreator(user);
+			course.setLastModified(new Date());
+			courseFacade.create(course);
+		}
+		
+	    request.setAttribute("course", course);
+		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
+    }
+	
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -404,6 +435,9 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/course/modify":
                 handleCourseModify(request, response);
+                return;
+			case "/course/create":
+                handleCourseCreate(request, response);
                 return;
 
             /* Standard template views below */
