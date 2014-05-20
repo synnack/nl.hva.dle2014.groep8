@@ -181,6 +181,21 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
 
+    
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -210,6 +225,22 @@ public class ControllerServlet extends HttpServlet {
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -240,6 +271,14 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/competencies/modify.jsp").forward(request, response);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleUserCourses(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -249,20 +288,12 @@ public class ControllerServlet extends HttpServlet {
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
         
         // Handle the submit button
-        if (request.getMethod().equals("POST") && request.getParameter("add") != null) {
-            userFacade.addUserCourse(
-                    user.getId(), 
-                    Long.parseLong(request.getParameter("course")));
-        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
-            long userId = user.getId();
-            long competencyId = Long.parseLong(request.getParameter("competency"));
-            UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
-            UserCompetency userCompetency = userCompetencyFacade.find(pk);
-            userCompetencyFacade.remove(userCompetency);
+        if (request.getMethod().equals("POST") && request.getParameter("addUserCourse") != null) {
+            Collection<Course> courseCollection = user.getCourseCollection();
+            Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
+            courseCollection.add(userCourse);
+            user.setCourseCollection(courseCollection);
         }
-        
-        user = userFacade.find(((User)session.getAttribute("User")).getId());
-        
         
         // Pre-fill the courses lists
         request.setAttribute("courses", user.getCourseCollection());
@@ -272,6 +303,17 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleAgenda(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -335,7 +377,7 @@ public class ControllerServlet extends HttpServlet {
 			courseFacade.edit(course);
 		}
 		
-	    request.setAttribute("course", course);
+	        request.setAttribute("course", course);
 		request.setAttribute("groups", groupFacade.findAll());
 		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
