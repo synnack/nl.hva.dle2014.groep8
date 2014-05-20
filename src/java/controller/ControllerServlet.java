@@ -9,7 +9,6 @@ import entity.UserCompetency;
 import entity.UserCompetencyPK;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -195,9 +194,13 @@ public class ControllerServlet extends HttpServlet {
                     user.getId(), 
                     Long.parseLong(request.getParameter("competency")), 
                     Short.parseShort(request.getParameter("skill_level")));
+        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+            long userId = user.getId();
+            long competencyId = Long.parseLong(request.getParameter("competency"));
+            UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
+            UserCompetency userCompetency = userCompetencyFacade.find(pk);
+            userCompetencyFacade.remove(userCompetency);
         }
-        
-        user = userFacade.find(((User)session.getAttribute("User")).getId());
         
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
@@ -205,7 +208,6 @@ public class ControllerServlet extends HttpServlet {
 
         // Show the profile view
         request.getRequestDispatcher("/WEB-INF/view/auth/user/competencies.jsp").forward(request, response);
-
     }
 
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)

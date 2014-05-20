@@ -43,7 +43,10 @@
             document.getElementById('fade').style.display = 'none'">
         <h10>Annuleren</h10>
     </a>
-    <input class="competency_submit" type="submit" name="submit" value="Verwijderen" />
+    <form method="post" target="_top" action="${context}/user/competencies">
+        <input type="hidden" name="competency" value="${usercompetency.competency.id}">
+        <input class="competency_submit" type="submit" name="delete" value="Verwijderen" />
+    </form>
     <div id="remove_competency_arrow">
     </div>
 </div>

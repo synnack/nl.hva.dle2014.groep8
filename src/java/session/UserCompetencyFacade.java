@@ -92,6 +92,30 @@ public class UserCompetencyFacade extends AbstractFacade<UserCompetency> {
         return true;
     }
     
+    public boolean removeUserCompetency(long userId, long competencyId) {
+        UserCompetency userCompetency = new UserCompetency();
+        userCompetency.setUserCompetencyPK(
+                 new UserCompetencyPK(
+                         userId, 
+                         competencyId));
+        
+        try {
+            em.remove(userCompetency);
+            em.flush();
+        } catch (ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            for (ConstraintViolation c: violations) {
+                System.err.println("Message: " + c.getMessage());
+                System.err.println("Message: " + c.getLeafBean());
+            }
+            return false;
+        } catch (PersistenceException e) {
+            System.err.println("Message: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
     public UserCompetencyFacade() {
         super(UserCompetency.class);
     }
