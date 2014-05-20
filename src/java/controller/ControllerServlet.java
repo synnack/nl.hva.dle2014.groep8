@@ -9,6 +9,7 @@ import entity.UserCompetency;
 import entity.UserCompetencyPK;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
