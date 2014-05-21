@@ -6,4 +6,4 @@
 
 <div id="landing_image">
 </div>
-<h20>Selecteer Een Item</h20>
+<h20>Selecteer een item</h20>
