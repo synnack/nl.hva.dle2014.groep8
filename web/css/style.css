@@ -110,7 +110,7 @@ h2
 
     -webkit-animation-duration:0.5s;
     -moz-animation-duration:0.5s;
-    animation-duration:0.5s;
+    animation-duration:1s;
 }
 
 .loginwindow
@@ -135,7 +135,7 @@ h2
 
     -webkit-animation-duration:0.5s;
     -moz-animation-duration:0.5s;
-    animation-duration:0.5s;
+    animation-duration:1s;
 }
 
 .error
@@ -192,7 +192,7 @@ input[type=image]:hover {
 
     -webkit-animation-duration:0.2s;
     -moz-animation-duration:0.2s;
-    animation-duration:0.2s;
+    animation-duration:0.4s;
 }
 
 /* --------------------- View --------------------- */
@@ -471,7 +471,7 @@ h14
 
     -webkit-animation-duration:0.5s;
     -moz-animation-duration:0.5s;
-    animation-duration:0.5s;
+    animation-duration:1s;
 }
 
 h15
@@ -889,7 +889,7 @@ h3
 
     -webkit-animation-duration:0.5s;
     -moz-animation-duration:0.5s;
-    animation-duration:0.5s;
+    animation-duration:1s;
 }
 
 div.tile
@@ -995,7 +995,7 @@ hr {
 
     -webkit-animation-duration:0.2s;
     -moz-animation-duration:0.2s;
-    animation-duration:0.2s;
+    animation-duration:0.4s;
 }
 
 .white_content 
@@ -1207,7 +1207,7 @@ hr {
 
     -webkit-animation-duration:0.2s;
     -moz-animation-duration:0.2s;
-    animation-duration:0.2s;
+    animation-duration:0.4s;
 }
 
 #remove_competency_arrow
