@@ -6,8 +6,10 @@
 
 package session;
 
+import entity.Course;
 import entity.Lecture;
 import entity.User;
+import entity.UserCompetency;
 import java.util.Collection;
 import java.util.Set;
 import javax.ejb.Stateless;
@@ -17,6 +19,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import session.CourseFacade;
 
 /**
  *
@@ -139,13 +142,12 @@ public class UserFacade extends AbstractFacade<User> {
         return true;
     }
     
-    public boolean addUserCourse(long userId, long courseId) {
-        User user = new User();
-
-        user.setCourseCollection(null);
-        
+    public boolean addUserCourse(User user, Course course) {
+        Collection<Course> courseCollection = user.getCourseCollection();
+        courseCollection.add(course);
+        user.setCourseCollection(courseCollection);   
         try {
-            em.persist(userCourse);
+            em.merge(user);
             em.flush();
         } catch (ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();

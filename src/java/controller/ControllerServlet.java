@@ -289,10 +289,12 @@ public class ControllerServlet extends HttpServlet {
         
         // Handle the submit button
         if (request.getMethod().equals("POST") && request.getParameter("addUserCourse") != null) {
-            Collection<Course> courseCollection = user.getCourseCollection();
             Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
-            courseCollection.add(userCourse);
-            user.setCourseCollection(courseCollection);
+            
+            boolean success = userFacade.addUserCourse(user, userCourse);
+            if (!success){
+                    messages.put("error", "Databasefout!");
+                }
         }
         
         // Pre-fill the courses lists
