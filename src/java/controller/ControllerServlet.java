@@ -524,7 +524,7 @@ public class ControllerServlet extends HttpServlet {
             case "/course/modify":
                 handleCourseModify(request, response);
                 return;
-			case "/course/create":
+            case "/course/create":
                 handleCourseCreate(request, response);
                 return;
 
