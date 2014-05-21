@@ -34,7 +34,9 @@
             </a>
         </div>
         <div id="content_container">
-            <iframe id="iframe"></iframe>
+            <iframe id="iframe" target="http://www.google.nl">
+            bla
+            </iframe>
         </div>
         <div id="light" class="white_content">
             <h1>Inschrijven Cursus</h1>
