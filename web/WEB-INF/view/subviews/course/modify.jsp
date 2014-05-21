@@ -25,12 +25,12 @@
             <h17>Documentnaam</h17>
         </div>
         <div id="document_item">
-            <h18>javascript_bla_bla.docx</h18>
+            <h18>javascript_slide_1.docx</h18>
             <div id="download_icon">
             </div>
         </div>
         <div id="document_item">
-            <h18>objective_c_bla.docx</h18>
+            <h18>objective_c_programming_2.docx</h18>
             <div id="download_icon">
             </div>
         </div>
