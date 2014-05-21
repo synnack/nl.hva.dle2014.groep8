@@ -176,12 +176,12 @@ input[type=image]:hover {
 
 /* Below belongs to the .centerwindow and .loginwindow */
 @-webkit-keyframes fadeInMain { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeInLoginMain { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeInLoginMain { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeInMain { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeInMain { from { opacity:0; } to { opacity:1; } }
 
 #main_container
 {
-    opacity:1;
+    opacity: 0;
     -webkit-animation:fadeInMain ease-in-out 1;
     -moz-animation:fadeInMain ease-in-out 1;
     animation:fadeInMain ease-in-out 1;
@@ -880,8 +880,8 @@ h3
 
     opacity:0;
     -webkit-animation:fadeInMenu ease-in-out 1;
-    -moz-animation:fadeInLoginMenu ease-in-out 1;
-    animation:fadeInLoginMenu ease-in-out 1;
+    -moz-animation:fadeInMenu ease-in-out 1;
+    animation:fadeInMenu ease-in-out 1;
 
     -webkit-animation-fill-mode:forwards;
     -moz-animation-fill-mode:forwards;
