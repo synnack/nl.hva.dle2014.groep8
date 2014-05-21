@@ -53,7 +53,8 @@ import session.UserFacade;
             "/forgotpassword",
             "/logout",
             "/courses/([0-9]+)/documents",
-            "/courses/([0-9]+)/lectures",})
+            "/courses/([0-9]+)/lectures",
+            "/landing",})
 public class ControllerServlet extends HttpServlet {
 
     @EJB
@@ -447,6 +448,12 @@ public class ControllerServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/unauth/login.jsp").forward(request, response);
             return;
         }
+        
+        // Default landing page instead of empty iframe
+        if (request.getServletPath().equals("/landing")) {
+            request.getRequestDispatcher("/WEB-INF/view/subviews/landing.jsp").forward(request, response);
+            return;
+        }
 
         // *********
         // Below here requires login!
@@ -517,6 +524,7 @@ public class ControllerServlet extends HttpServlet {
             case "/register":
                 viewTemplate = "register.jsp";
                 break;
+                
 
             // FIXME: Course needs to have an Id inserted
             case "/course/lecture":

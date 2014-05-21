@@ -33,7 +33,7 @@
 <div id="light" class="remove_competency">
     <h1>Verwijder "${user.givenName} ${user.surname}"</h1>
     <div id="description">
-        <h12>Weet u zeker dat u de competentie "${user.givenName} ${user.surname}" wilt verwijderen?</h12>
+        <h12>Weet u zeker dat u de gebruiker "${user.givenName} ${user.surname}" wilt verwijderen?</h12>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
             document.getElementById('fade').style.display = 'none'">
