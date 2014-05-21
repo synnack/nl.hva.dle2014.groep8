@@ -34,8 +34,7 @@
             </a>
         </div>
         <div id="content_container">
-            <iframe id="iframe" target="http://www.google.nl">
-            bla
+            <iframe id="iframe" src="${context}/home">
             </iframe>
         </div>
         <div id="light" class="white_content">
