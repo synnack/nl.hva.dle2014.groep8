@@ -28,7 +28,7 @@
             </c:forEach>
         </div>
         <div id="content_container">
-            <iframe id="iframe" src="${context}/landing"></iframe>
+            <iframe id="iframe" name="iframe" src="${context}/landing"></iframe>
         </div>
     </div>
 </div>
