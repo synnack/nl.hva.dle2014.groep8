@@ -34,7 +34,7 @@
             </a>
         </div>
         <div id="content_container">
-            <iframe id="iframe" src="${context}/home">
+            <iframe id="iframe" src="${context}/landing">
             </iframe>
         </div>
         <div id="light" class="white_content">

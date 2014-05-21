@@ -1451,3 +1451,29 @@ h19
     top: 40px;
     text-decoration: underline;
 }
+
+h20
+{
+    color:#e6e6e6;
+    font-size: 40px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 200;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    line-height: 1.6;
+    text-align: center;
+    top: 340px;
+    left: 50%;
+    margin-left: -162px;
+}
+
+#landing_image
+{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background: url('../images/no_item_selected.png') no-repeat;
+    background-size: contain;
+    left: 260px;
+    top: 150px;
+}
