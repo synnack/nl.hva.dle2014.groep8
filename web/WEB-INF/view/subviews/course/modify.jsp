@@ -13,7 +13,7 @@
     </h13>  
 </div>
 <div id="chat_start_container">
-    <a href="http://www.google.nl" onclick="window.open('http://www.google.nl', 'Tnl Chat', 'width=400,height=600,scrollbars=no,toolbar=no,location=no');
+    <a href="http://www.google.nl" onclick="window.open('http://www.google.nl', 'Tnl Chat', 'width=400,height=600,scrollbars=no,toolbar=no,location=no,resizable=no');
             return false"><div id="chat_icon">
         </div>
         <h19>Open chat</h19>
@@ -43,7 +43,7 @@
 <div id="light" class="remove_competency">
     <h1>Verwijder ${course.name}</h1>
     <div id="description">
-        <h12>Weet u zeker dat u uzelf uit wilt scrhijven van ${course.name}?</h12>
+        <h12>Weet u zeker dat u zichzelf wilt uitschrijven van ${course.name}?</h12>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
             document.getElementById('fade').style.display = 'none'">
