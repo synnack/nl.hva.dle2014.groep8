@@ -48,7 +48,8 @@ import session.UserFacade;
             "/competency/modify/*",
             "/course/manage",
             "/course/modify/*",
-			"/course/create",
+            "/course/create",
+            "/course/chat",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -406,6 +407,17 @@ public class ControllerServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 	
+    protected void handleChat(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+        
+        // Show the chat window
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/chat.jsp").forward(request, response);
+
+    }
+   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -480,6 +492,9 @@ public class ControllerServlet extends HttpServlet {
                 return;
             case "/user/agenda":
                 handleAgenda(request, response);
+                return;
+            case "/course/chat":
+                handleChat(request, response);
                 return;
             case "/user/manage":
                 request.setAttribute("users", userFacade.findAll());
