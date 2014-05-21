@@ -13,9 +13,11 @@
     </h13>  
 </div>
 <div id="chat_start_container">
-    <h19>Open chat</h19>
-    <div id="chat_icon">
-    </div>
+    <a href="http://www.google.nl" onclick="window.open('http://www.google.nl', 'Tnl Chat', 'width=400,height=600,scrollbars=no,toolbar=no,location=no');
+            return false"><div id="chat_icon">
+        </div>
+        <h19>Open chat</h19>
+    </a>
 </div>
 <div id="file_browser_container">
     <div id="file_browser">
