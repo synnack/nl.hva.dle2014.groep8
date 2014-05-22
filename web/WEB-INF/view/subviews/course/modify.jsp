@@ -8,21 +8,27 @@
 
 <div id="description">
     <h13>Hieronder ziet u de informatie die benodigd is bij de cursus ${course.name}. 
-        De documenten zijn te vinden in de filebrowser hieronder. 
+        De documenten zijn te vinden in de lijst hieronder. 
         Er kunnen documenten gedownload worden door middel van de download knop naast het document.
     </h13>  
-</div>
-<div id="chat_start_container">
-    <a href="${context}/course/chat" onclick="window.open('${context}/course/chat', 'Tnl Chat', 'width=400,height=600,scrollbars=no,toolbar=no,location=no,resizable=no');
-            return false"><div id="chat_icon">
-        </div>
-        <h19>Open chat</h19>
-    </a>
 </div>
 <div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
-            <h17>Documentnaam</h17>
+            <h17>Colleges</h17>
+        </div>
+        <div id="document_item">
+            <h18>Introduction</h18>
+            
+        </div>
+        <div id="document_item">
+            <h18>Summary</h18>
+        </div>
+    </div>
+</div><div id="file_browser_container">
+    <div id="file_browser">
+        <div id="document_header">
+            <h17>Documenten</h17>
         </div>
         <div id="document_item">
             <h18>javascript_slide_1.docx</h18>
@@ -43,7 +49,7 @@
 <div id="light" class="remove_competency">
     <h1>Verwijder ${course.name}</h1>
     <div id="description">
-        <h12>Weet u zeker dat u zichzelf wilt uitschrijven van ${course.name}?</h12>
+        <h12>Weet u zeker dat u de cursus &quot;${course.name}&quot; wilt verwijderen?</h12>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
             document.getElementById('fade').style.display = 'none'">

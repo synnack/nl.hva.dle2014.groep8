@@ -40,6 +40,7 @@ import session.UserFacade;
             "/user/competencies",
             "/user/competencies/modify/*",
             "/user/courses",
+            "/user/courses/modify/*",
             "/user/manage",
             "/user/modify/*",
             "/group/manage",
@@ -48,7 +49,6 @@ import session.UserFacade;
             "/competency/modify/*",
             "/course/manage",
             "/course/modify/*",
-            "/course/create",
             "/course/chat",
             "/register",
             "/forgotpassword",
@@ -184,20 +184,6 @@ public class ControllerServlet extends HttpServlet {
     }
 
     
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -229,21 +215,6 @@ public class ControllerServlet extends HttpServlet {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     protected void handleUserCompetenciesModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -274,13 +245,6 @@ public class ControllerServlet extends HttpServlet {
     }
 
     
-    
-    
-    
-    
-    
-    
-    
     protected void handleUserCourses(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -294,9 +258,15 @@ public class ControllerServlet extends HttpServlet {
             Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
             
             boolean success = userFacade.addUserCourse(user, userCourse);
+            if (!success) {
+                messages.put("error", "Databasefout!");
+            }
+        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+            Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
+            boolean success = userFacade.removeUserCourse(user, userCourse);
             if (!success){
-                    messages.put("error", "Databasefout!");
-                }
+                messages.put("error", "Databasefout!");
+            }
         }
         
         // Pre-fill the courses lists
@@ -307,16 +277,25 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/courses.jsp").forward(request, response);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    protected void handleUserCoursesModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long competencyId = Long.parseLong(split[1]);
+        Course course = courseFacade.find(competencyId);
+
+        if(request.getMethod().equals("POST")) {
+                long group_id = Long.parseLong(request.getParameter("group_id"));
+                DLEGroup group = groupFacade.find(group_id);
+                course.setManagingGroup(group);
+                String name = request.getParameter("name");
+                course.setName(name);
+                courseFacade.edit(course);
+        }
+
+        request.setAttribute("course", course);
+        request.getRequestDispatcher("/WEB-INF/view/subviews/user/courses/modify.jsp").forward(request, response);
+    }
+
     
     protected void handleAgenda(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -372,41 +351,32 @@ public class ControllerServlet extends HttpServlet {
         Long competencyId = Long.parseLong(split[1]);
         Course course = courseFacade.find(competencyId);
 
-		if(request.getMethod().equals("POST")) {
-			long group_id = Long.parseLong(request.getParameter("group_id"));
-			DLEGroup group = groupFacade.find(group_id);
-			course.setManagingGroup(group);
-			String name = request.getParameter("name");
-			course.setName(name);
-			courseFacade.edit(course);
-		}
-		
-	        request.setAttribute("course", course);
-		request.setAttribute("groups", groupFacade.findAll());
-		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
+        if(request.getMethod().equals("POST") && request.getParameter("addCourse") != null) {
+            HttpSession session = request.getSession();
+            User user = userFacade.find(((User)session.getAttribute("User")).getId());
+            long group_id = Long.parseLong(request.getParameter("group_id"));
+            DLEGroup group = groupFacade.find(group_id);
+            course.setManagingGroup(group);
+            String name = request.getParameter("name");
+            course.setName(name);
+            course.setCreator(user);
+            course.setLastModified(new Date());
+            courseFacade.create(course);
+        } else if(request.getMethod().equals("POST")) {
+            long group_id = Long.parseLong(request.getParameter("group_id"));
+            DLEGroup group = groupFacade.find(group_id);
+            course.setManagingGroup(group);
+            String name = request.getParameter("name");
+            course.setName(name);
+            courseFacade.edit(course);
+        }
+        
+
+        request.setAttribute("course", course);
+        request.setAttribute("groups", groupFacade.findAll());
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
-	 protected void handleCourseCreate(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Course course = new Course();
-
-		if(request.getMethod().equals("POST")) {
-			HttpSession session = request.getSession();
-			User user = userFacade.find(((User)session.getAttribute("User")).getId());
-			long group_id = Long.parseLong(request.getParameter("group_id"));
-			DLEGroup group = groupFacade.find(group_id);
-			course.setManagingGroup(group);
-			String name = request.getParameter("name");
-			course.setName(name);
-			course.setCreator(user);
-			course.setLastModified(new Date());
-			courseFacade.create(course);
-		}
-		request.setAttribute("groups", groupFacade.findAll());
-	    request.setAttribute("course", course);
-		request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
-    }
-	
     protected void handleChat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -487,6 +457,9 @@ public class ControllerServlet extends HttpServlet {
             case "/user/courses":
                 handleUserCourses(request, response);
                 return;
+            case "/user/courses/modify":
+                handleUserCoursesModify(request, response);
+                return;
             case "/user/profile":
                 handleProfile(request, response);
                 return;
@@ -523,9 +496,6 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "/course/modify":
                 handleCourseModify(request, response);
-                return;
-            case "/course/create":
-                handleCourseCreate(request, response);
                 return;
 
             /* Standard template views below */
