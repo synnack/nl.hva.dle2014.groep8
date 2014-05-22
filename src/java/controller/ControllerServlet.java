@@ -53,8 +53,6 @@ import session.UserFacade;
             "/register",
             "/forgotpassword",
             "/logout",
-            "/courses/([0-9]+)/documents",
-            "/courses/([0-9]+)/lectures",
             "/landing",})
 public class ControllerServlet extends HttpServlet {
 
@@ -268,6 +266,8 @@ public class ControllerServlet extends HttpServlet {
                 messages.put("error", "Databasefout!");
             }
         }
+
+        user = userFacade.find(((User)session.getAttribute("User")).getId());
         
         // Pre-fill the courses lists
         request.setAttribute("courses", user.getCourseCollection());
@@ -340,6 +340,8 @@ public class ControllerServlet extends HttpServlet {
         Long competencyId = Long.parseLong(split[1]);
         Competency competency = competencyFacade.find(competencyId);
 
+     
+        
         request.setAttribute("competency", competency);
 
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
@@ -377,6 +379,22 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
+    protected void handleCompetency(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        if(request.getMethod().equals("POST") && request.getParameter("modify") != null) {
+            Long competencyId = Long.parseLong(request.getParameter("competency"));
+            Competency competency = competencyFacade.find(competencyId);
+
+            String name = request.getParameter("name");
+            competency.setName(name);
+            competencyFacade.edit(competency);
+        }
+        request.setAttribute("competencies", competencyFacade.findAll());
+
+        request.getRequestDispatcher("/WEB-INF/view/auth/competency/manage.jsp").forward(request, response);
+    }
+    
     protected void handleChat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -484,9 +502,8 @@ public class ControllerServlet extends HttpServlet {
                 handleGroupModify(request, response);
                 return;
             case "/competency/manage":
-                request.setAttribute("competencies", competencyFacade.findAll());
-                viewTemplate = "competency/manage.jsp";
-                break;
+                handleCompetency(request, response);
+                return;
             case "/competency/modify":
                 handleCompetencyModify(request, response);
                 return;
@@ -510,7 +527,6 @@ public class ControllerServlet extends HttpServlet {
                 viewTemplate = "register.jsp";
                 break;
                 
-
             // FIXME: Course needs to have an Id inserted
             case "/course/lecture":
                 viewTemplate = "course/lecture/manage.jsp";

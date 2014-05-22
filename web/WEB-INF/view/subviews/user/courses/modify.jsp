@@ -6,12 +6,6 @@
 
 <h1>${course.name}</h1>
 
-<div id="description">
-    <h13>Hieronder ziet u de informatie die benodigd is bij de cursus ${course.name}. 
-        De documenten zijn te vinden in de lijst hieronder. 
-        Er kunnen documenten gedownload worden door middel van de download knop naast het document.
-    </h13>  
-</div>
 <div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
@@ -24,7 +18,8 @@
             <h18>Summary</h18>
         </div>
     </div>
-</div><div id="file_browser_container">
+</div>
+<div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
             <h17>Documenten</h17>
