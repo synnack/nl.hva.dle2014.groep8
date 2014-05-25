@@ -519,7 +519,7 @@ h15
 
 #menu_footer
 {
-    width: 100%;
+    width: 180px;
     height: 41px;
     position: absolute;
     bottom: 0;
@@ -532,7 +532,7 @@ h15
 
 #menu_footer:hover
 {	
-    width: 100%;
+    width: 180px;
     height: 41px;
     background-color: #D2E9FA;
     z-index: 1;
@@ -541,7 +541,7 @@ h15
 
 #menu_footer:active
 {	
-    width: 100%;
+    width: 180px;
     height: 41px;
     background-color: #b1dbf9;
     z-index: 1;
