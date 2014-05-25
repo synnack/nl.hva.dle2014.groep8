@@ -27,8 +27,8 @@
                 </a>
             </c:forEach>
             <a target="iframe" href="${context}/course/create">
-            <div id="menu_item">
-                <h8><strong>Nieuwe cursus</strong></h8>
+            <div id="menu_footer">
+                <h8>Nieuwe cursus</h8>
             </div>
             </a>
         </div>
