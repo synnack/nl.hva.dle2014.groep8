@@ -202,7 +202,7 @@ public class ControllerServlet extends HttpServlet {
             UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
             UserCompetency userCompetency = userCompetencyFacade.find(pk);
             userCompetencyFacade.remove(userCompetency);
-        }
+        } 
         
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
@@ -379,6 +379,15 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleCompetency(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -389,11 +398,28 @@ public class ControllerServlet extends HttpServlet {
             String name = request.getParameter("name");
             competency.setName(name);
             competencyFacade.edit(competency);
+        } else if(request.getMethod().equals("POST") && request.getParameter("beheren_cometency_add") != null) {
+            String competencyName = request.getParameter("beheren_competency");
+            Competency newCompetency = new Competency();
+            newCompetency.setName(competencyName);
+            competencyFacade.create(newCompetency);
         }
+        
         request.setAttribute("competencies", competencyFacade.findAll());
 
         request.getRequestDispatcher("/WEB-INF/view/auth/competency/manage.jsp").forward(request, response);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     protected void handleChat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

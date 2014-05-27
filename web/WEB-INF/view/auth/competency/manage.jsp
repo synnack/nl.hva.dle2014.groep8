@@ -42,21 +42,17 @@
         <div id="description">
             <h15>Maak een nieuwe competentie aan door hieronder de naam aan de nieuwe competentie mee te geven. Druk vervolgens op Aanmaken.</h15>
         </div>
-        <form method="post" action="${context}/user/competencies">
-            <div id="dropdown" class="dropdown">
-                <select name="competency">
-                    <option>Kies een competentie...</option>
-                    <c:forEach var="competency" items="${all_competencies}">
-                        <option value="${competency.id}">${competency.name}</option>
-                    </c:forEach>
-                </select>
+        <form method="post" action="${context}/competency/manage">
+            <div id="description" >
+                <br><br>
+                <input type="text" name="beheren_competency">
 
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="add" value="Aanmaken" />
+            <input class="competency_submit" type="submit" name="beheren_cometency_add" value="Aanmaken" />
         </form>
     </div>
 </div>
