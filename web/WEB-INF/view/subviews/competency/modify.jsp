@@ -36,8 +36,8 @@
         <h10>Annuleren</h10>
     </a>
     <form method="post" target="_top" action="${context}/competency/manage">
-        <input type="hidden" name="competency" value="${competency.id}">
-        <input class="competency_submit" type="submit" name="delete" value="Verwijderen" />
+        <input type="hidden" name="beheren_competency_remove" value="${competency.id}">
+        <input class="competency_submit" type="submit" name="competency_remove" value="Verwijderen" />
     </form>
     <div id="remove_competency_arrow">
     </div>

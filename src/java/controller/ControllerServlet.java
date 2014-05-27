@@ -379,15 +379,6 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     protected void handleCompetency(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -403,22 +394,15 @@ public class ControllerServlet extends HttpServlet {
             Competency newCompetency = new Competency();
             newCompetency.setName(competencyName);
             competencyFacade.create(newCompetency);
+        } else if(request.getMethod().equals("POST") && request.getParameter("competency_remove") != null) {
+            Competency competency = competencyFacade.find(Long.parseLong(request.getParameter("beheren_competency_remove")));
+            competencyFacade.remove(competency);
         }
         
         request.setAttribute("competencies", competencyFacade.findAll());
 
         request.getRequestDispatcher("/WEB-INF/view/auth/competency/manage.jsp").forward(request, response);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     protected void handleChat(HttpServletRequest request, HttpServletResponse response)
