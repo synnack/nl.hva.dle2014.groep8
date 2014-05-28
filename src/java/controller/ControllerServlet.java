@@ -191,18 +191,21 @@ public class ControllerServlet extends HttpServlet {
         User user = userFacade.find(((User) session.getAttribute("User")).getId());
 
         // Handle the submit button
-        if (request.getMethod().equals("POST") && request.getParameter("add") != null) {
-            userCompetencyFacade.addUserCompetency(
-                    user.getId(), 
-                    Long.parseLong(request.getParameter("competency")), 
-                    Short.parseShort(request.getParameter("skill_level")));
-        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
-            long userId = user.getId();
-            long competencyId = Long.parseLong(request.getParameter("competency"));
-            UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
-            UserCompetency userCompetency = userCompetencyFacade.find(pk);
-            userCompetencyFacade.remove(userCompetency);
-        } 
+        
+        try {
+            if (request.getMethod().equals("POST") && request.getParameter("add") != null) {
+                userCompetencyFacade.addUserCompetency(
+                        user.getId(), 
+                        Long.parseLong(request.getParameter("competency")), 
+                        Short.parseShort(request.getParameter("skill_level")));
+            } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+                long userId = user.getId();
+                long competencyId = Long.parseLong(request.getParameter("competency"));
+                UserCompetencyPK pk = new UserCompetencyPK(userId, competencyId);
+                UserCompetency userCompetency = userCompetencyFacade.find(pk);
+                userCompetencyFacade.remove(userCompetency);
+            } 
+        } catch (java.lang.NumberFormatException e) {}
         
         // Pre-fill the competency list
         request.setAttribute("competencies", user.getUserCompetencyCollection());
