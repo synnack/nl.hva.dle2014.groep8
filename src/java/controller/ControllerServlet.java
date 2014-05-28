@@ -415,6 +415,21 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/chat.jsp").forward(request, response);
 
     }
+    
+    protected void handleUserManage(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        
+        if(request.getMethod().equals("POST") && request.getParameter("beheer_user_remove_submit") != null) {
+            User user = userFacade.find(Long.parseLong(request.getParameter("beheer_user_remove")));
+            userFacade.remove(user);
+        }
+        
+        
+        request.setAttribute("users", userFacade.findAll());
+        // Show the manage users window
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/manage.jsp").forward(request, response);
+
+    }
    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -498,9 +513,8 @@ public class ControllerServlet extends HttpServlet {
                 handleChat(request, response);
                 return;
             case "/user/manage":
-                request.setAttribute("users", userFacade.findAll());
-                viewTemplate = "user/manage.jsp";
-                break;
+                handleUserManage(request, response);
+                return;
             case "/user/modify":
                 handleUserModify(request, response);
                 return;

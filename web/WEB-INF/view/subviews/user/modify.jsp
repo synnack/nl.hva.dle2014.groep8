@@ -40,8 +40,8 @@
         <h10>Annuleren</h10>
     </a>
     <form method="post" target="_top" action="${context}/user/manage">
-        <input type="hidden" name="user" value="${user.id}">
-        <input class="competency_submit" type="submit" name="delete" value="Verwijderen" />
+        <input type="hidden" name="beheer_user_remove" value="${user.id}">
+        <input class="competency_submit" type="submit" name="beheer_user_remove_submit" value="Verwijderen" />
     </form>
     <div id="remove_competency_arrow">
     </div>
