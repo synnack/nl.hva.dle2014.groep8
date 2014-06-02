@@ -16,10 +16,20 @@
             <div id="right">
                 <a href="${context}/home" class="title"></a>
             </div>
+            <div id="main_description_container">
+                <div id="agenda_header">
+                    <h16>Titel</h16>
+                </div>
+                <c:forEach var="lecture" items="${lectures}">
+                    <div id="agenda_item">
+                        <h15>${lecture.course.name}</h15>
+                    </div>
+                </c:forEach>
+            </div>         
             <div id="left_description_container">
                 <div id="agenda_header">
-                        <h16>Omschrijving</h16>
-                    </div>
+                    <h16>Omschrijving</h16>
+                </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
                         <h15>${lecture.name}</h15>
@@ -28,21 +38,21 @@
             </div>
             <div id="middle_description_container">
                 <div id="agenda_header">
-                        <h16>Van</h16>
-                    </div>
+                    <h16>Van</h16>
+                </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                    <h15>${lecture.startDate}</h15>
+                        <h15>${lecture.startDate}</h15>
                     </div>
                 </c:forEach>
             </div>
             <div id="right_description_container">
                 <div id="agenda_header">
-                        <h16>Tot</h16>
-                    </div>
+                    <h16>Tot</h16>
+                </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                    <h15>${lecture.endDate}</h15>
+                        <h15>${lecture.endDate}</h15>
                     </div>
                 </c:forEach>
             </div>
