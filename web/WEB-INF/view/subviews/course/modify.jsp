@@ -30,8 +30,15 @@
         </div>
         <c:forEach var="document" items="${documents}">
             <div id="document_item">
-                <h18><a href="${context}/document/${document.id}">${document.name}</a></h18>
+                <h18>${document.name}</a></h18>
+                <a href="${context}/document/${document.id}">
+                    <div id="remove_icon">
+                    </div>
+                    <div id="download_icon">
+                    </div>
+                </a>
             </div>
+            
         </c:forEach>
     </div>
 </div>

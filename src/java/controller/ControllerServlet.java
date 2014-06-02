@@ -450,7 +450,7 @@ public class ControllerServlet extends HttpServlet {
     protected void handleDocument(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
-        Long documentId = Long.parseLong(split[1]);
+        Integer documentId = Integer.parseInt(split[1]);
        
         FacesContext fc = FacesContext.getCurrentInstance();
         Document document = documentFacade.find(documentId);
