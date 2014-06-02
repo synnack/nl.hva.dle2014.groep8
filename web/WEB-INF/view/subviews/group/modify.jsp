@@ -31,8 +31,10 @@
         <c:forEach var="user" items="${group.userCollection}">
             <div id="document_item">
                 ${user.givenName} ${user.surname}
-                <div id="remove_icon">
-                </div>
+                <a href="${context}/group/modify/${group.id}?remove_user=${user.id}">
+                    <div id="remove_icon">
+                    </div>
+                </a>
             </div>
         </c:forEach>
         

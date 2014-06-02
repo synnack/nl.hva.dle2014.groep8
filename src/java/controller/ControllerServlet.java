@@ -355,6 +355,20 @@ public class ControllerServlet extends HttpServlet {
         String[] split = request.getPathInfo().split("[/-]");
         Long groupId = Long.parseLong(split[1]);
         DLEGroup group = groupFacade.find(groupId);
+        
+        if (request.getParameter("remove_user") != null) {
+            Long userId = Long.parseLong(request.getParameter("remove_user"));
+            
+            Collection<User> users = group.getUserCollection();
+            for (User user: users) {
+                if (user.getId() == userId) {
+                    users.remove(user);
+                    break;
+                }
+            }
+            group.setUserCollection(users);
+            groupFacade.edit(group);
+        }
 
         request.setAttribute("group", group);
         request.setAttribute("users", userFacade.findAll());
