@@ -1366,6 +1366,7 @@ h16
     left: 52px;
     border: solid 1px;
     border-color: #ccc;
+    overflow: scroll;
 }
 
 #document_header

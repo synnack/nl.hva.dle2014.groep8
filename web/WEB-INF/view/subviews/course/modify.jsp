@@ -8,6 +8,7 @@
 
 </div>
 <div id="file_browser_container">
+
     <div id="file_browser">
         <div id="document_header">
             <h17>Colleges</h17>
@@ -23,9 +24,9 @@
         </c:forEach>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block'"><h8>Upload Document</h8>      
-        </div>
-    </a>
+            document.getElementById('fade').style.display = 'block'"><h8>Upload Document</h8>      
+</div>
+</a>
 </div><div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
