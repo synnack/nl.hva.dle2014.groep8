@@ -345,6 +345,21 @@ public class ControllerServlet extends HttpServlet {
     protected void handleGroupManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
+        if (request.getMethod().equals("POST") && request.getParameter("modify") != null) {
+            Long groupId = Long.parseLong(request.getParameter("group_id"));
+            DLEGroup group = groupFacade.find(groupId);
+            group.setName(request.getParameter("name"));
+            
+            Long managerId = Long.parseLong(request.getParameter("manager"));
+            User manager = userFacade.find(managerId);
+            group.setManager(manager);
+            groupFacade.edit(group);
+        } else if (request.getMethod().equals("POST") && request.getParameter("remove_group") != null) {
+            Long groupId = Long.parseLong(request.getParameter("group_id"));
+            DLEGroup group = groupFacade.find(groupId);
+            groupFacade.remove(group);
+        }
+        
         request.setAttribute("groups", groupFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/auth/group/manage.jsp").forward(request, response);
     
@@ -354,22 +369,20 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
         Long groupId = Long.parseLong(split[1]);
-        DLEGroup group = groupFacade.find(groupId);
         
         if (request.getParameter("remove_user") != null) {
+            DLEGroup group = groupFacade.find(groupId);
             Long userId = Long.parseLong(request.getParameter("remove_user"));
-            
-            Collection<User> users = group.getUserCollection();
-            for (User user: users) {
-                if (user.getId() == userId) {
-                    users.remove(user);
-                    break;
-                }
-            }
-            group.setUserCollection(users);
-            groupFacade.edit(group);
+            User user = userFacade.find(userId);
+            userFacade.removeUserGroup(user, group);
+        } else if (request.getParameter("add_user") != null) {
+            DLEGroup group = groupFacade.find(groupId);
+            Long userId = Long.parseLong(request.getParameter("user_to_add"));
+            User user = userFacade.find(userId);
+            userFacade.addUserGroup(user, group);
         }
-
+        
+        DLEGroup group = groupFacade.find(groupId);
         request.setAttribute("group", group);
         request.setAttribute("users", userFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/subviews/group/modify.jsp").forward(request, response);
