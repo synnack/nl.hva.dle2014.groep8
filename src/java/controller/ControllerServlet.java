@@ -1,19 +1,26 @@
 package controller;
 
+import com.sun.xml.wss.impl.c14n.CanonicalizerFactory;
 import entity.Competency;
 import entity.Course;
 import entity.DLEGroup;
+import entity.Document;
 import entity.Lecture;
 import entity.User;
 import entity.UserCompetency;
 import entity.UserCompetencyPK;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import session.CompetencyFacade;
 import session.CourseFacade;
 import session.DLEGroupFacade;
+import session.DocumentFacade;
 import session.UserCompetencyFacade;
 import session.UserFacade;
 
@@ -53,6 +61,7 @@ import session.UserFacade;
             "/register",
             "/forgotpassword",
             "/logout",
+            "/document/*",
             "/landing",})
 public class ControllerServlet extends HttpServlet {
 
@@ -66,6 +75,8 @@ public class ControllerServlet extends HttpServlet {
     private DLEGroupFacade groupFacade;
     @EJB
     private CompetencyFacade competencyFacade;
+    @EJB
+    private DocumentFacade documentFacade;
 
     /**
      * Handles the login submission.
@@ -422,7 +433,7 @@ public class ControllerServlet extends HttpServlet {
     }
     
     protected void handleUserManage(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         
         if(request.getMethod().equals("POST") && request.getParameter("beheer_user_remove_submit") != null) {
             User user = userFacade.find(Long.parseLong(request.getParameter("beheer_user_remove")));
@@ -436,6 +447,22 @@ public class ControllerServlet extends HttpServlet {
 
     }
    
+    protected void handleDocument(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long documentId = Long.parseLong(split[1]);
+       
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Document document = documentFacade.find(documentId);
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + document.getName() + "\"");
+        response.setContentType(getServletContext().getMimeType(document.getName()));
+        
+        OutputStream output = response.getOutputStream();
+        output.write(document.getContent());
+        fc.responseComplete();
+        
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -543,7 +570,9 @@ public class ControllerServlet extends HttpServlet {
             case "/course/modify":
                 handleCourseModify(request, response);
                 return;
-
+            case "/document":
+                handleDocument(request, response);
+                return;
             /* Standard template views below */
             case "/home":
                 viewTemplate = "home.jsp";
