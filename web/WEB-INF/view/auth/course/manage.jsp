@@ -26,12 +26,14 @@
                 </div>
                 </a>
             </c:forEach>
+            
+             </div>
             <a target="iframe" href="${context}/course/create">
             <div id="menu_footer">
                 <h8>Nieuwe cursus</h8>
             </div>
             </a>
-        </div>
+       
         <div id="content_container">
             <iframe id="iframe" name="iframe" src="${context}/landing"></iframe>
         </div>
