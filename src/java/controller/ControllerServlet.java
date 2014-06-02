@@ -266,20 +266,22 @@ public class ControllerServlet extends HttpServlet {
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
         
         // Handle the submit button
-        if (request.getMethod().equals("POST") && request.getParameter("addUserCourse") != null) {
-            Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
-            
-            boolean success = userFacade.addUserCourse(user, userCourse);
-            if (!success) {
-                messages.put("error", "Databasefout!");
+        try {
+            if (request.getMethod().equals("POST") && request.getParameter("addUserCourse") != null) {
+                Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
+
+                boolean success = userFacade.addUserCourse(user, userCourse);
+                if (!success) {
+                    messages.put("error", "Databasefout!");
+                }
+            } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+                Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
+                boolean success = userFacade.removeUserCourse(user, userCourse);
+                if (!success){
+                    messages.put("error", "Databasefout!");
+                }
             }
-        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
-            Course userCourse = courseFacade.find(Long.parseLong(request.getParameter("course")));
-            boolean success = userFacade.removeUserCourse(user, userCourse);
-            if (!success){
-                messages.put("error", "Databasefout!");
-            }
-        }
+        } catch (java.lang.NumberFormatException e) { }
 
         user = userFacade.find(((User)session.getAttribute("User")).getId());
         
