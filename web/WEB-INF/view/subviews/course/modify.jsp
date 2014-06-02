@@ -12,6 +12,9 @@
     <div id="file_browser">
         <div id="document_header">
             <h17>Colleges</h17>
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
+                document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><h17>College aanmaken</h17></div>
+            </a>
         </div>
         <c:forEach var="lecture" items="${lectures}">
             <div id="document_item">
@@ -23,14 +26,14 @@
             </div>
         </c:forEach>
     </div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
-            document.getElementById('fade').style.display = 'block'"><h8>Upload Document</h8>      
-</div>
-</a>
+
 </div><div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
             <h17>Documenten</h17>
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
+                document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><h17>Document uploaden</h17></div>
+            </a>
         </div>
         <c:forEach var="document" items="${documents}">
             <div id="document_item">
