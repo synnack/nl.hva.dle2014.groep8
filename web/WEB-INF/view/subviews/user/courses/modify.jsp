@@ -16,6 +16,10 @@
         </div>
         <div id="document_item">
             <h18>Summary</h18>
+            <div id="remove_icon">
+            </div>
+            <div id="join_icon">
+            </div>
         </div>
     </div>
 </div>
@@ -26,6 +30,8 @@
         </div>
         <div id="document_item">
             <h18>javascript_slide_1.docx</h18>
+            <div id="remove_icon">
+            </div>
             <div id="download_icon">
             </div>
         </div>

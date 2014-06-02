@@ -1401,6 +1401,30 @@ h16
     background-size: contain;
 }
 
+#remove_icon
+{
+    width: 20px;
+    height: 30px;
+    float: right;
+    position: relative;
+    right: 30px;
+    top: 4px;
+    background: url('../images/courses/remove_icon.png') no-repeat;
+    background-size: contain;
+}
+
+#join_icon
+{
+    width: 18px;
+    height: 18px;
+    float: right;
+    position: relative;
+    right: 12px;
+    top: 6px;
+    background: url('../images/courses/join_icon.png') no-repeat;
+    background-size: contain;
+}
+
 #chat_icon
 {
     width: 100px;

@@ -31,7 +31,7 @@
         <c:forEach var="documents" items="${documents}">
             <div id="document_item">
                 <h18>${document.name}</h18>
-
+                
             </div>
         </c:forEach>
     </div>
