@@ -379,6 +379,8 @@ public class ControllerServlet extends HttpServlet {
 
         request.setAttribute("course", course);
         request.setAttribute("groups", groupFacade.findAll());
+        request.setAttribute("lectures", course.getLectureCollection());
+        request.setAttribute("documents", course.getDocumentCollection());
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
