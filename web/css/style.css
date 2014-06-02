@@ -279,7 +279,7 @@ input[type=image]:hover {
     float: left;
     width: 20%;
     position: relative;
-    height: 610px;
+    height: 568px;
     top: 40px;
     overflow-y: scroll;
     border-right: 1px solid;
@@ -525,6 +525,8 @@ h15
     bottom: 0;
     background-color: #e4f2fc;
     z-index: 1;
+    border-right: 1px solid;
+    border-right-color: #ccc;
     text-align: center;
     border-top: 1px solid;
     border-top-color: rgba(3, 38, 255, 0.24);
