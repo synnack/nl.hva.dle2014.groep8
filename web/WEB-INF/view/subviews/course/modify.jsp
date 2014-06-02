@@ -22,7 +22,7 @@
                 <h18>${lecture.name}</h18>
                 <div id="remove_icon">
                 </div>
-                <div id="download_icon">
+                <div id="join_icon">
                 </div>
             </div>
         </c:forEach>
