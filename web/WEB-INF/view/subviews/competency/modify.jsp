@@ -19,8 +19,8 @@
         <input class="field_profile_manage" name="name" type="text" placeholder="Naam" value='${competency.name}' autofocus required>
     </div>
     <div class="error">${messages.error}<br/>
+    <input class="submit" type="submit" name="modify" value="Opslaan">
     </div>
-    <input type="submit" name="modify" value="Opslaan" />
 </form>
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block'">

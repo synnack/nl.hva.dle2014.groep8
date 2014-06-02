@@ -1510,3 +1510,25 @@ h20
     border: solid 1px;
     border-color: #ccc;
 }
+
+.submit 
+{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    text-align: center;
+    cursor:pointer;
+    color:#007aff;
+    font-size: 18px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 2.2;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+}
+
+.submit:hover
+{
+    color: #002FFF;
+}
