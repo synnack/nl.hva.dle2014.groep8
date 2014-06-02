@@ -58,7 +58,7 @@ public class Document implements Serializable {
     private User creator;
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Course courseId;
+    private Course course;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -112,12 +112,12 @@ public class Document implements Serializable {
         this.creator = creator;
     }
 
-    public Course getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(Course courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
     
     public byte[] getContent() {

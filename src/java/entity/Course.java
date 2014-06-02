@@ -71,9 +71,9 @@ public class Course implements Serializable {
     @JoinColumn(name = "creator", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User creator;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private Collection<Document> documentCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private Collection<Lecture> lectureCollection;
 
     public Course() {

@@ -63,7 +63,7 @@ public class Lecture implements Serializable {
     private User creator;
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Course courseId;
+    private Course course;
 
     public Lecture() {
     }
@@ -125,12 +125,12 @@ public class Lecture implements Serializable {
         this.creator = creator;
     }
 
-    public Course getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(Course courseId) {
-        this.courseId = courseId;
+    public void setCourseId(Course course) {
+        this.course = course;
     }
 
     @Override
