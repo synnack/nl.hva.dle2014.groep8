@@ -28,10 +28,9 @@
         <div id="document_header">
             <h17>Documenten</h17>
         </div>
-        <c:forEach var="documents" items="${documents}">
+        <c:forEach var="document" items="${documents}">
             <div id="document_item">
-                <h18>${document.name}</h18>
-
+                <h18><a href="${context}/document/${document.id}">${document.name}</a></h18>
             </div>
         </c:forEach>
     </div>
