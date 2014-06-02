@@ -1392,10 +1392,11 @@ h16
 #download_icon
 {
     width: 20px;
-    height: 30px;
+    height: 20px;
     float: right;
     position: relative;
-    right: 10px;
+    float: right;
+    padding-right: 5px;
     top: 4px;
     background: url('../images/courses/download_icon.png') no-repeat;
     background-size: contain;
@@ -1403,12 +1404,13 @@ h16
 
 #remove_icon
 {
-    width: 20px;
-    height: 30px;
+    width: 25px;
+    height: 20px;
     float: right;
     position: relative;
-    right: 30px;
-    top: 4px;
+    float: right;
+    margin-right: 5px;
+    top: 6px;
     background: url('../images/courses/remove_icon.png') no-repeat;
     background-size: contain;
 }
