@@ -11,16 +11,13 @@
         <div id="document_header">
             <h17>Colleges</h17>
         </div>
-        <div id="document_item">
-            <h18>Introduction</h18>
-        </div>
-        <div id="document_item">
-            <h18>Summary</h18>
-            <div id="remove_icon">
+        <c:forEach var="lecture" items="${lectures}">
+            <div id="document_item">
+                <h18>${lecture.name}</h18>
+                <div id="join_icon">
+                </div>
             </div>
-            <div id="join_icon">
-            </div>
-        </div>
+        </c:forEach>
     </div>
 </div>
 <div id="file_browser_container">
@@ -28,18 +25,16 @@
         <div id="document_header">
             <h17>Documenten</h17>
         </div>
-        <div id="document_item">
-            <h18>javascript_slide_1.docx</h18>
-            <div id="remove_icon">
+        <c:forEach var="document" items="${documents}">
+            <div id="document_item">
+                <h18>${document.name}</a></h18>
+                <a href="${context}/document/${document.id}">
+                    <div id="download_icon">
+                    </div>
+                </a>
             </div>
-            <div id="download_icon">
-            </div>
-        </div>
-        <div id="document_item">
-            <h18>objective_c_programming_2.docx</h18>
-            <div id="download_icon">
-            </div>
-        </div>
+        </c:forEach>
+
     </div>
 </div>
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';

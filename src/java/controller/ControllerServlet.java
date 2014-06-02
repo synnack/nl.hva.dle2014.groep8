@@ -307,6 +307,9 @@ public class ControllerServlet extends HttpServlet {
         }
 
         request.setAttribute("course", course);
+        request.setAttribute("lectures", course.getLectureCollection());
+        request.setAttribute("documents", course.getDocumentCollection());
+        
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/courses/modify.jsp").forward(request, response);
     }
 
