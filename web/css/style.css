@@ -1573,3 +1573,9 @@ h20
 {
     color: #002FFF;
 }
+
+.right_align
+{
+    float: right;
+    margin-right: 10px;
+}
