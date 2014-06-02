@@ -341,7 +341,15 @@ public class ControllerServlet extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/modify.jsp").forward(request, response);
     }
-
+    
+    protected void handleGroupManage(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+        request.setAttribute("groups", groupFacade.findAll());
+        request.getRequestDispatcher("/WEB-INF/view/auth/group/manage.jsp").forward(request, response);
+    
+    }
+    
     protected void handleGroupModify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
@@ -349,7 +357,7 @@ public class ControllerServlet extends HttpServlet {
         DLEGroup group = groupFacade.find(groupId);
 
         request.setAttribute("group", group);
-
+        request.setAttribute("users", userFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/subviews/group/modify.jsp").forward(request, response);
     }
 
@@ -556,9 +564,9 @@ public class ControllerServlet extends HttpServlet {
                 handleUserModify(request, response);
                 return;
             case "/group/manage":
-                request.setAttribute("groups", groupFacade.findAll());
-                viewTemplate = "group/manage.jsp";
-                break;
+                handleGroupManage(request, response);
+                return;
+                
             case "/group/modify":
                 handleGroupModify(request, response);
                 return;
