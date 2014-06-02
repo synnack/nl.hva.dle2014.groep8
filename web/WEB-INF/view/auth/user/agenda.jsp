@@ -4,6 +4,8 @@
     Author     : wilco
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Agenda</h2>
 
 <div id="main_container">
@@ -42,7 +44,9 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15>${lecture.startDate}</h15>
+                        <h15><fmt:formatDate type="both" 
+            dateStyle="medium" timeStyle="medium" 
+            value="${lecture.startDate}" /></h15>
                     </div>
                 </c:forEach>
             </div>
@@ -52,7 +56,9 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15>${lecture.endDate}</h15>
+                        <h15><fmt:formatDate type="both" 
+            dateStyle="medium" timeStyle="medium" 
+            value="${lecture.endDate}" /></h15>
                     </div>
                 </c:forEach>
             </div>
