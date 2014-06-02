@@ -52,7 +52,7 @@
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="beheren_cometency_add" value="Aanmaken" />
+            <input class="competency_submit" type="submit" name="beheren_competency_add" value="Aanmaken" />
         </form>
     </div>
 </div>

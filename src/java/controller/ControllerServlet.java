@@ -392,7 +392,7 @@ public class ControllerServlet extends HttpServlet {
             String name = request.getParameter("name");
             competency.setName(name);
             competencyFacade.edit(competency);
-        } else if(request.getMethod().equals("POST") && request.getParameter("beheren_cometency_add") != null) {
+        } else if(request.getMethod().equals("POST") && request.getParameter("beheren_competency_add") != null) {
             String competencyName = request.getParameter("beheren_competency");
             Competency newCompetency = new Competency();
             newCompetency.setName(competencyName);
