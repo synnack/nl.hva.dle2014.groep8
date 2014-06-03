@@ -13,10 +13,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
@@ -31,6 +36,7 @@ import session.CompetencyFacade;
 import session.CourseFacade;
 import session.DLEGroupFacade;
 import session.DocumentFacade;
+import session.LectureFacade;
 import session.UserCompetencyFacade;
 import session.UserFacade;
 import sun.misc.IOUtils;
@@ -80,6 +86,8 @@ public class ControllerServlet extends HttpServlet {
     private CompetencyFacade competencyFacade;
     @EJB
     private DocumentFacade documentFacade;
+    @EJB
+    private LectureFacade lectureFacade;
 
     /**
      * Handles the login submission.
@@ -442,9 +450,7 @@ public class ControllerServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
-        System.out.println(request.getContentType());
         if (request.getMethod().equals("POST") && request.getContentType().startsWith("multipart/form-data;")) {
-            System.out.println("Mark!");
             Document document = new Document();
             document.setCourse(course);
             document.setCreator(user);
@@ -458,7 +464,26 @@ public class ControllerServlet extends HttpServlet {
             documentFacade.create(document);
             
         } else if (request.getMethod().equals("POST") && request.getParameter("create_lecture") != null) {
+            Lecture lecture = new Lecture();
+            lecture.setCourse(course);
+            lecture.setCreator(user);
+            lecture.setLastModified(new Date());
+            lecture.setName(request.getParameter("name"));
             
+            DateFormat df = DateFormat.getInstance();
+            try {
+                lecture.setStartDate(new SimpleDateFormat("dd-MM-yyyy HH:mm")
+                        .parse(request.getParameter("date")+" "+request.getParameter("start_time")));
+                lecture.setEndDate(new SimpleDateFormat("dd-MM-yyyy HH:mm")
+                        .parse(request.getParameter("date")+" "+request.getParameter("end_time")));
+            } catch (ParseException ex) {
+                System.out.println("Oops");
+                ex.printStackTrace(System.out);
+            }
+            System.out.println(lecture.getStartDate());
+            System.out.println(lecture.getEndDate());
+            System.out.println(lecture.getName());
+            lectureFacade.create(lecture);
         }
 
         request.setAttribute("course", course);
