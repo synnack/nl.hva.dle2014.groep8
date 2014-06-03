@@ -19,8 +19,10 @@
         <c:forEach var="lecture" items="${lectures}">
             <div id="document_item">
                 <h18>${lecture.name}</h18>
-                <div id="remove_icon">
-                </div>
+                <a href="${context}/course/modify/${course.id}?remove_lecture=${lecture.id}">
+                    <div id="remove_icon">
+                    </div>
+                </a>
                 <div id="join_icon">
                 </div>
             </div>
@@ -38,8 +40,10 @@
         <c:forEach var="document" items="${documents}">
             <div id="document_item">
                 <h18>${document.name}</a></h18>
-                <div id="remove_icon">
-                </div>
+                <a href="${context}/course/modify/${course.id}?remove_document=${document.id}">
+                    <div id="remove_icon">
+                    </div>
+                </a>
                 <a href="${context}/document/${document.id}">
                     <div id="download_icon">
                     </div>

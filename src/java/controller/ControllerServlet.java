@@ -484,6 +484,12 @@ public class ControllerServlet extends HttpServlet {
             System.out.println(lecture.getEndDate());
             System.out.println(lecture.getName());
             lectureFacade.create(lecture);
+        } else if (request.getParameter("remove_lecture") != null) {
+            Lecture lecture = lectureFacade.find(Long.parseLong(request.getParameter("remove_lecture")));
+            lectureFacade.remove(lecture);
+        } else if (request.getParameter("remove_document") != null) {
+            Document document = documentFacade.find(Long.parseLong(request.getParameter("remove_document")));
+            documentFacade.remove(document);
         }
 
         request.setAttribute("course", course);

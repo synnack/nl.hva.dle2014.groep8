@@ -44,7 +44,7 @@ public class Document implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
@@ -69,22 +69,22 @@ public class Document implements Serializable {
     public Document() {
     }
 
-    public Document(Integer id) {
+    public Document(Long id) {
         this.id = id;
     }
 
-    public Document(Integer id, String name, byte [] content) {
+    public Document(Long id, String name, byte [] content) {
         this.id = id;
         this.name = name;
         this.content = content;
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
