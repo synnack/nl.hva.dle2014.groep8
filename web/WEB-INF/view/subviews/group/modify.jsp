@@ -20,7 +20,7 @@
     
     <div id="inputs_profile_manage">
         <table>
-            <tr><td>Naam:</td><td><input name="name" type="text" placeholder="Naam" value='${group.name}' autofocus required></td></tr>
+            <tr><td>Naam:</td><td><input name="name" type="text" placeholder="Naam" value="${group.name}" autofocus required></td></tr>
             <tr><td>Manager:</td><td>
                 <select name="manager">
                     <c:forEach var="user" items="${users}">

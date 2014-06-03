@@ -15,9 +15,9 @@
                 <h7>Persoonlijke Gegevens</h7>
             </div>
             <div id="inputs_profile_manage">
-                <input class="field_profile_manage" name="given_name" type="text" placeholder="Voornaam" value='${user.givenName}' autofocus required>
-                <input class="field_profile_manage" name="surname" type="text" placeholder="Achternaam" value='${user.surname}' required>
-                <input class="field_profile_manage" name="email" type="text" placeholder="E-mail" value='${user.email}' required>
+                <input class="field_profile_manage" name="given_name" type="text" placeholder="Voornaam" value="${user.givenName}" autofocus required>
+                <input class="field_profile_manage" name="surname" type="text" placeholder="Achternaam" value="${user.surname}" required>
+                <input class="field_profile_manage" name="email" type="text" placeholder="E-mail" value="${user.email}" required>
             </div>
             <div id="title_profile_manage"><h7>Wachtwoord wijzigen</h7></div>
             <div id="inputs_profile_manage">
@@ -26,9 +26,9 @@
             </div>
             <div class="error">${messages.error}<br/>
             </div>
-<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block'"><div id="remove_competency">       
-    </div>
+<a href="javascript:void(0)" onclick="document.getElementById('light').style.display = 'block';
+        document.getElementById('fade').style.display = 'block'">
+        <div id="remove_competency"></div>
 </a>
 <div id="light" class="remove_competency">
     <h1>Verwijder "${user.givenName} ${user.surname}"</h1>

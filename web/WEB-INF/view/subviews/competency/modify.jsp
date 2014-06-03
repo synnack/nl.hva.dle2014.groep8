@@ -16,23 +16,18 @@
         <h7>Competentie</h7>
     </div>
     <div id="inputs_profile_manage">
-        <input class="field_profile_manage" name="name" type="text" placeholder="Naam" value='${competency.name}' autofocus required>
+        <input class="field_profile_manage" name="name" type="text" placeholder="Naam" value="${competency.name}" autofocus required>
     </div>
-    <div class="error">${messages.error}<br/>
+    <div class="error">${messages.error}<br/></div>
     <input class="submit" type="submit" name="modify" value="Opslaan">
-    </div>
 </form>
-    <table>
-        <tr>
-            <td>Les</td>
-            <td>Volg</td>
+    <table cellspacing="0" cellpadding="2" class="itemtable" style="margin-left: auto; margin-right: auto;">
+        <tr id="document_header">
             <td>Gebruiker</td>
             <td>Niveau</td>
         </tr>
         <c:forEach var="user" items="${users}">
-            <tr>
-                <td><input type="checkbox" name="teach[${user[0].id}]"></td>
-                <td><input type="checkbox" name="follow[${user[0].id}]"></td>
+            <tr id="document_item">
                 <td>${user[0].givenName} ${user[0].surname}</td>
                 <td>${user[1]}</td>
             </tr>
