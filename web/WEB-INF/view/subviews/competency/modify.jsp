@@ -22,6 +22,22 @@
     <input class="submit" type="submit" name="modify" value="Opslaan">
     </div>
 </form>
+    <table>
+        <tr>
+            <td>Les</td>
+            <td>Volg</td>
+            <td>Gebruiker</td>
+            <td>Niveau</td>
+        </tr>
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td><input type="checkbox" name="teach[${user[0].id}]"></td>
+                <td><input type="checkbox" name="follow[${user[0].id}]"></td>
+                <td>${user[0].givenName} ${user[0].surname}</td>
+                <td>${user[1]}</td>
+            </tr>
+        </c:forEach>
+    </table>
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block'">
     <div id="remove_competency"></div>
@@ -35,6 +51,8 @@
             document.getElementById('fade').style.display = 'none'">
         <h10>Annuleren</h10>
     </a>
+    
+    
     <form method="post" target="_top" action="${context}/competency/manage">
         <input type="hidden" name="beheren_competency_remove" value="${competency.id}">
         <input class="competency_submit" type="submit" name="competency_remove" value="Verwijderen" />

@@ -115,6 +115,18 @@ public class UserFacade extends AbstractFacade<User> {
             return null;
         }        
     }
+
+    public Collection<Object[]> findByCompetencyandManagedBy(Long competencyId, Long userId) {
+        try {
+            return em.createNamedQuery("User.findByCompetencyandManagedBy")
+                     .setParameter("competency", competencyId)
+                     .setParameter("user", userId)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }        
+    }
+    
     
     public boolean modifyUser(String username,
                            String givenName,

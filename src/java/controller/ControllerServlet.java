@@ -394,8 +394,9 @@ public class ControllerServlet extends HttpServlet {
         Long competencyId = Long.parseLong(split[1]);
         Competency competency = competencyFacade.find(competencyId);
 
-     
-        
+        HttpSession session = request.getSession();
+        Long userId = ((User)session.getAttribute("User")).getId();
+        request.setAttribute("users", userFacade.findByCompetencyandManagedBy(competencyId, userId));
         request.setAttribute("competency", competency);
 
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);

@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author wilco
  */
+
 @Entity
 @Table(name = "user")
 @XmlRootElement
@@ -48,7 +49,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByGivenName", query = "SELECT u FROM User u WHERE u.givenName = :givenName"),
     @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-    @NamedQuery(name = "User.findUpcomingLectures", query = "SELECT l FROM User u JOIN FETCH u.courseCollection c JOIN FETCH c.lectureCollection l WHERE u.id = :id AND l.startDate > CURRENT_TIMESTAMP ORDER BY l.startDate")})
+    @NamedQuery(name = "User.findUpcomingLectures", query = "SELECT l FROM User u JOIN FETCH u.courseCollection c JOIN FETCH c.lectureCollection l WHERE u.id = :id AND l.startDate > CURRENT_TIMESTAMP ORDER BY l.startDate"),
+    @NamedQuery(name = "User.findByCompetencyandManagedBy", query = "SELECT DISTINCT u, uc.skillLevel FROM User me JOIN me.groupManagedCollection g JOIN g.userCollection u LEFT OUTER JOIN u.userCompetencyCollection uc ON uc.competency.id = :competency WHERE me.id = :user ORDER BY uc.skillLevel DESC")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
