@@ -5,7 +5,9 @@
 --%>
 
 <h1>${course.name}</h1>
-
+<div id="description">
+<h13>Hieronder vind je de benodigde informatie voor de geselecteerde cursus.</h13>
+</div>
 <div id="file_browser_container">
     <div id="file_browser">
         <div id="document_header">
