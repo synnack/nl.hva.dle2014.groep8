@@ -6,11 +6,11 @@
 
 <div id="video_container">
 </div>
+
+
 <div id="chat_container">
 
-    
-
-<link href="/resource/css/bootstrap.css" rel="stylesheet">
+<link href="${context}/resource/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 
 .form-signin {
@@ -50,7 +50,7 @@
 	font-size: 10px;
 }
 </style>
-<link href="./resource/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${context}/resource/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -84,7 +84,7 @@
 	}
 
 	function connectToChatserver() {
-		room = $('#chatroom option:selected').val();
+		room = 'DLE';
 		wsocket = new WebSocket(serviceLocation + room);
 		wsocket.onmessage = onMessageReceived;
 	}
@@ -107,7 +107,6 @@
 		$('#enterRoom').click(function(evt) {
 			evt.preventDefault();
 			connectToChatserver();
-			$('.chat-wrapper h2').text('Chat # '+$nickName.val() + "@" + room);
 			$('.chat-signin').hide();
 			$('.chat-wrapper').show();
 			$message.focus();
@@ -124,39 +123,30 @@
 </script>
 
 
-	<div class="container chat-signin">
-		<form class="form-signin">
-			<h2 class="form-signin-heading">Inloggen chat</h2>
-			<label for="nickname">Naam</label> <input type="text"
-				class="input-block-level" placeholder="Nickname" id="nickname">
-			<div class="btn-group">
-				<label for="chatroom">Kamer</label> <select size="1"
-					id="chatroom">
-					<option>DLE</option>
-				</select>
-			</div>
-			<button class="btn btn-large btn-primary" type="submit"
-				id="enterRoom">Inloggen</button>
-		</form>
-	</div>
-	<!-- /container -->
+    <div class="chat-signin">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Inloggen chat</h2>
+            <label for="nickname">Naam</label> <input type="text" class="input-block-level" placeholder="Nickname" id="nickname">
+            <button class="btn btn-large btn-primary" type="submit" id="enterRoom">Inloggen</button>
+        </form>
+    </div>
 
-	<div class="container chat-wrapper">
-		<form id="do-chat">
-			<h2 class="alert alert-success"></h2>
-			<table id="response" class="table table-bordered"></table>
-			<fieldset>
-				<legend>Type je bericht..</legend>
-				<div class="controls">
-					<input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:60px"/>
-					<input type="submit" class="btn btn-large btn-block btn-primary"
-						value="Verzenden" />
-					<button class="btn btn-large btn-block" type="button" id="leave-room">Verlaten</button>
-				</div>
-			</fieldset>
-		</form>
-	</div>
+    <!-- /container -->
+
+    <div class="chat-wrapper">
+        <form id="do-chat">
+            <h2 class="alert-success"></h2>
+            <table id="response"></table>
+            <fieldset>
+                <div>
+                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:60px"/>
+                    <input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
         
 </div>
+
 <div id="chat_input_container">
 </div>
