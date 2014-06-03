@@ -1547,6 +1547,7 @@ h20
 
 #chat_container
 {
+    overflow-y: scroll;
     position: absolute;
     width: 375px;
     height: 300px;
