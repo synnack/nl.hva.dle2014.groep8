@@ -17,15 +17,19 @@
                 <div id="title_profile_manage">
                     <h7>Groep</h7>
                 </div>
-                <div id="inputs_profile_manage">
+                <div id="inputs_group_manage">
                     <table>
-                        <tr><td>Naam:</td><td><input name="name" type="text" placeholder="Naam" value="${group.name}" autofocus required></td></tr>
-                        <tr><td>Manager:</td><td>
-                                <select name="manager">
-                                    <c:forEach var="user" items="${users}">
-                                        <option value="${user.id}" ${user.id == group.manager.id ? "selected" : ""}>${user.givenName} ${user.surname}</option>
-                                    </c:forEach>
-                                </select></td></tr>
+                        <tr><td><h18>Naam:</h18></td><td><input name="name" class="field_group_manage" type="text" placeholder="Naam" value="${group.name}" autofocus required></td></tr>
+                        <tr><td><h18>Manager:</h18></td><td>
+                                <div id="dropdown" class="group_dropdown">
+                                    <select name="manager">
+                                        <c:forEach var="user" items="${users}">
+                                            <option value="${user.id}" ${user.id == group.manager.id ? "selected" : ""}>${user.givenName} ${user.surname}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </td></tr>
+
                     </table>
                     <input class="submit" type="submit" name="modify" value="Opslaan">
                     <br/><br/>

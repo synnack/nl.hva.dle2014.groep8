@@ -1030,7 +1030,6 @@ hr {
 {
     position: relative;
     text-align: center;
-    top: 35px;
 }
 
 .dropdown select {
@@ -1055,6 +1054,7 @@ hr {
 }
 
 .dropdown {
+    top: 25px;
     width: 240px;
     height: 34px;
     overflow: hidden;
@@ -1709,6 +1709,78 @@ h20
     height: 190px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 15px;
+    overflow: scroll;
 }
 
+.group_dropdown select 
+{
+    outline: none;
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+.group_dropdown select:hover 
+{
+    color:  #002FFF;  
+    opacity: 1;
+}
+
+.group_dropdown 
+{
+    width: 210px;
+    overflow: hidden;
+    background:
+    url('../images/competencies/add_competency_arrow.png') no-repeat right;
+    border-bottom: 1px solid #ccc;
+    opacity: 1;
+}
+
+.group_dropdown:hover 
+{
+    opacity: 1;
+}
+
+.field_group_manage
+{
+    height: 35px;
+    display:block;
+    border: 1px solid rgba(91, 121, 150, .3);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    outline: none;
+    background-position: 5px -2px !important;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    width: 100%;
+}
+
+#inputs_group_manage
+{
+    padding: 0px 20px 30px 20px;
+    margin: 0 0 0px 0;
+    width: 75%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid #ccc;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+}
