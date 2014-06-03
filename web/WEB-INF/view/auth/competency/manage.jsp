@@ -7,6 +7,7 @@
 <h2><a href="${context}/home" class="title">Teach 'n' Learn</a> | Competenties beheren</h2>
 
 <div id="main_container">
+    <div id="fade" class="black_overlay"></div>
     <div id="view_container">
         <div id="view_header">
             <h4>Competenties beheren</h4>
@@ -44,15 +45,13 @@
         </div>
         <form method="post" action="${context}/competency/manage">
             <div id="description" >
-                <br><br>
-                <input type="text" name="beheren_competency">
-
+                <input class="field_competency" type="text" placeholder="Naam" name="beheren_competency">
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="beheren_competency_add" value="Aanmaken" />
+            <input class="competency_submit" type="submit" value="Aanmaken"/>
         </form>
     </div>
 </div>
