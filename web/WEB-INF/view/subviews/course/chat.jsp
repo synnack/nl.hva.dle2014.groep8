@@ -138,7 +138,7 @@
             <table id="response"></table>
             <fieldset>
                 <div>
-                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px"/>
+                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px" autocomplete="off"/>
                     <input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />
                 </div>
             </fieldset>
