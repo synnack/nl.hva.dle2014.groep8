@@ -70,8 +70,7 @@
 
 	function onMessageReceived(evt) {
 		var msg = JSON.parse(evt.data); // native API
-		var $messageLine = $('<tr><td class="received">' + msg.received
-				+ '</td><td class="user label label-info">' + msg.sender
+		var $messageLine = $('<tr><td class="user label label-info">' + msg.sender
 				+ '</td><td class="message badge">' + msg.message
 				+ '</td></tr>');
 		$chatWindow.append($messageLine);
@@ -139,7 +138,7 @@
             <table id="response"></table>
             <fieldset>
                 <div>
-                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:60px"/>
+                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px"/>
                     <input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />
                 </div>
             </fieldset>
