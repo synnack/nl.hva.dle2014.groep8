@@ -45,13 +45,13 @@
         </div>
         <form method="post" action="${context}/competency/manage">
             <div id="description" >
-                <input class="field_competency" type="text" placeholder="Naam" name="beheren_competency">
+                <input class="field_competency" type="text" placeholder="Naam" name="competency">
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" value="Aanmaken"/>
+            <input class="competency_submit" type="submit" name="competency_add" value="Aanmaken"/>
         </form>
     </div>
 </div>
