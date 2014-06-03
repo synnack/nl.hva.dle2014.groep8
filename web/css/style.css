@@ -144,7 +144,7 @@ h2
     font-size: 15px;
     font-family: "Helvetica Neue",sans-serif;
     font-weight: 300;
-    line-height: 3;
+    line-height: 2;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -1386,8 +1386,6 @@ h16
     width: 600px;
     height: 30px;
     background-color: rgba(3, 112, 252, 0.15);
-    border-bottom: 2px solid;
-    border-bottom-color: rgba(3, 112, 252, 0.80);
 }
 
 #document_item:nth-child(even)
@@ -1690,3 +1688,27 @@ h20
     background: url('../images/competencies/white_arrow.png') no-repeat;
     background-size: contain;
 }
+
+.competencies_table
+{
+    width: 100%;
+}
+
+.competency_table_header
+{
+    
+    background-color: rgba(3, 112, 252, 0.15);
+    border-collapse: collapse;
+}
+
+#table_container
+{
+    border: solid 1px;
+    border-color: #ccc;
+    width: 75%;
+    height: 190px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
