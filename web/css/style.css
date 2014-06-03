@@ -550,6 +550,21 @@ h15
     text-align: center;
 }	
 
+#menu_footer_manageuser
+{
+    width: 180px;
+    height: 41px;
+    position: absolute;
+    bottom: 0;
+    background-color: #e4f2fc;
+    z-index: 1;
+    border-right: 1px solid;
+    border-right-color: #ccc;
+    text-align: center;
+    border-top: 1px solid;
+    border-top-color: rgba(3, 38, 255, 0.24);
+}
+
 h1
 {
 
@@ -1249,6 +1264,8 @@ hr {
     border: 1px solid rgba(91, 121, 150, .3);
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
+    top: 60px;
+    left: 80px;
     border-top:0px;
     border-left:0px;
     border-right:0px;
