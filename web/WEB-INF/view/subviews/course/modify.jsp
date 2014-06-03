@@ -71,10 +71,10 @@
         <h1>Nieuwe college</h1>
         <div id="description">
             <h12>Vul de onderstaande velden in om een nieuwe college aan te maken.</h12>
-            <input class="field_lecture" name="lecture_name" type="text" placeholder="Omschrijving" autofocus required>
-            <input class="field_lecture" name="lecture_date" type="text" placeholder="Dag (dd-mm-jj)" required>
-            <input class="field_lecture" name="lecture_from" type="text" placeholder="Van (uu:mm)" required>
-            <input class="field_lecture" name="lecture_to" type="text" placeholder="Tot (uu:mm)" required>
+            <input class="field_lecture" name="name" type="text" placeholder="Omschrijving" autofocus required>
+            <input class="field_lecture" name="date" type="text" placeholder="Dag (dd-mm-jjjj)" required>
+            <input class="field_lecture" name="start_time" type="text" placeholder="Van (uu:mm)" required>
+            <input class="field_lecture" name="end_time" type="text" placeholder="Tot (uu:mm)" required>
         </div>
         <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display = 'none';
                 document.getElementById('fade').style.display = 'none'">

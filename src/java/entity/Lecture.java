@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,10 +42,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Lecture implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 65)
@@ -68,20 +70,20 @@ public class Lecture implements Serializable {
     public Lecture() {
     }
 
-    public Lecture(Integer id) {
+    public Lecture(Long id) {
         this.id = id;
     }
 
-    public Lecture(Integer id, String name) {
+    public Lecture(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -129,7 +131,7 @@ public class Lecture implements Serializable {
         return course;
     }
 
-    public void setCourseId(Course course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
 
