@@ -31,7 +31,7 @@
     <div id="file_browser">
         <div id="document_header">
             <h17>Documenten</h17>
-            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'block';
                     document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><h17>Document uploaden</h17></div>
             </a>
         </div>
@@ -81,5 +81,19 @@
     </a>
     <input class="competency_submit" type="submit" name="submit" value="Aanmaken" />
     <div id="create_lecture_arrow">
+    </div>
+</div>
+<div id="light2" class="upload_document">
+    <h1>Upload document</h1>
+    <div id="description">
+        <h12>Selecteer de upload knop om een bestand te kiezen.</h12>
+        <input class="field_lecture" name="lecture_name" type="file" autofocus required>
+    </div>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'none';
+            document.getElementById('fade').style.display = 'none'">
+        <h10>Annuleren</h10>
+    </a>
+    <input class="competency_submit" type="submit" name="submit" value="Uploaden" />
+    <div id="upload_document_arrow">
     </div>
 </div>
