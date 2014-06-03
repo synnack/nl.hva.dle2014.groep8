@@ -62,38 +62,42 @@
             document.getElementById('fade').style.display = 'none'">
         <h10>Annuleren</h10>
     </a>
-    <input class="competency_submit" type="submit" name="submit" value="Verwijderen" />
+    <input class="competency_submit" type="submit" name="delete" value="Verwijderen" />
     <div id="remove_competency_arrow">
     </div>
 </div>
 <div id="light1" class="create_lecture">
-    <h1>Nieuwe college</h1>
-    <div id="description">
-        <h12>Vul de onderstaande velden in om een nieuwe college aan te maken.</h12>
-        <input class="field_lecture" name="lecture_name" type="text" placeholder="Omschrijving" autofocus required>
-        <input class="field_lecture" name="lecture_date" type="text" placeholder="Dag (dd-mm-jj)" autofocus required>
-        <input class="field_lecture" name="lecture_from" type="text" placeholder="Van (uu:mm)" autofocus required>
-        <input class="field_lecture" name="lecture_to" type="text" placeholder="Tot (uu:mm)" autofocus required>
-    </div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display = 'none';
-            document.getElementById('fade').style.display = 'none'">
-        <h10>Annuleren</h10>
-    </a>
-    <input class="competency_submit" type="submit" name="submit" value="Aanmaken" />
-    <div id="create_lecture_arrow">
-    </div>
+    <form method="POST" action="${context}/course/modify/${course.id}">
+        <h1>Nieuwe college</h1>
+        <div id="description">
+            <h12>Vul de onderstaande velden in om een nieuwe college aan te maken.</h12>
+            <input class="field_lecture" name="lecture_name" type="text" placeholder="Omschrijving" autofocus required>
+            <input class="field_lecture" name="lecture_date" type="text" placeholder="Dag (dd-mm-jj)" required>
+            <input class="field_lecture" name="lecture_from" type="text" placeholder="Van (uu:mm)" required>
+            <input class="field_lecture" name="lecture_to" type="text" placeholder="Tot (uu:mm)" required>
+        </div>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display = 'none';
+                document.getElementById('fade').style.display = 'none'">
+            <h10>Annuleren</h10>
+        </a>
+        <input class="competency_submit" type="submit" name="create_lecture" value="Aanmaken" />
+        <div id="create_lecture_arrow">
+        </div>
+    </form>
 </div>
 <div id="light2" class="upload_document">
-    <h1>Upload document</h1>
-    <div id="description">
-        <h12>Selecteer de upload knop om een bestand te kiezen.</h12>
-        <input class="field_lecture" name="document_name" type="file" autofocus required>
-    </div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'none';
-            document.getElementById('fade').style.display = 'none'">
-        <h10>Annuleren</h10>
-    </a>
-    <input class="competency_submit" type="submit" name="submit" value="Uploaden" />
-    <div id="upload_document_arrow">
-    </div>
+    <form method="post" enctype="multipart/form-data" action="${context}/course/modify/${course.id}">
+        <h1>Upload document</h1>
+        <div id="description">
+            <h12>Selecteer de upload knop om een bestand te kiezen.</h12>
+            <input class="field_lecture" name="document" type="file" autofocus required>
+        </div>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'none';
+                document.getElementById('fade').style.display = 'none'">
+            <h10>Annuleren</h10>
+        </a>
+        <input class="competency_submit" type="submit" name="upload_document" value="Uploaden" />
+        <div id="upload_document_arrow">
+        </div>
+    </form>
 </div>

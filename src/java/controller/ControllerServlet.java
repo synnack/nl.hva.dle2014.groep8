@@ -1,6 +1,5 @@
 package controller;
 
-import com.sun.xml.wss.impl.c14n.CanonicalizerFactory;
 import entity.Competency;
 import entity.Course;
 import entity.DLEGroup;
@@ -10,6 +9,7 @@ import entity.User;
 import entity.UserCompetency;
 import entity.UserCompetencyPK;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,23 +20,26 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import session.CompetencyFacade;
 import session.CourseFacade;
 import session.DLEGroupFacade;
 import session.DocumentFacade;
 import session.UserCompetencyFacade;
 import session.UserFacade;
+import sun.misc.IOUtils;
 
 /**
  *
  * @author wilco
  */
+@MultipartConfig
 @WebServlet(name = "ControllerServlet",
         loadOnStartup = 1,
         urlPatterns = {"",
@@ -401,25 +404,25 @@ public class ControllerServlet extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
     }
-
-    protected void handleCourseModify(HttpServletRequest request, HttpServletResponse response)
+    protected void handleCourseManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] split = request.getPathInfo().split("[/-]");
-        Long competencyId = Long.parseLong(split[1]);
-        Course course = courseFacade.find(competencyId);
+        
 
         if(request.getMethod().equals("POST") && request.getParameter("addCourse") != null) {
             HttpSession session = request.getSession();
             User user = userFacade.find(((User)session.getAttribute("User")).getId());
             long group_id = Long.parseLong(request.getParameter("group_id"));
             DLEGroup group = groupFacade.find(group_id);
+            Course course = new Course();
             course.setManagingGroup(group);
             String name = request.getParameter("name");
             course.setName(name);
             course.setCreator(user);
             course.setLastModified(new Date());
             courseFacade.create(course);
-        } else if(request.getMethod().equals("POST")) {
+        } else if(request.getMethod().equals("POST") && request.getParameter("editCourse") != null) {
+            Long courseId = Long.parseLong(request.getParameter("course_id"));
+            Course course = courseFacade.find(courseId);
             long group_id = Long.parseLong(request.getParameter("group_id"));
             DLEGroup group = groupFacade.find(group_id);
             course.setManagingGroup(group);
@@ -427,7 +430,36 @@ public class ControllerServlet extends HttpServlet {
             course.setName(name);
             courseFacade.edit(course);
         }
+        request.setAttribute("courses", courseFacade.findAll());
+        request.getRequestDispatcher("/WEB-INF/view/auth/course/manage.jsp").forward(request, response);
+    }
+
+    protected void handleCourseModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long courseId = Long.parseLong(split[1]);
+        Course course = courseFacade.find(courseId);
         
+        HttpSession session = request.getSession();
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        System.out.println(request.getContentType());
+        if (request.getMethod().equals("POST") && request.getContentType().startsWith("multipart/form-data;")) {
+            System.out.println("Mark!");
+            Document document = new Document();
+            document.setCourse(course);
+            document.setCreator(user);
+            document.setLastModified(new Date());
+            
+            Part file = request.getPart("document");
+            document.setName(file.getSubmittedFileName());
+            
+            byte[] fileContent = IOUtils.readFully(file.getInputStream(), (int) file.getSize(), true);
+            document.setContent(fileContent);
+            documentFacade.create(document);
+            
+        } else if (request.getMethod().equals("POST") && request.getParameter("create_lecture") != null) {
+            
+        }
 
         request.setAttribute("course", course);
         request.setAttribute("groups", groupFacade.findAll());
@@ -605,9 +637,9 @@ public class ControllerServlet extends HttpServlet {
                 handleCompetencyModify(request, response);
                 return;
             case "/course/manage":
-                request.setAttribute("courses", courseFacade.findAll());
-                viewTemplate = "course/manage.jsp";
-                break;
+                handleCourseManage(request, response);
+                return;
+                
             case "/course/modify":
                 handleCourseModify(request, response);
                 return;
