@@ -87,7 +87,7 @@
     <h1>Upload document</h1>
     <div id="description">
         <h12>Selecteer de upload knop om een bestand te kiezen.</h12>
-        <input class="field_lecture" name="lecture_name" type="file" autofocus required>
+        <input class="field_lecture" name="document_name" type="file" autofocus required>
     </div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'none';
             document.getElementById('fade').style.display = 'none'">

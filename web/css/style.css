@@ -1656,7 +1656,7 @@ h20
     left: 75%;
     margin-left: -225px;
     width: 250px;
-    height: 210px;
+    height: 240px;
     padding: 25px;
     background-color: white;
     z-index:1002;
@@ -1681,7 +1681,7 @@ h20
 
 #upload_document_arrow
 {
-    top: -27px;
+    bottom: -27px;
     right: 15px;
     background-color: grey;
     width: 40px;
