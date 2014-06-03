@@ -1579,3 +1579,71 @@ h20
     float: right;
     margin-right: 10px;
 }
+
+.create_lecture 
+{
+    display: none;
+    position: absolute;
+    top: 23%;
+    left: 64%;
+    margin-left: -225px;
+    width: 300px;
+    height: 410px;
+    padding: 25px;
+    background-color: white;
+    z-index:1002;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.15),0px 0px 1px 1px rgba(0,0,0,0.1);
+
+    opacity:0;
+    -webkit-animation:fadeInRemoveCompetency ease-in-out 1;
+    -moz-animation:fadeInRemoveCompetency ease-in-out 1;
+    animation:fadeInRemoveCompetency ease-in-out 1;
+
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:0.2s;
+    -moz-animation-duration:0.2s;
+    animation-duration:0.4s;
+}
+
+#create_lecture_arrow
+{
+    top: -27px;
+    right: 15px;
+    background-color: grey;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background: url('../images/competencies/white_arrow_usd.png') no-repeat;
+    background-size: contain;
+}
+
+.field_lecture 
+{
+    height: 35px;
+    width: 200px;
+    display:block;
+    top: 55px;
+    left: 50%;
+    margin-left: -100px;
+    border: 1px solid rgba(91, 121, 150, .3);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    outline: none;
+    background-position: 5px -2px !important;
+    color: #000000;
+    font-size: 20px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding-top: 25px;
+}
