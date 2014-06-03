@@ -550,6 +550,21 @@ h15
     text-align: center;
 }	
 
+#menu_footer_manageuser
+{
+    width: 180px;
+    height: 41px;
+    position: absolute;
+    bottom: 0;
+    background-color: #e4f2fc;
+    z-index: 1;
+    border-right: 1px solid;
+    border-right-color: #ccc;
+    text-align: center;
+    border-top: 1px solid;
+    border-top-color: rgba(3, 38, 255, 0.24);
+}
+
 h1
 {
 
