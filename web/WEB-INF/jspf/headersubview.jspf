@@ -7,5 +7,6 @@
 <meta charset="UTF-8">
 <title>Teach 'n' Learn</title>
 <link rel="stylesheet" type="text/css" href="${context}/css/style.css">
+<script src="${context}/resource/js/jquery-1.10.2.min.js"></script>
 </head>
 <body class="subview">
