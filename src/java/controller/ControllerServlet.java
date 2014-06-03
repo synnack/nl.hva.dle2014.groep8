@@ -54,6 +54,8 @@ import sun.misc.IOUtils;
             "/manage",
             "/user/agenda",
             "/user/profile",
+            "/user/groups",
+            "/user/groups/modify/*",
             "/user/competencies",
             "/user/competencies/modify/*",
             "/user/courses",
@@ -265,6 +267,51 @@ public class ControllerServlet extends HttpServlet {
             request.setAttribute("usercompetency", userCompetency);   
         }
         request.getRequestDispatcher("/WEB-INF/view/subviews/user/competencies/modify.jsp").forward(request, response);
+    }
+
+    protected void handleUserGroups(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+
+        User user = userFacade.find(((User) session.getAttribute("User")).getId());
+
+        // Handle the submit button
+        
+        try {
+            if (request.getMethod().equals("POST") && request.getParameter("add") != null) {
+                long groupId = Long.parseLong(request.getParameter("group"));
+                DLEGroup group = groupFacade.find(groupId);
+                userFacade.addUserGroup(user, group);
+            } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+                long groupId = Long.parseLong(request.getParameter("group"));
+                DLEGroup group = groupFacade.find(groupId);
+                userFacade.removeUserGroup(user, group);
+            } 
+        } catch (java.lang.NumberFormatException e) {}
+        
+        // Pre-fill the competency list
+        request.setAttribute("groups", user.getDLEGroupCollection());
+        request.setAttribute("all_groups", groupFacade.findAll());
+
+        // Show the profile view
+        request.getRequestDispatcher("/WEB-INF/view/auth/user/groups.jsp").forward(request, response);
+    }
+
+    protected void handleUserGroupsModify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String[] split = request.getPathInfo().split("[/-]");
+        Long groupId = Long.parseLong(split[1]);
+        
+        HttpSession session = request.getSession();
+        DLEGroup group = groupFacade.find(groupId);
+        Map<String, String> messages = new HashMap<>();
+        
+        request.setAttribute("group", group);
+        
+        request.getRequestDispatcher("/WEB-INF/view/subviews/user/groups/modify.jsp").forward(request, response);
     }
 
     
@@ -630,8 +677,15 @@ public class ControllerServlet extends HttpServlet {
             case "/user/competencies":
                 handleUserCompetencies(request, response);
                 return;
+                
             case "/user/competencies/modify":
                 handleUserCompetenciesModify(request, response);
+                return;
+            case "/user/groups":
+                handleUserGroups(request, response);
+                return;
+            case "/user/groups/modify":
+                handleUserGroupsModify(request, response);
                 return;
             case "/user/courses":
                 handleUserCourses(request, response);
