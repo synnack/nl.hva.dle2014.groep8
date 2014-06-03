@@ -15,7 +15,6 @@
             </div>
             <div id="right">
                 <a href="${context}/home" class="title"></a>
-
             </div>
         </div>
         <div id="menu_container">
