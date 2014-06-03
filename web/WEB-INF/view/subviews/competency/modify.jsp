@@ -24,7 +24,7 @@
                 <div class="error">${messages.error}<br/></div>
             </form>
             <div id="title_profile_manage">
-                <h7>Deelnemers</h7>
+                <h7>Beheersing</h7>
             </div>
             <div id="table_container">
                 <table cellspacing="0" cellpadding="2" class="competencies_table">

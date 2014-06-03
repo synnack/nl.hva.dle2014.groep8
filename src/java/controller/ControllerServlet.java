@@ -503,8 +503,8 @@ public class ControllerServlet extends HttpServlet {
             String name = request.getParameter("name");
             competency.setName(name);
             competencyFacade.edit(competency);
-        } else if(request.getMethod().equals("POST") && request.getParameter("beheren_competency_add") != null) {
-            String competencyName = request.getParameter("beheren_competency");
+        } else if(request.getMethod().equals("POST") && request.getParameter("competency_add") != null) {
+            String competencyName = request.getParameter("competency");
             Competency newCompetency = new Competency();
             newCompetency.setName(competencyName);
             competencyFacade.create(newCompetency);
