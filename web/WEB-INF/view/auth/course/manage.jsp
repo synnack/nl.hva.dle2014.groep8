@@ -31,7 +31,7 @@
         <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
                 document.getElementById('fade').style.display = 'block'">
             <div id="menu_footer">
-                <h8>Nieuwe Cursus</h8>
+                <h8>Aanmaken </h8>
             </div>
         </a>
         <div id="content_container">
