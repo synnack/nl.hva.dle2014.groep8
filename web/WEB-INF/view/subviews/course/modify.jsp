@@ -13,7 +13,7 @@
         <div id="document_header">
             <h17>Colleges</h17>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display = 'block';
-                    document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><h17>College aanmaken</h17></div>
+                    document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><submit2>College aanmaken</submit2></div>
             </a>
         </div>
         <c:forEach var="lecture" items="${lectures}">
@@ -34,7 +34,7 @@
         <div id="document_header">
             <h17>Documenten</h17>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'block';
-                    document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><h17>Document uploaden</h17></div>
+                    document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><submit2>Document uploaden</submit2></div>
             </a>
         </div>
         <c:forEach var="document" items="${documents}">

@@ -741,6 +741,30 @@ fieldset
     border: none;
 }
 
+submit2
+{
+    color:#007aff;
+    font-size: 17px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-left: 10px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+submit2:hover
+{
+    color:#002FFF;
+    font-size: 17px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-left: 10px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
 #actions a
 {
     color: #3151A2;    
@@ -1449,6 +1473,12 @@ h16
     top: 6px;
     background: url('../images/courses/remove_icon.png') no-repeat;
     background-size: contain;
+    opacity: 0.7;
+}
+
+#remove_icon:hover
+{
+    opacity: 1;
 }
 
 #join_icon
