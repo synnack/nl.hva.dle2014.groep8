@@ -125,7 +125,7 @@
 </script>
 
 <!-- /container -->
-<input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value=${sessionScope.User.getUsername()}>
+<input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value="${sessionScope.User.getGivenName()} ${sessionScope.User.getSurname()}">
 <input type="hidden" class="input-block-level" placeholder="Lecture" id="lecture" value=${lecture.id}>
 
 <div id="chat_container">
