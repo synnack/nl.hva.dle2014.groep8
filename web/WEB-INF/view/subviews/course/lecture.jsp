@@ -65,13 +65,11 @@
 	var wsocket;
 	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/";        
 	var $nickName;
-	var $message;
+        var $message;
 	var $chatWindow;
 	var room = '';
 
-
-
-	function onMessageReceived(evt) {
+        function onMessageReceived(evt) {
 		var msg = JSON.parse(evt.data); // native API
 		var $messageLine = $('<tr><td class="user label label-info">' + msg.sender
 				+ '</td><td class="message badge">' + msg.message
@@ -86,7 +84,7 @@
 	}
 
 	function connectToChatserver() {
-		room = $('#chatroom option:selected').val();
+                room = $('#lecture').val();
 		wsocket = new WebSocket(serviceLocation + room);
 		wsocket.onmessage = onMessageReceived;
 	}
@@ -105,6 +103,7 @@
 		$chatWindow = $('#response');
 		$('.chat-wrapper').hide();
 		$nickName.focus();
+                connectToChatserver();
 		
 		$('#enterRoom').click(function(evt) {
 			evt.preventDefault();
@@ -125,37 +124,20 @@
 	});
 </script>
 
+<!-- /container -->
+<input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value=${sessionScope.User.getUsername()}>
+<input type="hidden" class="input-block-level" placeholder="Lecture" id="lecture" value=${lecture.id}>
 
-    <div class="chat-signin">
-        <form class="form-signin">
-            <h3 class="form-signin-heading">Inloggen chat</h3>
-            
-            <input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value=${sessionScope.User.getUsername()}>
-                <div class="btn-group">
-                    <label for="chatroom">Lecture</label> <select size="1"
-                            id="chatroom">
-                            <option>Discrete Wiskunde A</option>
-                            <option>Discrete Wiskunde B</option>
-                            <option>Javascript</option>
-                            <option>PHP</option>
-                    </select>
-                </div>
-            <button class="btn btn-large btn-primary" type="submit" id="enterRoom">Inloggen</button>
-        </form>
-    </div>
-
-    <!-- /container -->
-
-    <div id="chat_container">
-        <form id="do-chat">
-            <h2 class="alert-success"></h2>
-            <table id="response"></table>
-            <fieldset>
-                <div>
-                    <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px" autocomplete="off"/>
-                    <!--<input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />-->
-                </div>
-            </fieldset>
-        </form>
-    </div>
+<div id="chat_container">
+    <h2>${lecture.name}</h2>
+    <form id="do-chat">
+        <h2 class="alert-success"></h2>
+        <table id="response"></table>
+        <fieldset>
+            <div>
+                <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px" autocomplete="off"/>
+            </div>
+        </fieldset>
+    </form>
+</div>
         
