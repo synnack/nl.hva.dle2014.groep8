@@ -89,14 +89,6 @@
 		wsocket.onmessage = onMessageReceived;
 	}
 
-	function leaveRoom() {
-		wsocket.close();
-		$chatWindow.empty();
-		$('.chat-wrapper').hide();
-		$('.chat-signin').show();
-		$nickName.focus();
-	}
-
 	$(document).ready(function() {
 		$nickName = $('#nickname');
 		$message = $('#message');
@@ -105,23 +97,11 @@
 		$nickName.focus();
                 connectToChatserver();
 		
-		$('#enterRoom').click(function(evt) {
-			evt.preventDefault();
-			connectToChatserver();
-                        $('.chat-wrapper h2').text($nickName.val() + " in '" + room + "'");
-                        $('.chat-signin').hide();
-			$('.chat-wrapper').show();
-			$message.focus();
-		});
 		$('#do-chat').submit(function(evt) {
 			evt.preventDefault();
 			sendMessage()
 		});
-		
-		$('#leave-room').click(function(){
-			leaveRoom();
-		});
-	});
+        });
 </script>
 
 <!-- /container -->
