@@ -1581,8 +1581,8 @@ h20
     position: absolute;
     top: 12.5px;
     left: 12.5px;
-    width: 375px;
-    height: 225px;
+    width: 800px;
+    height: 480px;
     border: solid 1px;
     border-color: #ccc;
 }
@@ -1591,9 +1591,9 @@ h20
 {
     overflow-y: scroll;
     position: absolute;
-    width: 375px;
-    height: 300px;
-    top: 250px;
+    width: 800px;
+    height: 350px;
+    top: 510px;
     left: 12.5px;
     border: solid 1px;
     border-color: #ccc;
@@ -1602,9 +1602,9 @@ h20
 #chat_input_container
 {
     position: absolute;
-    width: 375px;
-    height: 73px;
-    top: 563px;
+    width: 800px;
+    height: 90px;
+    top: 878px;
     left: 12.5px;
     border: solid 1px;
     border-color: #ccc;

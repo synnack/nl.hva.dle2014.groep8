@@ -5,11 +5,12 @@
 --%>
 
 <div id="video_container">
+    video
 </div>
 
 
 <div id="chat_container">
-
+chat
 <link href="${context}/resource/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 
@@ -159,4 +160,5 @@
 </div>
 
 <div id="chat_input_container">
+    chat input
 </div>

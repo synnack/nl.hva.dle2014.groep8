@@ -16,7 +16,7 @@
         <c:forEach var="lecture" items="${lectures}">
             <div id="document_item">
                 <h18>${lecture.name}</h18>
-                <div id="join_icon">
+                <div id="join_icon" onclick="window.open('${context}/course/chat','TnL Chat', 'width=825,height=935,innerHeight=935,scrollbars=no,toolbar=no,location=no'); return false" >
                 </div>
             </div>
         </c:forEach>
