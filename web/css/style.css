@@ -1592,7 +1592,7 @@ h20
     overflow-y: scroll;
     position: absolute;
     width: 800px;
-    height: 350px;
+    height: 175px;
     top: 510px;
     left: 12.5px;
     border: solid 1px;
@@ -1604,7 +1604,7 @@ h20
     position: absolute;
     width: 800px;
     height: 90px;
-    top: 878px;
+    top: 705px;
     left: 12.5px;
     border: solid 1px;
     border-color: #ccc;

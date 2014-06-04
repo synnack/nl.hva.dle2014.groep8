@@ -23,7 +23,7 @@
                     <div id="remove_icon">
                     </div>
                 </a>
-                <div id="join_icon" onclick="window.open('${context}/course/chat','TnL Chat', 'width=825,height=935,innerHeight=935,scrollbars=no,toolbar=no,location=no'); return false" >
+                <div id="join_icon" onclick="window.open('${context}/course/chat','TnL Chat', 'width=825,height=760,innerHeight=760,scrollbars=no,toolbar=no,location=no'); return false" >
                 </div>
             </div>
         </c:forEach>
