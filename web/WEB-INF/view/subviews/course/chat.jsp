@@ -83,7 +83,7 @@
 	}
 
 	function connectToChatserver() {
-		room = 'DLE';
+		room = $('#chatroom option:selected').val();
 		wsocket = new WebSocket(serviceLocation + room);
 		wsocket.onmessage = onMessageReceived;
 	}
@@ -106,7 +106,8 @@
 		$('#enterRoom').click(function(evt) {
 			evt.preventDefault();
 			connectToChatserver();
-			$('.chat-signin').hide();
+                        $('.chat-wrapper h2').text($nickName.val() + " in '" + room + "'");
+                        $('.chat-signin').hide();
 			$('.chat-wrapper').show();
 			$message.focus();
 		});
@@ -124,8 +125,21 @@
 
     <div class="chat-signin">
         <form class="form-signin">
-            <h2 class="form-signin-heading">Inloggen chat</h2>
-            <label for="nickname">Naam</label> <input type="text" class="input-block-level" placeholder="Nickname" id="nickname">
+            <h3 class="form-signin-heading">Inloggen chat</h3>
+            
+            <input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value=${sessionScope.User.getUsername()}>
+
+            
+            <!--<label for="nickname">Naam</label> <input type="text" class="input-block-level" placeholder="Nickname" id="nickname">-->
+            			<div class="btn-group">
+				<label for="chatroom">Lecture</label> <select size="1"
+					id="chatroom">
+					<option>Discrete Wiskunde A</option>
+					<option>Discrete Wiskunde B</option>
+					<option>Javascript</option>
+					<option>PHP</option>
+				</select>
+			</div>
             <button class="btn btn-large btn-primary" type="submit" id="enterRoom">Inloggen</button>
         </form>
     </div>
