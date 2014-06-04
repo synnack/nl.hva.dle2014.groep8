@@ -1600,12 +1600,12 @@ h20
 {
     display: none;
     position: absolute;
-    top: 23%;
-    left: 64%;
+    top: 30%;
+    left: 73%;
     margin-left: -225px;
     width: 300px;
     height: 410px;
-    padding: 25px;
+    padding: 5px;
     background-color: white;
     z-index:1002;
     -moz-border-radius: 10px 10px 10px 10px;
@@ -1668,7 +1668,7 @@ h20
 {
     display: none;
     position: absolute;
-    top: 0%;
+    top: 8%;
     left: 75%;
     margin-left: -225px;
     width: 250px;
