@@ -20,7 +20,7 @@
             </div>
             <div id="main_description_container">
                 <div id="agenda_header">
-                    <h16>Titel</h16>
+                    <h16>Cursus</h16>
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
