@@ -41,7 +41,7 @@
         <div id="light" class="white_content">
             <h1>Inschrijven Cursus</h1>
             <div id="description">
-                <h15>Kies een cursus uit de lijst om in te schrijven om de bijbehorende informatie en documenten te kunnen bekijken.</h15>
+                <h15v2>Kies een cursus uit de lijst om in te schrijven om de bijbehorende informatie en documenten te kunnen bekijken.</h15v2>
             </div>
             <form method="post" action="${context}/user/courses">
                 <div id="dropdown" class="dropdown">

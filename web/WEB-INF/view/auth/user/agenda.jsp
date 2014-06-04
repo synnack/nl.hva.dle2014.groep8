@@ -24,7 +24,7 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15>${lecture.course.name}</h15>
+                        <h15v2>${lecture.course.name}</h15v2>
                     </div>
                 </c:forEach>
             </div>         
@@ -34,7 +34,7 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15>${lecture.name}</h15>
+                        <h15v2>${lecture.name}</h15v2>
                     </div>
                 </c:forEach>
             </div>
@@ -44,9 +44,9 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15><fmt:formatDate type="both" 
+                        <h15v2><fmt:formatDate type="both" 
             dateStyle="medium" timeStyle="medium" 
-            value="${lecture.startDate}" /></h15>
+            value="${lecture.startDate}" /></h15v2>
                     </div>
                 </c:forEach>
             </div>
@@ -56,9 +56,9 @@
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
-                        <h15><fmt:formatDate type="both" 
+                        <h15v2><fmt:formatDate type="both" 
             dateStyle="medium" timeStyle="medium" 
-            value="${lecture.endDate}" /></h15>
+            value="${lecture.endDate}" /></h15v2>
                     </div>
                 </c:forEach>
             </div>
