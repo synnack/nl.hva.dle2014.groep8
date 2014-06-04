@@ -43,6 +43,7 @@
 				+ '</td><td class="message badge">' + msg.message
 				+ '</td></tr>');
 		$chatWindow.append($messageLine);
+                $('#response tr:last')[0].scrollIntoView();
 	}
 	function sendMessage() {
 		var msg = '{"message":"' + $message.val() + '", "sender":"${sessionScope.User.givenName} ${sessionScope.User.surname}", "received":""}';
@@ -58,27 +59,27 @@
 	$(document).ready(function() {
 		$message = $('#message');
 		$chatWindow = $('#response');
-		$('.chat-wrapper').hide();
 		$message.focus();
                 connectToChatserver();
 		
 		$('#do-chat').submit(function(evt) {
 			evt.preventDefault();
-			sendMessage()
+			sendMessage();
 		});
         });
 </script>
 <h2>${lecture.name}</h2>
 
 <div id="chat_container">
+        <table id="response"></table>
+</div>
     <form id="do-chat">
         <h2 class="alert-success"></h2>
-        <table id="response"></table>
         <fieldset>
             <div>
                 <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px" autocomplete="off"/>
             </div>
         </fieldset>
     </form>
-</div>
+
         
