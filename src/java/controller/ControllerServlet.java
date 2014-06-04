@@ -63,7 +63,7 @@ import sun.misc.IOUtils;
             "/competency/modify/*",
             "/course/manage",
             "/course/modify/*",
-            "/course/chat",
+            "/course/lecture/*",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -567,14 +567,20 @@ public class ControllerServlet extends HttpServlet {
     }
     
     
-    protected void handleChat(HttpServletRequest request, HttpServletResponse response)
+    protected void handleLecture(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Map<String, String> messages = new HashMap<>();
         request.setAttribute("messages", messages); // Now it's available by ${messages}
         
-        // Show the chat window
-        request.getRequestDispatcher("/WEB-INF/view/subviews/course/chat.jsp").forward(request, response);
+        String[] split = request.getPathInfo().split("[/-]");
+        Long lectureId = Long.parseLong(split[1]);
+        Lecture lecture = lectureFacade.find(lectureId);
+        
+        request.setAttribute("lecture", lecture);
+        
+        // Show the lecture window
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/lecture.jsp").forward(request, response);
 
     }
     
@@ -694,8 +700,8 @@ public class ControllerServlet extends HttpServlet {
             case "/user/agenda":
                 handleAgenda(request, response);
                 return;
-            case "/course/chat":
-                handleChat(request, response);
+            case "/course/lecture":
+                handleLecture(request, response);
                 return;
             case "/user/manage":
                 handleUserManage(request, response);
@@ -736,14 +742,6 @@ public class ControllerServlet extends HttpServlet {
 
             case "/register":
                 viewTemplate = "register.jsp";
-                break;
-                
-            // FIXME: Course needs to have an Id inserted
-            case "/course/lecture":
-                viewTemplate = "course/lecture/manage.jsp";
-                break;
-            case "/course/lecture/view":
-                viewTemplate = "course/lecture/view.jsp";
                 break;
             case "/course/document":
                 viewTemplate = "course/document/manage.jsp";

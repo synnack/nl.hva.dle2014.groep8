@@ -61,7 +61,7 @@ chat
 
 <script>
 	var wsocket;
-	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/";        
+	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/lecture/";        
 	var $nickName;
 	var $message;
 	var $chatWindow;
