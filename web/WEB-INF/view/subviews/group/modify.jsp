@@ -21,14 +21,14 @@
                     <table>
                         <tr><td><h18>Naam:</h18></td><td><input name="name" class="field_group_manage" type="text" placeholder="Naam" value="${group.name}" autofocus required></td></tr>
                         <tr><td><h18>Manager:</h18></td><td>
-                                <div id="dropdown" class="group_dropdown">
-                                    <select name="manager">
-                                        <c:forEach var="user" items="${users}">
-                                            <option value="${user.id}" ${user.id == group.manager.id ? "selected" : ""}>${user.givenName} ${user.surname}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </td></tr>
+                            <div id="dropdown" class="group_dropdown">
+                                <select name="manager">
+                                    <c:forEach var="user" items="${users}">
+                                        <option value="${user.id}" ${user.id == group.manager.id ? "selected" : ""}>${user.givenName} ${user.surname}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </td></tr>
 
                     </table>
                     <input class="submit" type="submit" name="modify" value="Opslaan">
@@ -62,12 +62,14 @@
             </div>    
 
             <form method="POST" action="${context}/group/modify/${group.id}">
-                <select name="user_to_add">
-                    <c:forEach var="user" items="${users}">
-                        <option value="${user.id}">${user.givenName} ${user.surname}</option>
-                    </c:forEach>
-                </select>
-                <input type="submit" name="add_user" value="Toevoegen">
+                <div id="dropdown" class="group_members_dropdown">
+                    <select name="user_to_add">
+                        <c:forEach var="user" items="${users}">
+                            <option value="${user.id}">${user.givenName} ${user.surname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <input class="submit" type="submit" name="add_user" value="Toevoegen">
             </form>
 
             <div class="error">${messages.error}<br/></div>
