@@ -128,18 +128,15 @@
             <h3 class="form-signin-heading">Inloggen chat</h3>
             
             <input type="hidden" class="input-block-level" placeholder="Nickname" id="nickname" value=${sessionScope.User.getUsername()}>
-
-            
-            <!--<label for="nickname">Naam</label> <input type="text" class="input-block-level" placeholder="Nickname" id="nickname">-->
-            			<div class="btn-group">
-				<label for="chatroom">Lecture</label> <select size="1"
-					id="chatroom">
-					<option>Discrete Wiskunde A</option>
-					<option>Discrete Wiskunde B</option>
-					<option>Javascript</option>
-					<option>PHP</option>
-				</select>
-			</div>
+                <div class="btn-group">
+                    <label for="chatroom">Lecture</label> <select size="1"
+                            id="chatroom">
+                            <option>Discrete Wiskunde A</option>
+                            <option>Discrete Wiskunde B</option>
+                            <option>Javascript</option>
+                            <option>PHP</option>
+                    </select>
+                </div>
             <button class="btn btn-large btn-primary" type="submit" id="enterRoom">Inloggen</button>
         </form>
     </div>
@@ -153,7 +150,7 @@
             <fieldset>
                 <div>
                     <input type="text" class="input-block-level" placeholder="Je bericht..." id="message" style="height:20px" autocomplete="off"/>
-                    <input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />
+                    <!--<input type="submit" class="btn btn-large btn-block btn-primary" value="Verzenden" />-->
                 </div>
             </fieldset>
         </form>
