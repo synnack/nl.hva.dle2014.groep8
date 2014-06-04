@@ -6,7 +6,7 @@
 
 <h1>${course.name}</h1>
 <div id="description">
-<h13>Hieronder vind je de benodigde informatie voor de geselecteerde cursus.</h13>
+    <h13>Hieronder vind je de benodigde informatie voor de geselecteerde cursus.</h13>
 </div>
 <div id="file_browser_container">
     <div id="file_browser">
@@ -94,7 +94,9 @@
         <h1>Upload document</h1>
         <div id="description">
             <h12>Selecteer de upload knop om een bestand te kiezen.</h12>
-            <input class="field_lecture" name="document" type="file" autofocus required>
+        </div>
+        <div id="upload_file">
+            <input id="upload_file_input" name="file" type="file" required>
         </div>
         <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display = 'none';
                 document.getElementById('fade').style.display = 'none'">

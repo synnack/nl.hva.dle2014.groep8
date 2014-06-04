@@ -1852,3 +1852,20 @@ h20
     opacity: 1;
 }
 
+#upload_file
+{
+    height: 80px;
+    background:
+    url('../images/courses/upload_icon.png') no-repeat center;
+    border:none;
+    overflow:hidden;
+}
+
+#upload_file_input
+{
+    opacity:0;
+    height: 80px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
+
