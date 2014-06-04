@@ -8,10 +8,7 @@ import entity.Lecture;
 import entity.User;
 import entity.UserCompetency;
 import entity.UserCompetencyPK;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,8 +17,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
@@ -503,7 +498,7 @@ public class ControllerServlet extends HttpServlet {
             document.setCreator(user);
             document.setLastModified(new Date());
             
-            Part file = request.getPart("document");
+            Part file = request.getPart("file");
             document.setName(file.getSubmittedFileName());
             
             byte[] fileContent = IOUtils.readFully(file.getInputStream(), (int) file.getSize(), true);
@@ -601,7 +596,7 @@ public class ControllerServlet extends HttpServlet {
     protected void handleDocument(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");
-        Integer documentId = Integer.parseInt(split[1]);
+        Long documentId = Long.parseLong(split[1]);
        
         FacesContext fc = FacesContext.getCurrentInstance();
         Document document = documentFacade.find(documentId);

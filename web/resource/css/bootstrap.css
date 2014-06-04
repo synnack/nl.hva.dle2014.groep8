@@ -760,7 +760,7 @@ h6 small {
 h1,
 h2,
 h3 {
-  line-height: 40px;
+  line-height: 20px;
 }
 
 h1 {
@@ -768,7 +768,7 @@ h1 {
 }
 
 h2 {
-  font-size: 31.5px;
+  font-size: 16px;
 }
 
 h3 {
@@ -3901,8 +3901,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-success {
-  color: #468847;
-  background-color: #dff0d8;
+  color: #5244F3;
   border-color: #d6e9c6;
 }
 
