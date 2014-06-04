@@ -8,9 +8,6 @@
     video
 </div>
 
-
-<div id="chat_container">
-chat
 <link href="${context}/resource/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 
@@ -46,6 +43,11 @@ chat
 	width: 300px;
 }
 
+#chat-signin
+{
+    background-color: grey;
+}
+
 .received {
 	width: 160px;
 	font-size: 10px;
@@ -61,7 +63,7 @@ chat
 
 <script>
 	var wsocket;
-	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/lecture/";        
+	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/";        
 	var $nickName;
 	var $message;
 	var $chatWindow;
@@ -144,7 +146,7 @@ chat
 
     <!-- /container -->
 
-    <div class="chat-wrapper">
+    <div id="chat_container">
         <form id="do-chat">
             <h2 class="alert-success"></h2>
             <table id="response"></table>
@@ -157,8 +159,3 @@ chat
         </form>
     </div>
         
-</div>
-
-<div id="chat_input_container">
-    chat input
-</div>
