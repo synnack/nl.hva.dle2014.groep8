@@ -1901,6 +1901,17 @@ h20
     url('../images/courses/upload_icon.png') no-repeat center;
     border:none;
     overflow:hidden;
+    opacity: 0.7;
+}
+
+#upload_file:hover
+{
+    opacity: 1;
+}
+
+#upload_file:active
+{
+    opacity: 0.3;
 }
 
 #upload_file_input
