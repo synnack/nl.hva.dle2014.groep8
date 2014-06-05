@@ -88,7 +88,7 @@ var Chat = function(wsocket) {
     
     var Chat = function() {
         $chatWindow = $('#response');
-        $message = $('#message');
+        $message    = $('#message');
         wsocket.bind('CHAT_MESSAGE', messageReceived);
     };
     
@@ -122,10 +122,19 @@ var Video = function(wsocket) {
     
     var Video = function() {
         pc = new RTCPeerConnection(null);
-        pc.onaddstream = addStreamToVideo;
-        pc.onicecandidate = addExtraCandidate;
-        pc.createOffer(localOffer, error);
         
+        
+        if (manage) {
+            navigator.getUserMedia({audio: true, video: {optional: [ {minWidth:800} ]}}, function (stream) {
+                $("video")[0].src = window.URL.createObjectURL(stream);
+                pc.addStream(stream);
+                $("video")[0].play();
+            });
+        } else {
+           pc.onaddstream = addStreamToVideoElement;
+           pc.createOffer(localOffer, error);
+        }
+        pc.onicecandidate = addExtraCandidate;
         wsocket.bind('OFFER_SDP', offerReceived);
     };
     
@@ -134,7 +143,7 @@ var Video = function(wsocket) {
         console.log(e);
     };
     
-    var addStreamToVideo = function(obj) {
+    var addStreamToVideoElement = function(obj) {
             console.log(obj);
             var video = $('video')[0];
             video.src = window.URL.createObjectURL(obj.stream);
@@ -171,9 +180,9 @@ var Video = function(wsocket) {
     };
     
     var offerReceived = function(data) {
-        var offer = new RTCSessionDescription({'type': 'answer', 'sdp': data['sdp']});
-        pc.setRemoteDescription(offer, function() {
-            wsocket.send('SDP_OK', null);
+        if (manage) {
+            var offer = new RTCSessionDescription({'type': 'answer', 'sdp': data['sdp']});
+                pc.setRemoteDescription(offer, function() {
             }, error);
     };
     

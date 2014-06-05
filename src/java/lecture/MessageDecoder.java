@@ -33,8 +33,14 @@ public class MessageDecoder implements Decoder.Text<Message> {
 
                 msg.setMessageType("CHAT_MESSAGE");
                 msg.setData(chatMessage);
-            } else {
-                msg.setMessageType("UNKNOWN");
+            } else if (obj.getString("message_type").equals("OFFER_SDP")) {
+                
+                JsonObject data = obj.getJsonObject("data");
+                OfferSDPMessage offerSDPMessage = new OfferSDPMessage();
+                offerSDPMessage.setSDP(data.getString("sdp"));
+
+                msg.setMessageType("OFFER_SDP");
+                msg.setData(offerSDPMessage);
             }
 
             return msg;

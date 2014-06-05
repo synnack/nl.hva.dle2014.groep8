@@ -23,16 +23,16 @@ public class LectureEndpoint {
 
 	@OnMessage
 	public void onMessage(final Session session, final Message message) {
-                System.out.println("I'm in your shit: "+message.getMessageType());
-		String lecture = (String) session.getUserProperties().get("lecture");
-		try {
-			for (Session s : session.getOpenSessions()) {
-				if (s.isOpen()
-						&& lecture.equals(s.getUserProperties().get("lecture"))) {
-					s.getBasicRemote().sendObject(message);
-				}
-			}
-		} catch (IOException | EncodeException e) {
+            String lecture = (String) session.getUserProperties().get("lecture");
+            try {
+
+                for (Session s : session.getOpenSessions()) {
+                        if (s.isOpen() && lecture.equals(s.getUserProperties().get("lecture"))) {
+                            s.getBasicRemote().sendObject(message);
+                            
+                    }
+                }
+            } catch (IOException | EncodeException e) {
 			log.log(Level.WARNING, "onMessage failed", e);
 		}
 	}
