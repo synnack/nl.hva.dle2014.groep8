@@ -36,6 +36,8 @@
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
                         <h15v2>${lecture.name}</h15v2>
+                        <div id="join_icon" onclick="window.open('${context}/course/lecture/${lecture.id}','TnL Chat', 'width=825,height=760,innerHeight=760,scrollbars=no,toolbar=no,location=no'); return false" >
+                        </div>                        
                     </div>
                 </c:forEach>
             </div>
