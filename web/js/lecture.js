@@ -121,6 +121,7 @@ var Video = function(wsocket) {
     var offer;
     var stream;
     var pc;
+    var online = false;
     
     var Video = function() {
         if (manage) {
@@ -155,6 +156,7 @@ var Video = function(wsocket) {
             console.log(obj);
             $('video')[0].src = window.URL.createObjectURL(obj.stream);
             $('video')[0].play();
+            online = true;
     };
     
     // This function is necessary for chromium as chromium does not add candidate information by itself
@@ -201,8 +203,10 @@ var Video = function(wsocket) {
     };
     
     var answerReceived = function(data) {
-        var remote_offer = new RTCSessionDescription({'type': 'answer', 'sdp': data.sdp});
-        pc.setRemoteDescription(remote_offer);
+        if (!online) {
+            var remote_offer = new RTCSessionDescription({'type': 'answer', 'sdp': data.sdp});
+            pc.setRemoteDescription(remote_offer);
+        }
     };
     
     Video();
