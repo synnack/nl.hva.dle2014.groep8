@@ -125,7 +125,7 @@ var Video = function(wsocket) {
     var Video = function() {
         if (manage) {
             // Server/callee
-            navigator.getUserMedia({audio: true, video: {optional: [ {minWidth:800} ]}}, function (webcam_stream) {
+            navigator.getUserMedia({audio: true, video: {mandatory: {minWidth:800, minAspectRatio: 1.66 } }}, function (webcam_stream) {
                 $("video")[0].src = window.URL.createObjectURL(webcam_stream);
                 stream = webcam_stream;
                 $("video")[0].play();
@@ -138,7 +138,7 @@ var Video = function(wsocket) {
                 pc.setLocalDescription(new_offer, function () {
                     offer = new_offer;
                 }, error);
-            }, error);
+            }, error, { mandatory: { OfferToReceiveVideo: true, OfferToReceiveAudio: true }});
             pc.onaddstream = addStreamToVideoElement;
             pc.onicecandidate = addExtraCandidate;
             wsocket.bind('ANSWER_SDP', answerReceived);
@@ -196,7 +196,7 @@ var Video = function(wsocket) {
             pc.setLocalDescription(new_offer, function () {
                 offer = new_offer;
             }, error);
-        }, error);
+        }, error, { 'mandatory': { 'OfferToReceiveVideo': false, 'OfferToReceiveAudio': false }});
         pc.onicecandidate = addExtraCandidate;
     };
     
