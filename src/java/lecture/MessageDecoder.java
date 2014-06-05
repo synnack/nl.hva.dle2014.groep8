@@ -23,24 +23,28 @@ public class MessageDecoder implements Decoder.Text<Message> {
             Message msg = new Message();
             JsonObject obj = Json.createReader(new StringReader(textMessage))
                             .readObject();
-            
-            if (obj.getString("message_type").equals("CHAT_MESSAGE")) {
-                JsonObject data = obj.getJsonObject("data");
-                ChatMessage chatMessage = new ChatMessage();
-                chatMessage.setMessage(data.getString("message"));
-                chatMessage.setSender(data.getString("sender"));
-                chatMessage.setReceived(new Date());
-
-                msg.setMessageType("CHAT_MESSAGE");
-                msg.setData(chatMessage);
-            } else if (obj.getString("message_type").equals("OFFER_SDP")) {
-                
-                JsonObject data = obj.getJsonObject("data");
-                OfferSDPMessage offerSDPMessage = new OfferSDPMessage();
-                offerSDPMessage.setSDP(data.getString("sdp"));
-
-                msg.setMessageType("OFFER_SDP");
-                msg.setData(offerSDPMessage);
+            switch (obj.getString("message_type")) {
+                case "CHAT_MESSAGE":
+                {
+                    JsonObject data = obj.getJsonObject("data");
+                    ChatMessage chatMessage = new ChatMessage();
+                    chatMessage.setMessage(data.getString("message"));
+                    chatMessage.setSender(data.getString("sender"));
+                    chatMessage.setReceived(new Date());
+                    msg.setMessageType(obj.getString("message_type"));
+                    msg.setData(chatMessage);
+                    break;
+                }
+                case "OFFER_SDP":
+                case "ANSWER_SDP":
+                {
+                    JsonObject data = obj.getJsonObject("data");
+                    OfferSDPMessage offerSDPMessage = new OfferSDPMessage();
+                    offerSDPMessage.setSDP(data.getString("sdp"));
+                    msg.setMessageType(obj.getString("message_type"));
+                    msg.setData(offerSDPMessage);
+                    break;
+                }
             }
 
             return msg;

@@ -119,23 +119,31 @@ var Chat = function(wsocket) {
 
 var Video = function(wsocket) {
     var offer;
+    var stream;
+    var pc;
     
     var Video = function() {
-        pc = new RTCPeerConnection(null);
-        
-        
         if (manage) {
-            navigator.getUserMedia({audio: true, video: {optional: [ {minWidth:800} ]}}, function (stream) {
-                $("video")[0].src = window.URL.createObjectURL(stream);
-                pc.addStream(stream);
+            // Server/callee
+            navigator.getUserMedia({audio: true, video: {optional: [ {minWidth:800} ]}}, function (webcam_stream) {
+                $("video")[0].src = window.URL.createObjectURL(webcam_stream);
+                stream = webcam_stream;
                 $("video")[0].play();
-            });
+            }, error);
+            wsocket.bind('OFFER_SDP', offerReceived);
         } else {
-           pc.onaddstream = addStreamToVideoElement;
-           pc.createOffer(localOffer, error);
+            // Client/caller
+            pc = new RTCPeerConnection(null);
+            pc.createOffer(function (new_offer) {
+                pc.setLocalDescription(new_offer, function () {
+                    offer = new_offer;
+                }, error);
+            }, error);
+            pc.onaddstream = addStreamToVideoElement;
+            pc.onicecandidate = addExtraCandidate;
+            wsocket.bind('ANSWER_SDP', answerReceived);
         }
-        pc.onicecandidate = addExtraCandidate;
-        wsocket.bind('OFFER_SDP', offerReceived);
+        
     };
     
     var error = function (e) {
@@ -145,18 +153,23 @@ var Video = function(wsocket) {
     
     var addStreamToVideoElement = function(obj) {
             console.log(obj);
-            var video = $('video')[0];
-            video.src = window.URL.createObjectURL(obj.stream);
-            video.play();
+            $('video')[0].src = window.URL.createObjectURL(obj.stream);
+            $('video')[0].play();
     };
     
     // This function is necessary for chromium as chromium does not add candidate information by itself
     var addExtraCandidate = function (e) {
         // null is the last candidate, send the offer.
         if (e.candidate === null) {
-            wsocket.send('OFFER_SDP', {
-                'sdp': offer.sdp
-            });
+            if (manage) {
+                wsocket.send('ANSWER_SDP', {
+                    'sdp': offer.sdp
+                });
+            } else {
+                wsocket.send('OFFER_SDP', {
+                    'sdp': offer.sdp
+                });
+            }
             return;
         }
 
@@ -173,18 +186,23 @@ var Video = function(wsocket) {
         offer.sdp = sdp.join("\r\n");
     };
     
-    var localOffer = function (new_offer) {
-        pc.setLocalDescription(new_offer, function () {
-            offer = new_offer;
-        }, error);
-    };
     
     var offerReceived = function(data) {
-        if (manage) {
-            var offer = new RTCSessionDescription({'type': 'answer', 'sdp': data['sdp']});
-                pc.setRemoteDescription(offer, function() {
+        var pc = new RTCPeerConnection(null);
+        pc.addStream(stream);
+        var remote_offer = new RTCSessionDescription({'type': 'offer', 'sdp': data.sdp});
+        pc.setRemoteDescription(remote_offer);
+        pc.createAnswer(function (new_offer) {
+            pc.setLocalDescription(new_offer, function () {
+                offer = new_offer;
             }, error);
-        }
+        }, error);
+        pc.onicecandidate = addExtraCandidate;
+    };
+    
+    var answerReceived = function(data) {
+        var remote_offer = new RTCSessionDescription({'type': 'answer', 'sdp': data.sdp});
+        pc.setRemoteDescription(remote_offer);
     };
     
     Video();

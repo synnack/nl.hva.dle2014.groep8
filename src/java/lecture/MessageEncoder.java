@@ -30,6 +30,7 @@ public class MessageEncoder implements Encoder.Text<Message> {
                         .build()
                         .toString();
             case "OFFER_SDP":
+            case "ANSWER_SDP":
                 OfferSDPMessage offerSDPMessage = (OfferSDPMessage)message.getData();
                 return Json.createObjectBuilder()
                         .add("message_type", message.getMessageType())

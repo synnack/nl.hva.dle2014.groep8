@@ -4,7 +4,7 @@
     Author     : AlvinRotteveel
 --%>
 
-<video autoplay id="video_container">
+<video id="video_container">
   
 </video>
 
