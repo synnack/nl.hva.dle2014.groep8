@@ -495,6 +495,8 @@ public class ControllerServlet extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/view/subviews/competency/modify.jsp").forward(request, response);
     }
+    
+    
     protected void handleCourseManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -522,7 +524,13 @@ public class ControllerServlet extends HttpServlet {
             String name = request.getParameter("name");
             course.setName(name);
             courseFacade.edit(course);
+        } else if (request.getMethod().equals("POST") && request.getParameter("delete") != null) {
+            Long courseId = Long.parseLong(request.getParameter("course"));
+            Course course = courseFacade.find(courseId);
+            
+            courseFacade.remove(course);
         }
+        
         request.setAttribute("courses", courseFacade.findAll());
         request.setAttribute("groups", groupFacade.findAll());
 
@@ -571,18 +579,27 @@ public class ControllerServlet extends HttpServlet {
             System.out.println(lecture.getEndDate());
             System.out.println(lecture.getName());
             lectureFacade.create(lecture);
+        } else if (request.getMethod().equals("POST") && request.getParameter("add_competency") != null) {
+            Competency competency = competencyFacade.find(Long.parseLong(request.getParameter("competency")));
+            courseFacade.addCompetency(course, competency);
         } else if (request.getParameter("remove_lecture") != null) {
             Lecture lecture = lectureFacade.find(Long.parseLong(request.getParameter("remove_lecture")));
             lectureFacade.remove(lecture);
         } else if (request.getParameter("remove_document") != null) {
             Document document = documentFacade.find(Long.parseLong(request.getParameter("remove_document")));
             documentFacade.remove(document);
+        } else if (request.getParameter("remove_competency") != null) {
+            Competency competency = competencyFacade.find(Long.parseLong(request.getParameter("remove_competency")));
+            courseFacade.removeCompetency(course, competency);
         }
 
+        
         request.setAttribute("course", course);
         request.setAttribute("groups", groupFacade.findAll());
+        request.setAttribute("all_competencies", competencyFacade.findAll());
         request.setAttribute("lectures", course.getLectureCollection());
         request.setAttribute("documents", course.getDocumentCollection());
+        request.setAttribute("competencies", course.getCompetencyCollection());
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
