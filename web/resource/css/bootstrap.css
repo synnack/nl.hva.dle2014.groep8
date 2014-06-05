@@ -223,7 +223,8 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 300;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -5630,15 +5631,12 @@ a.thumbnail:focus {
 .label,
 .badge {
   display: inline-block;
-  padding: 2px 4px;
-  font-size: 11.844px;
-  font-weight: bold;
-  line-height: 14px;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #999999;
+padding: 2px 4px;
+font-size: 13px;
+line-height: 14px;
+color: #007aff;
+white-space: nowrap;
+vertical-align: baseline;
 }
 
 .label {
@@ -5701,7 +5699,6 @@ a.badge:focus {
 
 .label-info,
 .badge-info {
-  background-color: #3a87ad;
 }
 
 .label-info[href],
