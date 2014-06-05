@@ -71,6 +71,11 @@ public class Course implements Serializable {
     @JoinColumn(name = "creator", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User creator;
+    @JoinTable(name = "user_follows_course", joinColumns = {
+    @JoinColumn(name = "course_id", referencedColumnName = "id")}, inverseJoinColumns = {
+    @JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<User> participantCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private Collection<Document> documentCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
@@ -155,6 +160,16 @@ public class Course implements Serializable {
     public void setLectureCollection(Collection<Lecture> lectureCollection) {
         this.lectureCollection = lectureCollection;
     }
+    
+    @XmlTransient
+    public Collection<User> getParticipantCollection() {
+        return participantCollection;
+    }
+
+    public void setParticipantCollection(Collection<User> participantCollection) {
+        this.participantCollection = participantCollection;
+    }
+
 
     @Override
     public int hashCode() {
