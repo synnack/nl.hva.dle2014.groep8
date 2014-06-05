@@ -6,7 +6,7 @@
 
 
 <h1>${group.name}</h1>
-<h13>Rechtsonderin kunt u uzelf uitschrijven uit deze groep.</h13>    
+<h13>Rechtsbovenin kunt u uzelf uitschrijven uit deze groep.</h13>    
 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block'"><div id="remove_competency">       
     </div>
