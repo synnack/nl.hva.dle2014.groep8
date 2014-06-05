@@ -65,6 +65,7 @@ import sun.misc.IOUtils;
             "/course/modify/*",
             "/course/lecture/*",
             "/course/lecture_manage/*",
+            "/course/invite/*",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -601,10 +602,31 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("documents", course.getDocumentCollection());
         request.setAttribute("competencies", course.getCompetencyCollection());
         request.setAttribute("participants", course.getParticipantCollection());
-        //request.setAttribute("all_users", userFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 
+    protected void handleCourseInvite(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String[] split = request.getPathInfo().split("[/-]");
+        Long courseId = Long.parseLong(split[1]);
+        Course course = courseFacade.find(courseId);
+        HttpSession session = request.getSession();
+        User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
+        if (request.getParameter("competency") != null && !request.getParameter("competency").equals("")) {
+            Long competencyId = Long.parseLong(request.getParameter("competency"));
+            Competency competency = competencyFacade.find(competencyId);
+            request.setAttribute("current_competency", competency);
+            request.setAttribute("users", userFacade.findByCompetencyandManagedBy(competencyId, user.getId()));
+        }
+        
+        
+        request.setAttribute("competencies", course.getCompetencyCollection());
+        request.setAttribute("course", course);
+        
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/invite_participants.jsp").forward(request, response);
+    }
+    
     protected void handleCompetency(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -859,6 +881,9 @@ public class ControllerServlet extends HttpServlet {
                 
             case "/course/modify":
                 handleCourseModify(request, response);
+                return;
+            case "/course/invite":
+                handleCourseInvite(request, response);
                 return;
             case "/document":
                 handleDocument(request, response);
