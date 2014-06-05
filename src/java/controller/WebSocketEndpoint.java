@@ -73,9 +73,6 @@ public class WebSocketEndpoint {
                 case "NOTIFY_STATUS":
                     System.out.println("Received status notification.");
                     break;
-                case "CHAT_MESSAGE":
-                    System.out.println("Received chat message.");
-                    break;
                 default:
                     break;
             }

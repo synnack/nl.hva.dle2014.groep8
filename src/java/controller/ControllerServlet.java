@@ -458,10 +458,10 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         
 
-        if(request.getMethod().equals("POST") && request.getParameter("addCourse") != null) {
+        if(request.getMethod().equals("POST") && request.getParameter("course_add") != null) {
             HttpSession session = request.getSession();
             User user = userFacade.find(((User)session.getAttribute("User")).getId());
-            long group_id = Long.parseLong(request.getParameter("group_id"));
+            long group_id = Long.parseLong(request.getParameter("managing_group"));
             DLEGroup group = groupFacade.find(group_id);
             Course course = new Course();
             course.setManagingGroup(group);
@@ -469,6 +469,8 @@ public class ControllerServlet extends HttpServlet {
             course.setName(name);
             course.setCreator(user);
             course.setLastModified(new Date());
+            System.out.println(group);
+            System.out.println(name);
             courseFacade.create(course);
         } else if(request.getMethod().equals("POST") && request.getParameter("editCourse") != null) {
             Long courseId = Long.parseLong(request.getParameter("course_id"));
@@ -481,6 +483,8 @@ public class ControllerServlet extends HttpServlet {
             courseFacade.edit(course);
         }
         request.setAttribute("courses", courseFacade.findAll());
+        request.setAttribute("groups", groupFacade.findAll());
+
         request.getRequestDispatcher("/WEB-INF/view/auth/course/manage.jsp").forward(request, response);
     }
 

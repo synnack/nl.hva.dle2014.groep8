@@ -30,44 +30,12 @@
       <script src="./resource/js/html5shiv.js"></script>
     <![endif]-->
 
-
-<script>
-	var wsocket;
-	var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/${lecture.id}";        
-        var $message;
-	var $chatWindow;
-
-        function onMessageReceived(evt) {
-		var msg = JSON.parse(evt.data); // native API
-		var $messageLine = $('<tr><td class="user label label-info">' + msg.sender
-				+ '</td><td class="message badge">' + msg.message
-				+ '</td></tr>');
-		$chatWindow.append($messageLine);
-                $('#response tr:last')[0].scrollIntoView();
-	}
-	function sendMessage() {
-		var msg = '{"message":"' + $message.val() + '", "sender":"${sessionScope.User.givenName} ${sessionScope.User.surname}", "received":""}';
-		wsocket.send(msg);
-		$message.val('').focus();
-	}
-
-	function connectToChatserver() {
-		wsocket = new WebSocket(serviceLocation);
-		wsocket.onmessage = onMessageReceived;
-	}
-
-	$(document).ready(function() {
-		$message = $('#message');
-		$chatWindow = $('#response');
-		$message.focus();
-                connectToChatserver();
-		
-		$('#do-chat').submit(function(evt) {
-			evt.preventDefault();
-			sendMessage();
-		});
-        });
+<script type="text/javascript">
+    var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/${lecture.id}";
+    var nickName = "${sessionScope.User.givenName} ${sessionScope.User.surname}";
 </script>
+<script type="text/javascript" src="${context}/js/lecture.js"></script>
+
 <h2>${lecture.name}</h2>
 
 <div id="chat_container">

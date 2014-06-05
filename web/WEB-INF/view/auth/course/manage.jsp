@@ -43,15 +43,19 @@
         <div id="description">
             <h15>Maak een nieuwe cursus aan door hieronder de naam aan de nieuwe cursus mee te geven. Druk vervolgens op Aanmaken.</h15>
         </div>
-        <form method="post" action="${context}/competency/manage">
-            <div id="description" >
-                <input class="field_competency" type="text" placeholder="Naam" name="competency">
-            </div>
+        <form method="post" action="${context}/course/manage">
+            <input class="field_competency" type="text" placeholder="Naam" name="name">          
+            <select name="managing_group" class="field_competency">
+                <c:forEach var="group" items="${groups}">
+                    <option value="${group.id}">${group.name}</option>
+                </c:forEach>
+            </select>
+            
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="competency_add" value="Aanmaken"/>
+            <input class="competency_submit" type="submit" name="course_add" value="Aanmaken"/>
         </form>
     </div>
 </div>
