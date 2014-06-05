@@ -64,6 +64,7 @@ import sun.misc.IOUtils;
             "/course/manage",
             "/course/modify/*",
             "/course/lecture/*",
+            "/course/lecture_manage/*",
             "/register",
             "/forgotpassword",
             "/logout",
@@ -587,6 +588,22 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/lecture.jsp").forward(request, response);
 
     }
+    protected void handleLectureManage(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<String, String> messages = new HashMap<>();
+        request.setAttribute("messages", messages); // Now it's available by ${messages}
+        
+        String[] split = request.getPathInfo().split("[/-]");
+        Long lectureId = Long.parseLong(split[1]);
+        Lecture lecture = lectureFacade.find(lectureId);
+        
+        request.setAttribute("lecture", lecture);
+        
+        // Show the lecture window
+        request.getRequestDispatcher("/WEB-INF/view/subviews/course/lecture_manage.jsp").forward(request, response);
+
+    }
     
     protected void handleUserManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -706,6 +723,9 @@ public class ControllerServlet extends HttpServlet {
                 return;
             case "/course/lecture":
                 handleLecture(request, response);
+                return;
+            case "/course/lecture_manage":
+                handleLectureManage(request, response);
                 return;
             case "/user/manage":
                 handleUserManage(request, response);

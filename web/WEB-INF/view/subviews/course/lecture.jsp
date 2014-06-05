@@ -33,6 +33,7 @@
 <script type="text/javascript">
     var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/${lecture.id}";
     var nickName = "${sessionScope.User.givenName} ${sessionScope.User.surname}";
+    var manage = false;
 </script>
 <script type="text/javascript" src="${context}/js/lecture.js"></script>
 
