@@ -1923,3 +1923,13 @@ h20
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 
+#background
+{
+    background-color: #5b7983;    
+    background: url(../images/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}

@@ -3,47 +3,49 @@
     Created on : May 21, 2014, 9:30:04 PM
     Author     : AlvinRotteveel
 --%>
-<div id="chat_title">
-<h8v2>${lecture.name}</h8v2>
-</div>
 
-<video id="video_container">
-  
-</video>
+<div id="background">
+    <div id="chat_title">
+        <h8v2>${lecture.name}</h8v2>
+    </div>
 
-<link href="${context}/resource/css/bootstrap.css" rel="stylesheet">
-<style type="text/css">
+    <video id="video_container">
 
-#chatroom {
-	font-size: 16px;
-	height: 40px;
-	line-height: 40px;
-	width: 300px;
-}
+    </video>
 
-.received {
-	width: 160px;
-	font-size: 10px;
-}
-</style>
-<link href="${context}/resource/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${context}/resource/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
 
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="./resource/js/html5shiv.js"></script>
-    <![endif]-->
+        #chatroom {
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+            width: 300px;
+        }
 
-<script type="text/javascript">
+        .received {
+            width: 160px;
+            font-size: 10px;
+        }
+    </style>
+    <link href="${context}/resource/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+          <script src="./resource/js/html5shiv.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
     var serviceLocation = "ws://" + document.location.host + "/Digital_Learning_Environment/chat/${lecture.id}";
     var nickName = "${sessionScope.User.givenName} ${sessionScope.User.surname}";
-    var manage = false;
-</script>
-<script type="text/javascript" src="${context}/js/lecture.js"></script>
+        var manage = false;
+    </script>
+    <script type="text/javascript" src="${context}/js/lecture.js"></script>
 
 
-<div id="chat_container">
+    <div id="chat_container">
         <table id="response"></table>
-</div>
+    </div>
     <form id="do-chat">
         <h2 class="alert-success"></h2>
         <fieldset>
@@ -52,5 +54,5 @@
             </div>
         </fieldset>
     </form>
+</div>
 
-        
