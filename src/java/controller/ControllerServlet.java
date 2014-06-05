@@ -151,6 +151,9 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/unauth/register.jsp").forward(request, response);
     }
 
+    
+    
+    
     protected void handleProfile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -605,12 +608,55 @@ public class ControllerServlet extends HttpServlet {
 
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleUserManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Map<String, String> messages = new HashMap<>();
+        
         if(request.getMethod().equals("POST") && request.getParameter("beheer_user_remove_submit") != null) {
-            User user = userFacade.find(Long.parseLong(request.getParameter("beheer_user_remove")));
-            userFacade.remove(user);
+            User userRemove = userFacade.find(Long.parseLong(request.getParameter("beheer_user_remove")));
+            userFacade.remove(userRemove);
+        }
+        else if (request.getMethod().equals("POST") && request.getParameter("modify") != null) {
+            
+            User user = userFacade.findByUsername(request.getParameter("username"));
+            user.setGivenName(request.getParameter("given_name"));
+            user.setSurname(request.getParameter("surname"));
+            user.setEmail(request.getParameter("email"));
+
+            // Password change handling, very specific to this handler.
+            String password = null;
+            if (!request.getParameter("password").equals(request.getParameter("confirm_password"))) {
+                messages.put("error", "Wachtwoorden zijn niet gelijk!");
+            } else {
+                if (request.getParameter("password").equals("")) {
+                    user.setPassword(request.getParameter("password"));
+                } else {
+                    password = request.getParameter("password");
+                }
+            }
+
+            // Call the database backend to write the user entry.
+            boolean success = userFacade.modifyUser(
+                    user.getId(),
+                    user.getGivenName(),
+                    user.getSurname(),
+                    user.getEmail(),
+                    password);
+
+            if (!success) {
+                messages.put("error", "Databasefout!");
+            }
+
         }
         
         
@@ -620,6 +666,13 @@ public class ControllerServlet extends HttpServlet {
 
     }
    
+    
+    
+    
+    
+    
+    
+    
     protected void handleDocument(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] split = request.getPathInfo().split("[/-]");

@@ -9,7 +9,7 @@
 <div id="description">
     <h13>Wijzig de gebruiker door onderstaande gegevens aan te passen.<h13>  
             </div>
-        <form method="post" action="${context}/user/modify">
+        <form method="post" action="${context}/user/manage">
             <div id="title_profile_manage">
                 <h7>Persoonlijke Gegevens</h7>
             </div>
@@ -17,6 +17,7 @@
                 <input class="field_profile_manage" name="given_name" type="text" placeholder="Voornaam" value="${user.givenName}" autofocus required>
                 <input class="field_profile_manage" name="surname" type="text" placeholder="Achternaam" value="${user.surname}" required>
                 <input class="field_profile_manage" name="email" type="text" placeholder="E-mail" value="${user.email}" required>
+                <input type="hidden" name="username" value="${user.username}">
             </div>
             <div id="title_profile_manage"><h7>Wachtwoord wijzigen</h7></div>
             <div id="inputs_profile_manage">
