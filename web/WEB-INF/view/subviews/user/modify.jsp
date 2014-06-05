@@ -9,7 +9,7 @@
 <div id="description">
     <h13>Wijzig de gebruiker door onderstaande gegevens aan te passen.<h13>  
             </div>
-        <form method="post" action="${context}/user/manage">
+        <form method="post" action="${context}/user/manage" target="_top">
             <div id="title_profile_manage">
                 <h7>Persoonlijke Gegevens</h7>
             </div>

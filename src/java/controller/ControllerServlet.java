@@ -154,6 +154,16 @@ public class ControllerServlet extends HttpServlet {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void handleProfile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -204,6 +214,19 @@ public class ControllerServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/auth/user/profile.jsp").forward(request, response);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     protected void handleUserCompetencies(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -620,7 +643,7 @@ public class ControllerServlet extends HttpServlet {
     protected void handleUserManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Map<String, String> messages = new HashMap<>();
+//        HttpSession session = request.getSession();
         
         if(request.getMethod().equals("POST") && request.getParameter("beheer_user_remove_submit") != null) {
             User userRemove = userFacade.find(Long.parseLong(request.getParameter("beheer_user_remove")));
@@ -628,6 +651,7 @@ public class ControllerServlet extends HttpServlet {
         }
         else if (request.getMethod().equals("POST") && request.getParameter("modify") != null) {
             
+            Map<String, String> messages = new HashMap<>();
             User user = userFacade.findByUsername(request.getParameter("username"));
             user.setGivenName(request.getParameter("given_name"));
             user.setSurname(request.getParameter("surname"));
@@ -652,13 +676,10 @@ public class ControllerServlet extends HttpServlet {
                     user.getSurname(),
                     user.getEmail(),
                     password);
-
             if (!success) {
                 messages.put("error", "Databasefout!");
             }
-
         }
-        
         
         request.setAttribute("users", userFacade.findAll());
         // Show the manage users window
