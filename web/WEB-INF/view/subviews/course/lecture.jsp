@@ -3,6 +3,9 @@
     Created on : May 21, 2014, 9:30:04 PM
     Author     : AlvinRotteveel
 --%>
+<div id="chat_title">
+<h8v2>${lecture.name}</h8v2>
+</div>
 
 <video id="video_container">
   
@@ -37,7 +40,6 @@
 </script>
 <script type="text/javascript" src="${context}/js/lecture.js"></script>
 
-<h2>${lecture.name}</h2>
 
 <div id="chat_container">
         <table id="response"></table>
