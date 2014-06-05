@@ -600,6 +600,8 @@ public class ControllerServlet extends HttpServlet {
         request.setAttribute("lectures", course.getLectureCollection());
         request.setAttribute("documents", course.getDocumentCollection());
         request.setAttribute("competencies", course.getCompetencyCollection());
+        request.setAttribute("participants", course.getParticipantCollection());
+        //request.setAttribute("all_users", userFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/subviews/course/modify.jsp").forward(request, response);
     }
 

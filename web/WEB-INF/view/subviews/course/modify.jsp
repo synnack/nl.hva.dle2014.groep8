@@ -159,3 +159,22 @@
         <input class="competency_submit" type="submit" name="add_competency" value="Toevoegen" />
     </form>
 </div>
+<div id="file_browser_container">
+    <div id="file_browser">
+        <div id="document_header">
+            <h17>Deelnemers</h17>
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light3').style.display = 'block';
+                document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><submit2><a href="javascript:void()" onclick="window.open('${context}/course/lecture_manage/${lecture.id}','TnL Chat', 'width=825,height=760,innerHeight=760,scrollbars=no,toolbar=no,location=no'); return false">Deelnemers uitnodigen</a></submit2></div>
+            </a>
+        </div>
+        <table style="width: 100%" cellspacing="0" cellpadding="2">
+        <c:forEach var="user" items="${participants}">
+            <tr id="document_item">
+                <td><h18>${user.givenName} ${user.surname}</h18></td><td>
+                
+                </td>
+            </tr>
+        </c:forEach>
+        </table>
+    </div>
+</div>
