@@ -425,6 +425,8 @@ public class ControllerServlet extends HttpServlet {
     protected void handleGroupManage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
+        HttpSession session = request.getSession();
+        
         if (request.getMethod().equals("POST") && request.getParameter("modify") != null) {
             Long groupId = Long.parseLong(request.getParameter("group_id"));
             DLEGroup group = groupFacade.find(groupId);
@@ -441,7 +443,10 @@ public class ControllerServlet extends HttpServlet {
         } else if (request.getMethod().equals("POST") && request.getParameter("group_add") != null) {
             
             DLEGroup group = new DLEGroup();
+            User user = (User) session.getAttribute("User");
             group.setName(request.getParameter("group"));
+            
+            group.setManager(user);
             groupFacade.create(group);
         }
             

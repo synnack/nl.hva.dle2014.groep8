@@ -46,6 +46,18 @@
         <form method="post" action="${context}/group/manage">
             <div id="description" >
                 <input class="field_competency" type="text" placeholder="Naam" name="group">
+                <input type="hidden" name="manager" value="Sander van Es">
+<!--                <tr><td>
+                <h18>Manager:</h18>
+                </td><td>
+                    <div id="dropdown" class="group_dropdown">
+                        <select name="manager">
+                            <c:forEach var="user" items="${users}">
+                                <option value="${user.id}" ${user.id == group.manager.id ? "selected" : ""}>${user.givenName} ${user.surname}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </td></tr>-->
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
