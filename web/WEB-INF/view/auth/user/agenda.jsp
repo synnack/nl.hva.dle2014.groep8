@@ -20,10 +20,11 @@
             </div>
             <div id="main_description_container">
                 <div id="agenda_header">
-                    <h16>Cursus</h16>
+                    <a href="${context}/user/courses"><h16>Cursus</h16></a>
                 </div>
                 <c:forEach var="lecture" items="${lectures}">
                     <div id="agenda_item">
+                        
                         <h15v2>${lecture.course.name}</h15v2>
                     </div>
                 </c:forEach>
