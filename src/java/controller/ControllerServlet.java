@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import mail.Mail;
 import session.CompetencyFacade;
 import session.CourseFacade;
 import session.DLEGroupFacade;
@@ -612,6 +613,21 @@ public class ControllerServlet extends HttpServlet {
         Course course = courseFacade.find(courseId);
         HttpSession session = request.getSession();
         User user = userFacade.find(((User)session.getAttribute("User")).getId());
+        
+        if (request.getMethod().equals("POST") && request.getParameter("invite_submit") != null ) {
+            for (String userIdString : request.getParameterValues("invite")) {
+                Long userId = Long.parseLong(userIdString);
+                User mail_user = userFacade.find(userId);
+                Mail.sendMail(mail_user.getEmail(), "Uitnodiging voor " + course.getName(), 
+                        "Beste "+mail_user.getGivenName()+",\r\n\r\n" +
+                        "U bent door uw manager uitgenodigd om deel te nemen aan de cursus " + course.getName() + "\r\n" +
+                        "Log in op Teach n' Learn om deel te nemen\r\n" +
+                        "\r\n" + 
+                        "Met vriendelijke groet,\r\n\r\n" +
+                        "Teach n' Learn");
+            }
+            //Mail.sendMail("wilco@baanhofman.nl", "Hoi", "Ik ben een bericht!");
+        }
         
         if (request.getParameter("competency") != null && !request.getParameter("competency").equals("")) {
             Long competencyId = Long.parseLong(request.getParameter("competency"));

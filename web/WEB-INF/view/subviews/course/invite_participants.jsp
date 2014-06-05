@@ -37,6 +37,6 @@
         </c:forEach>
     </table>
 </div>
-<input type="submit" name="invite" value="Uitnodigen">
+<input type="submit" name="invite_submit" value="Uitnodigen">
 
 </form>
