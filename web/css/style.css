@@ -1492,6 +1492,7 @@ h16
     background: url('../images/courses/join_icon.png') no-repeat;
     background-size: contain;
     opacity: 0.7;
+    cursor: pointer;
 }
 
 #join_icon:hover
