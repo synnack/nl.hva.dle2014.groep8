@@ -1,4 +1,4 @@
-package com.hascode.tutorial;
+package lecture;
 
 import java.util.Date;
 
