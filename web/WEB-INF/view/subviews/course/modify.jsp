@@ -164,7 +164,7 @@
         <div id="document_header">
             <h17>Deelnemers</h17>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light3').style.display = 'block';
-                document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><submit2><a href="javascript:void()" onclick="window.open('${context}/course/lecture_manage/${lecture.id}','TnL Chat', 'width=825,height=760,innerHeight=760,scrollbars=no,toolbar=no,location=no'); return false">Deelnemers uitnodigen</a></submit2></div>
+                document.getElementById('fade').style.display = 'block'"><div id="text" class="right_align"><a href="javascript:void()" onclick="window.open('${context}/course/invite/${course.id}','invite_participants', 'width=825,height=760,innerHeight=760,scrollbars=no,toolbar=no,location=no'); return false"><submit2>Deelnemers uitnodigen</submit2></a></div>
             </a>
         </div>
         <table style="width: 100%" cellspacing="0" cellpadding="2">
