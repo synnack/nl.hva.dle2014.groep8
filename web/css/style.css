@@ -691,7 +691,7 @@ fieldset
 }
 
 .field_profile_manage {
-    height: 35px;
+    height: 30px;
     display:block;
     border: 1px solid rgba(91, 121, 150, .3);
     -webkit-background-clip: padding-box;
