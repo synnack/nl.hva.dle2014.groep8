@@ -1138,6 +1138,10 @@ input[type="color"],
      -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
+  top: 10px;
+  left: 12px;
+  position: relative;
+  width: 803px;
 }
 
 textarea:focus,

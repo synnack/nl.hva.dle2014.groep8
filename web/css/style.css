@@ -1579,7 +1579,7 @@ h20
 
 #video_container
 {
-    position: absolute;
+    position: relative;
     top: 12.5px;
     left: 12.5px;
     width: 800px;
@@ -1591,10 +1591,10 @@ h20
 #chat_container
 {
     overflow-y: scroll;
-    position: absolute;
+    position: relative;
     width: 800px;
     height: 175px;
-    top: 510px;
+    top: 0px;
     left: 12.5px;
     border: solid 1px;
     border-color: #ccc;
@@ -1602,7 +1602,7 @@ h20
 
 #chat_input_container
 {
-    position: absolute;
+    position: relative;
     width: 800px;
     height: 90px;
     top: 705px;
