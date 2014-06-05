@@ -3,7 +3,11 @@
     Created on : May 21, 2014, 9:30:04 PM
     Author     : AlvinRotteveel
 --%>
-
+<div id="background">
+    <div id="chat_title">
+        <h8v2>${lecture.name}</h8v2>
+    </div>
+    
 <video autoplay id="video_container">
   
 </video>
@@ -37,8 +41,6 @@
 </script>
 <script type="text/javascript" src="${context}/js/lecture.js"></script>
 
-<h2>${lecture.name}</h2>
-
 <div id="chat_container">
         <table id="response"></table>
 </div>
@@ -50,5 +52,6 @@
             </div>
         </fieldset>
     </form>
+</div>
 
         
