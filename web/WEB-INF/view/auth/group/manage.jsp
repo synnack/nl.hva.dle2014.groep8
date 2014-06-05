@@ -43,15 +43,15 @@
         <div id="description">
             <h15>Maak een nieuwe groep aan door hieronder de naam aan de nieuwe groep mee te geven. Druk vervolgens op Aanmaken.</h15>
         </div>
-        <form method="post" action="${context}/competency/manage">
+        <form method="post" action="${context}/group/manage">
             <div id="description" >
-                <input class="field_competency" type="text" placeholder="Naam" name="competency">
+                <input class="field_competency" type="text" placeholder="Naam" name="group">
             </div>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display = 'none';
                     document.getElementById('fade').style.display = 'none'">
                 <h10>Sluiten</h10>
             </a>
-            <input class="competency_submit" type="submit" name="competency_add" value="Aanmaken"/>
+            <input class="competency_submit" type="submit" name="group_add" value="Aanmaken"/>
         </form>
     </div>
 </div>

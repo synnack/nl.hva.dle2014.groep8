@@ -438,7 +438,16 @@ public class ControllerServlet extends HttpServlet {
             Long groupId = Long.parseLong(request.getParameter("group_id"));
             DLEGroup group = groupFacade.find(groupId);
             groupFacade.remove(group);
+        } else if (request.getMethod().equals("POST") && request.getParameter("group_add") != null) {
+            
+            DLEGroup group = new DLEGroup();
+            group.setName(request.getParameter("group"));
+            groupFacade.create(group);
         }
+            
+            
+            
+            
         
         request.setAttribute("groups", groupFacade.findAll());
         request.getRequestDispatcher("/WEB-INF/view/auth/group/manage.jsp").forward(request, response);
