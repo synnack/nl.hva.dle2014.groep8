@@ -1586,6 +1586,7 @@ h20
     height: 480px;
     border: solid 1px;
     border-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 #chat_container
@@ -1598,6 +1599,7 @@ h20
     left: 12.5px;
     border: solid 1px;
     border-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 #chat_input_container
