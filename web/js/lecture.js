@@ -184,6 +184,7 @@ var Video = function(wsocket) {
             var offer = new RTCSessionDescription({'type': 'answer', 'sdp': data['sdp']});
                 pc.setRemoteDescription(offer, function() {
             }, error);
+        }
     };
     
     Video();
